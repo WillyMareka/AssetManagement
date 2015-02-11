@@ -14,7 +14,8 @@ class HR extends MY_Controller
 
 	function index()
 	{
-		$this->template->call_template();
+		$data['content_page'] = 'HR/dashboard';
+		$this->template->call_template($data);
 	}
 }
 
