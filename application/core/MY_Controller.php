@@ -11,8 +11,9 @@ class MY_Controller extends MX_Controller
     {
         // Call the Model constructor
         parent::__construct();
-        
         $this->load->module('home');
+        $this->load->module('template');
+        $this->load->module('HR');
         
         
     }
