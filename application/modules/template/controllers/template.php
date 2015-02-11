@@ -14,7 +14,9 @@ class template extends MY_Controller
 
 	function call_template($data = NULL)
 	{
-		$this->load->view("template_view", $data);
+		// echo "You have gained access to the template controller";
+		// echo "<pre>";print_r($data);die();
+		$this->load->view('template_view', $data);
 	}
 }
 ?>
