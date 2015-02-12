@@ -101,25 +101,69 @@
 									<!-- begin wizard step-2 -->
 									<div>
 										<fieldset>
-											<legend class="pull-left width-full">Contact Information</legend>
+											<legend class="pull-left width-full">Edit Tenant</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-6">
-													<div class="form-group">
-														<label>Phone Number</label>
-														<input type="text" name="phone" placeholder="0 714 135 480" class="form-control" />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-6">
-													<div class="form-group">
-														<label>Email Address</label>
-														<input type="text" name="email" placeholder="someone@example.com" class="form-control" />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
+                                            	<form action="<?php echo base_url() .'tenant/edittenant';?>" method="POST" class="form-horizontal form-bordered">
+                                            		<div class="form-group">
+                                                        <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                                                           <div class="input-group-btn">
+                                                              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                                                           </div>
+                                                    </div>
+	                                            	<div class="form-group">
+		                                                <!-- begin col-4 -->
+		                                                <input type="hidden" name="editid" id="editid" />
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>First Name:</label>
+																<input type="text" name="edittenantfname" id="edittenantfname" placeholder="" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Last Name:</label>
+																<input type="text" name="edittenantlname" id="edittenantlname" placeholder="" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>National ID / Passport No:</label>
+																<input type="text"  name="editnationalpass" id="editnationalpass" placeholder="" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Phone Number:</label>
+																<input type="text"  name="editphonenumber" id="editphonenumber" placeholder="" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Status:</label>
+																<select class="form-control selectpicker" name="editstatus" id="editstatus" data-size="2" data-live-search="true">
+						                                            <option value="" selected>Select a status</option>
+						                                            <option value="1">Actived</option>
+						                                            <option value="0">Deactivated</option>
+						                                        </select>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <div class="col-md-2" style="float:right;">
+															<div class="form-group">
+																<button type="submit" class="btn btn-success m-r-5 m-b-5">Register</button>
+															</div>
+		                                                </div>
+	                                                </div>
+                                                </form>
                                             </div>
                                             <!-- end row -->
 										</fieldset>

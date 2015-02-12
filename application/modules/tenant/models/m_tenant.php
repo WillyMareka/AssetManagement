@@ -13,7 +13,7 @@ class M_tenant extends MY_Model
 	{
 		$tenant = array(
 						'firstname' => $tenant_first_name,
-						'lastname' 	=> $tenant_last_salary,
+						'lastname' 	=> $tenant_last_name,
 						'nationalid_passport' 	=> $national_passport,
 						'phone_number' 	=> $phone_number,
 						'status' 	=> $tenant_status
