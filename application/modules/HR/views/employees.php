@@ -70,7 +70,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>National ID:</label>
-																<input type="text" name="natid" id="natid" placeholder="First Name" class="form-control" />
+																<input type="text" name="natid" id="natid" placeholder="National Identification" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -78,7 +78,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>NHIF Number</label>
-																<input type="text"  name="nhifno" id="nhifno" placeholder="Middle Name" class="form-control" />
+																<input type="text"  name="nhifno" id="nhifno" placeholder="NHIF" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -106,7 +106,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Date of Birth:</label>
-																<input type="text"  name="nhifno" id="nhifno" placeholder="Middle Name" class="form-control" />
+																<input type="text"  name="dob" id="dob" placeholder="Date of Birth" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -114,7 +114,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Marital Status:</label>
-																<select class="form-control selectpicker" name="gender" id="gender" data-size="2" data-live-search="true">
+																<select class="form-control selectpicker" name="marStatus" id="marStatus" data-size="2" data-live-search="true">
 																	<option value="" selected="true" disabled>**Select Marital Status**</option>
 																	<option value="Sinlge">Single</option>
 																	<option value="Married">Married</option>
@@ -183,13 +183,19 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Job Group Name</th>
-                                            <th>Salary</th>
+                                            <th>First Name</th>
+                                            <th>Middle Name</th>
+                                            <th>Last Name</th>
+                                            <th>National ID</th>
+                                            <th>Date of Employment</th>
+                                            <th>Gender</th>
+                                            <th>Job Group</th>
+                                            <th>Marital Status</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <?php
-                                    	echo $all_job_groups;
+                                    	echo $employee_details;
                                     ?>
                                 </table>
                             </div>
