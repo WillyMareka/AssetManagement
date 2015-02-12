@@ -45,7 +45,7 @@ class Tenant extends MY_Controller
 		$this->active_groups .= "<tbody>";
 		if ($active_job_groups == NULL) {
 			$this->active_groups .= '<tr>';
-			$this->active_groups .= '<td colspan="4"><center>No reconrd found in the database...</center></td>';
+			$this->active_groups .= '<td colspan="4"><center>No record found in the database...</center></td>';
 			$this->active_groups .= '</tr>';
 		} else {
 			foreach ($active_job_groups as $key => $value) {
