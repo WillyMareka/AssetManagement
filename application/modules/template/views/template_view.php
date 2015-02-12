@@ -25,8 +25,17 @@
 	<link href="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/template_files/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>assets/template_files/plugins/parsley/src/parsley.css" rel="stylesheet" />
+
+	<link href="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-combobox/css/bootstrap-combobox.css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>assets/template_files/plugins/DataTables-1.10.2/css/data-table.css" rel="stylesheet" />
 	
 </head>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-1.8.2/jquery-1.8.2.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-ui-1.10.4/ui/minified/jquery-ui.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 <body>
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -42,13 +51,13 @@
 
 		<!-- begin #sidebar -->
 		<?php
-			$this->load->view("hr_side_bar");
+			$this->load->view($sidebar);
 		?>
 		<!-- end #sidebar -->
 
 		<!-- begin #content -->
-		<?php
-
+		<?php 
+			$this->load->view($content_page);
 		?>
 		<!-- end #content -->
 		
@@ -60,9 +69,7 @@
 	<!-- end page container -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-1.8.2/jquery-1.8.2.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-ui-1.10.4/ui/minified/jquery-ui.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+	
 	<!--[if lt IE 9]>
 		<script src="<?php echo base_url(); ?>assets/template_files/crossbrowserjs/html5shiv.js"></script>
 		<script src="<?php echo base_url(); ?>assets/template_files/crossbrowserjs/respond.min.js"></script>
@@ -85,12 +92,16 @@
 	<script src="<?php echo base_url(); ?>assets/template_files/js/dashboard.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
-	<script>
-		$(document).ready(function() {
-			App.init();
-			Dashboard.init();
-		});
-	</script>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/parsley/dist/parsley.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-wizard/js/bwizard.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/js/form-wizards.demo.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/js/apps.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/DataTables-1.10.2/js/jquery.dataTables.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/DataTables-1.10.2/js/data-table.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/js/apps.min.js"></script>
+	
 	<script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

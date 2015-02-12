@@ -1,5 +1,5 @@
 <div>
-
+	<div class="row">
 		<div id="sidebar" class="sidebar">
 			<!-- begin sidebar scrollbar -->
 			<!-- <div data-scrollbar="true" data-height="100%"> -->
@@ -8,9 +8,8 @@
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
 					<li class="has-sub active">
-						<a href="#">
-						    
-						    <i class="fa fa-laptop"></i>
+						<a href="<?php echo base_url(); ?>hr">
+						   <i class="fa fa-laptop"></i>
 						    <span>Dashboard</span>
 					    </a>
 					</li>
@@ -22,8 +21,8 @@
 							<span>Registration</span>
 						</a>
 						<ul class="sub-menu">
-						    <li><a href="#">Employee Registration</a></li>
-						    <li><a href="#">Job Groups <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
+						    <li><a href="<?php echo base_url(); ?>hr/employees">Employee Registration</a></li>
+						    <li><a href="<?php echo base_url(); ?>hr/job_groups">Job Groups <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -33,9 +32,9 @@
 						    <span>Cash Flows</span> 
 						</a>
 						<ul class="sub-menu">
-							<li><a href="#">Salaries & Payments</a></li>
-							<li><a href="#">Allowances & Deductions</a></li>
-							<li><a href="#">Penalties</a></li>
+							<li><a href="<?php echo base_url(); ?>hr">Salaries & Payments</a></li>
+							<li><a href="<?php echo base_url(); ?>hr">Allowances & Deductions</a></li>
+							<li><a href="<?php echo base_url(); ?>hr">Penalties</a></li>
 						</ul>
 					</li>
 					
@@ -48,5 +47,5 @@
 			<!-- end sidebar scrollbar -->
 		</div>
 		<div class="sidebar-bg"></div>
-		
+	</div>
 </div>

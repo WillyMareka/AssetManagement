@@ -17,6 +17,7 @@ class hr extends MY_Controller
 	{
 		
 		$data['content_page'] = 'hr/dashboard';
+		$data['sidebar'] = 'hr_side_bar';
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
 	}
