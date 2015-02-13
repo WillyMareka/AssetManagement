@@ -80,7 +80,7 @@ class employees extends MY_Controller
 	{
 		$job_groups = $this->hr_model->get_active_job_groups();
 		// echo "<pre>";print_r($job_groups);die();
-		$this->job_combo .= '<select class="form-control selectpicker" name="job_group_id" id="job_group_id" data-size="2" data-live-search="true">';
+		$this->job_combo .= '<select class="form-control selectpicker" name="job_group_id" id="job_group_id" data-size="2" data-live-search="true" style="width: 150px;">';
 		$this->job_combo .= '<option value="0">Select a Category</option>';
 		foreach ($job_groups as $key => $value) {
 			$this->job_combo .= '<option value="'.$value['jg_id'].'">'.$value['job_group'].'</option>';
@@ -94,7 +94,7 @@ class employees extends MY_Controller
 	{
 		$employees = $this->hr_model->get_all_employees();
 		// echo "<pre>";print_r($employees);die();
-		$this->employee_combo .= '<select class="form-control selectpicker" name="job_group_id" id="job_group_id" data-size="2" data-live-search="true">';
+		$this->employee_combo .= '<select class="form-control input-sm pull-right selectpicker" name="job_group_id" id="job_group_id" data-size="2" data-live-search="true">';
 		$this->employee_combo .= '<option value="0" selected="true">**Select an Employee**</option>';
 		foreach ($employees as $key => $value) {
 			$this->employee_combo .= '<option value="'.$value['employee_id'].'">'.$value['f_name'].' '.$value['m_name'].' '.$value['l_name'].'</option>';

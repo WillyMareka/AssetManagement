@@ -4,6 +4,7 @@ if(!defined("BASEPATH")) exit("No direct access to the script is allowed");
 class Tenant extends MY_Controller
 {
 	var $active_groups;
+	var $tenants_combo;
 	function __construct()
 	{
 		parent:: __construct();
@@ -13,7 +14,7 @@ class Tenant extends MY_Controller
 	{
 		$data['content_page'] = 'tenant/tenants';
 		$data['sidebar'] = 'hr_side_bar';
-		$data[''] = $this->m_tenant->get_tenants();
+		$data['tenants_c'] = $this->all_tenant_combo();
 		$data['all_tenants'] = $this->all_tenants();
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
@@ -50,9 +51,9 @@ class Tenant extends MY_Controller
 		} else {
 			foreach ($active_job_groups as $key => $value) {
 				if ($value['status'] == 1) {
-					$span = '<span></span>';
+					$span = '<span class="label label-success">Activated</span>';
 				} else if ($value['status'] == 0) {
-					$span = '<span></span>';
+					$span = '<span class="label label-danger">Deactivated</span>';
 				}
 				$count++;
 				$this->active_groups .= '<tr>';
@@ -73,6 +74,14 @@ class Tenant extends MY_Controller
 		return $this->active_groups;
 	}
 
+	function ajax_get_tenant($id)
+	{
+		$tenant = $this->m_tenant->search_tenant($id);
+		// echo "<pre>";print_r($tenant[0]);die();
+		$tenant = json_encode($tenant[0]);
+		echo $tenant;
+	}
+
 
 	public function edittenant()
 	{
@@ -86,11 +95,11 @@ class Tenant extends MY_Controller
 		$sql = "UPDATE
 					`tenant`
 				SET
-				    'firstname' => $tenant_first_name,
-						'lastname' 	=> $tenant_last_name,
-						'nationalid_passport' 	=> $national_passport,
-						'phone_number' 	=> $phone_number,
-						'status' 	=> $tenant_status
+				    	`firstname` = '$tenant_first_name',
+						`lastname` 	= '$tenant_last_name',
+						`nationalid_passport` = '$national_passport',
+						`phone_number` 	= '$phone_number',
+						`status` 	= '$tenant_status'
 					
 				WHERE
 					`tenant_id` = '$id'";
@@ -99,6 +108,21 @@ class Tenant extends MY_Controller
 		$this->index();
 		
 	}
+
+	function all_tenant_combo()
+	{
+		$tenants = $this->m_tenant->get_tenants();
+		// echo "<pre>";print_r($tenants);die();
+		$this->tenants_combo .= '<select name="table_search" id="table_search" onchange="get_tenant()" class="form-control input-sm pull-right" style="width: 150px;">';
+		$this->tenants_combo .= '<option value="0" selected>**Select a tenant**</option>';
+		foreach ($tenants as $key => $value) {
+			$this->tenants_combo .= '<option value="'.$value['tenant_id'].'">'.$value['firstname'].' '.$value['lastname'].'</option>';
+		}
+		$this->tenants_combo .= '</select>';
+
+		return $this->tenants_combo;
+	}
+
 
 	public function searchtenant()
 	{

@@ -104,13 +104,23 @@
 											<legend class="pull-left width-full">Edit Tenant</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'tenant/edittenant';?>" method="POST" class="form-horizontal form-bordered">
-                                            		<div class="form-group">
-                                                        <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                                                           <div class="input-group-btn">
+                                            	<div class="form-group">
+                                            		<?php
+                                            			echo $tenants_c;
+                                            		?>
+                                                        <!-- <select name="table_search" id="table_search" onchange="get_tenant()" class="form-control input-sm pull-right" style="width: 150px;">
+                                                        	<option value="" selected="true" disabled="on">**Select a Tenant**</option>
+                                                        	<option value="1">Option 2</option>
+                                                        	<option value="2">Option 2</option>
+                                                        </select> -->
+                                                          <!--  <div class="input-group-btn">
                                                               <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                                                           </div>
+                                                           </div> -->
                                                     </div>
+                                            </div>
+                                            <div class="row">
+                                            	<form action="<?php echo base_url() .'tenant/edittenant';?>" method="POST" class="form-horizontal form-bordered" id="edit_tenant_form" >
+                                            		
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
 		                                                <input type="hidden" name="editid" id="editid" />
@@ -149,7 +159,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Status:</label>
-																<select class="form-control selectpicker" name="editstatus" id="editstatus" data-size="2" data-live-search="true">
+																<select class="form-control selectpicker" name="editstatus" id="editstatus" data-size="2" data-live-search="true" required>
 						                                            <option value="" selected>Select a status</option>
 						                                            <option value="1">Actived</option>
 						                                            <option value="0">Deactivated</option>
@@ -159,7 +169,7 @@
 		                                                <!-- end col-4 -->
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
-																<button type="submit" class="btn btn-success m-r-5 m-b-5">Register</button>
+																<button type="submit" class="btn btn-success m-r-5 m-b-5">Edit Tenant</button>
 															</div>
 		                                                </div>
 	                                                </div>
@@ -217,5 +227,28 @@
 		$(document).ready(function() {
 			App.init();
 			FormWizard.init();
+			$('#table_search').change(function(){
+       		sv = $(this).val();
+       		// console.log('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv);
+       		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
+       			obj = jQuery.parseJSON(data);
+       			// console.log(obj);
+       			// alert(obj.firstname);
+       			$('#edit_tenant_form input#editid').val(obj.tenant_id);
+				$('#edit_tenant_form input#edittenantfname').val(obj.firstname);
+				$('#edit_tenant_form input#edittenantlname').val(obj.lastname);
+				$('#edit_tenant_form input#editnationalpass').val(obj.nationalid_passport);
+				$('#edit_tenant_form input#editphonenumber').val(obj.phone_number);
+			});
+       });
 		});
+</script>
+<script>
+	function get_tenant()
+	{
+		var sel = document.getElementById('table_search');
+       // var sv = sel.options[sel.selectedIndex].value;
+
+       // console.log(sv);
+	}
 </script>

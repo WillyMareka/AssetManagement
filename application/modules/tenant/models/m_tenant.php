@@ -9,7 +9,7 @@ class M_tenant extends MY_Model
 		parent:: __construct();
 	}
 
-	function register_tenant($tenant_first_name, $tenant_last_salary, $national_passport, $phone_number, $tenant_status)
+	function register_tenant($tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status)
 	{
 		$tenant = array(
 						'firstname' => $tenant_first_name,
@@ -42,6 +42,22 @@ class M_tenant extends MY_Model
 					`tenant`
 				WHERE 
 					`status` = 1";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
+	function search_tenant($id)
+	{
+		$sql = "SELECT
+					`tenant_id`,
+					`firstname`,
+					`lastname`,
+					`nationalid_passport`,
+					`phone_number`
+				FROM 
+					`tenant`
+				WHERE
+					`tenant_id` = '$id'";
 		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
