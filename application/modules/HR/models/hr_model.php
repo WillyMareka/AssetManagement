@@ -78,7 +78,7 @@ class hr_model extends MY_Model
 						'national_id' => $natID,
 						'nhif_number' => $NHIF,
 						'kra_pin' => $KRA,
-						'f_name' => $mname,
+						'f_name' => $fname,
 						'm_name' => $mname,
 						'l_name' => $lname,
 						'gender' => $gender,

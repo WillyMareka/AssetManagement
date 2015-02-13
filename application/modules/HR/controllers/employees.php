@@ -8,6 +8,7 @@ class employees extends MY_Controller
 {
 	var $job_combo;
 	var $employee_tbl;
+	var $employee_combo;
 	function __construct()
 	{
 		parent:: __construct();
@@ -19,6 +20,7 @@ class employees extends MY_Controller
 		$data['content_page'] = 'hr/employees';
 		$data['sidebar'] = 'hr_side_bar';
 		$data['active_jobs'] = $this->job_groups();
+		$data['employee_combo'] = $this->employee_combo();
 		$data['employee_details'] = $this->load_employees_table();
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
@@ -34,20 +36,6 @@ class employees extends MY_Controller
 			
 		}
 		
-	}
-
-	function job_groups()
-	{
-		$job_groups = $this->hr_model->get_active_job_groups();
-		// echo "<pre>";print_r($job_groups);die();
-		$this->job_combo .= '<select class="form-control selectpicker" name="job_group_id" id="job_group_id" data-size="2" data-live-search="true">';
-		$this->job_combo .= '<option value="0">Select a Category</option>';
-		foreach ($job_groups as $key => $value) {
-			$this->job_combo .= '<option value="'.$value['jg_id'].'">'.$value['job_group'].'</option>';
-		}
-		$this->job_combo .= '</select>';
-
-		return $this->job_combo;
 	}
 
 	function load_employees_table()
@@ -86,6 +74,34 @@ class employees extends MY_Controller
 		$this->employee_tbl .= "</tbody>";
 
 		return $this->employee_tbl;
+	}
+
+	function job_groups()
+	{
+		$job_groups = $this->hr_model->get_active_job_groups();
+		// echo "<pre>";print_r($job_groups);die();
+		$this->job_combo .= '<select class="form-control selectpicker" name="job_group_id" id="job_group_id" data-size="2" data-live-search="true">';
+		$this->job_combo .= '<option value="0">Select a Category</option>';
+		foreach ($job_groups as $key => $value) {
+			$this->job_combo .= '<option value="'.$value['jg_id'].'">'.$value['job_group'].'</option>';
+		}
+		$this->job_combo .= '</select>';
+
+		return $this->job_combo;
+	}
+
+	function employee_combo()
+	{
+		$employees = $this->hr_model->get_all_employees();
+		// echo "<pre>";print_r($employees);die();
+		$this->employee_combo .= '<select class="form-control selectpicker" name="job_group_id" id="job_group_id" data-size="2" data-live-search="true">';
+		$this->employee_combo .= '<option value="0" selected="true">**Select an Employee**</option>';
+		foreach ($employees as $key => $value) {
+			$this->employee_combo .= '<option value="'.$value['employee_id'].'">'.$value['f_name'].' '.$value['m_name'].' '.$value['l_name'].'</option>';
+		}
+		$this->employee_combo .= '</select>';
+
+		return $this->employee_combo;
 	}
 
 	

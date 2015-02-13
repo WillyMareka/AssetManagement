@@ -1,0 +1,1 @@
+ALTER TABLE `employee_penalties` CHANGE `date` `year` YEAR( 11 ) NOT NULL ;

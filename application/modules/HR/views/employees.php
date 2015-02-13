@@ -148,25 +148,130 @@
 									<!-- begin wizard step-2 -->
 									<div>
 										<fieldset>
-											<legend class="pull-left width-full">Edit</legend>
+											<legend class="pull-left width-full">
+												Edit
+												<div class="row">
+												<div class="col-md-6">
+													<?php echo $employee_combo;?>	
+												</div>
+											</div>	
+											</legend>
+											
                                             <!-- begin row -->
                                             <div class="row">
                                                 <!-- begin col-6 -->
-                                                <div class="col-md-6">
-													<div class="form-group">
-														<label>Phone Number</label>
-														<input type="text" name="phone" placeholder="123-456-7890" class="form-control" />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-6">
-													<div class="form-group">
-														<label>Email Address</label>
-														<input type="text" name="email" placeholder="someone@example.com" class="form-control" />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
+                                                <form action="<?php echo base_url();?>hr/employees/registration" method="POST" class="form-horizontal form-bordered">
+	                                            	<div class="form-group">
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>First Name:</label>
+																<input type="text" name="edit_fname" id="edit_fname" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Middle Name</label>
+																<input type="text"  name="edit_mname" id="edit_mname" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Last Name:</label>
+																<input type="text"  name="edit_lname" id="edit_lname" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                 <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>National ID:</label>
+																<input type="text" name="edit_natid" id="edit_natid" class="form-control" disabled/>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>NHIF Number</label>
+																<input type="text"  name="edit_nhifno" id="edit_nhifno" class="form-control" disabled/>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>KRA Pin:</label>
+																<input type="text"  name="edit_krapin" id="edit_krapin" class="form-control" disabled/>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                 <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Gender:</label>
+																<select class="form-control selectpicker" name="edit_gender" id="edit_gender" data-size="2" data-live-search="true">
+																	<option value="" selected="true" disabled>**Select Gender**</option>
+																	<option value="Male">Male</option>
+																	<option value="Female">Female</option>
+																</select>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Date of Birth:</label>
+																<input type="text"  name="edit_dob" id="edit_dob" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Marital Status:</label>
+																<select class="form-control selectpicker" name="edit_marStatus" id="edit_marStatus" data-size="2" data-live-search="true">
+																	<option value="" selected="true" disabled>**Select Marital Status**</option>
+																	<option value="Sinlge">Single</option>
+																	<option value="Married">Married</option>
+																</select>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Job Group:</label>
+																<?php
+																	echo $active_jobs;
+																?>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                 <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Status:</label>
+																<select class="form-control selectpicker" name="edit_status" id="edit_status" data-size="2" data-live-search="true">
+																	<option value="" selected="true" disabled>**Select Status**</option>
+																	<option value="1">Activated</option>
+																	<option value="0">Deactivated</option>
+																</select>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                
+		                                                <div class="col-md-2" style="float:right;">
+															<div class="form-group">
+																<button type="submit" class="btn btn-success m-r-5 m-b-5">Edit</button>
+															</div>
+		                                                </div>
+	                                                </div>
+                                                </form>
                                             </div>
                                             <!-- end row -->
 										</fieldset>
