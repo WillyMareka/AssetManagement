@@ -5,6 +5,7 @@ CREATE TABLE `house` (
   `block` varchar(255) NOT NULL,
   `estate_name` varchar(255) NOT NULL,
   `rent` int(11) NOT NULL,
+  `picture` text NOT NULL,
   `bedrooms` int(11) NOT NULL,
   `bathrooms` int(11) NOT NULL,
   `kitchen` int(11) NOT NULL,

@@ -1,0 +1,1 @@
+ALTER TABLE `house` ADD `picture` TEXT NOT NULL AFTER `rent`;
