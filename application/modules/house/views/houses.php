@@ -259,7 +259,7 @@
 
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
-																<button type="submit" class="btn btn-success m-r-5 m-b-5">Edit house</button>
+																<button type="submit" class="btn btn-success m-r-5 m-b-5">Assign house</button>
 															</div>
 		                                                </div>
 	                                                </div>
@@ -272,7 +272,7 @@
 									<!-- begin wizard step-3 -->
 									<div>
 										<fieldset>
-											<legend class="pull-left width-full">Edit housing</legend>
+											<legend class="pull-left width-full">Edit House</legend>
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
