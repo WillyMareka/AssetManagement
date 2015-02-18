@@ -23,8 +23,8 @@
 						<ul class="sub-menu">
 						    <li><a href="<?php echo base_url(); ?>hr/employees">Employee Registration</a></li>
 						    <li><a href="<?php echo base_url(); ?>hr/job_groups">Job Groups <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
-						    <li><a href="<?php echo base_url(), 'tenant'; ?>">Tenants</a></li>
-
+						    <li><a href="<?php echo base_url(). 'tenant'; ?>">Tenants Registration</a></li>
+                            <li><a href="<?php echo base_url(). 'house'; ?>">House Registration</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">

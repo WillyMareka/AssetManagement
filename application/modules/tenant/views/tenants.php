@@ -27,6 +27,9 @@
 										    Register Tenant
 										</li>
 										<li>
+										    Assign House
+										 </li>
+										<li>
 										    Edit Tenant
 										 </li>
 										 <li>
@@ -101,7 +104,7 @@
 									<!-- begin wizard step-2 -->
 									<div>
 										<fieldset>
-											<legend class="pull-left width-full">Edit Tenant</legend>
+											<legend class="pull-left width-full">Assign House</legend>
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
@@ -182,6 +185,87 @@
 									<!-- begin wizard step-3 -->
 									<div>
 										<fieldset>
+											<legend class="pull-left width-full">Edit Tenant</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                            	<div class="form-group">
+                                            		<?php
+                                            			echo $tenants_c;
+                                            		?>
+                                                        <!-- <select name="table_search" id="table_search" onchange="get_tenant()" class="form-control input-sm pull-right" style="width: 150px;">
+                                                        	<option value="" selected="true" disabled="on">**Select a Tenant**</option>
+                                                        	<option value="1">Option 2</option>
+                                                        	<option value="2">Option 2</option>
+                                                        </select> -->
+                                                          <!--  <div class="input-group-btn">
+                                                              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                                                           </div> -->
+                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                            	<form action="<?php echo base_url() .'tenant/edittenant';?>" method="POST" class="form-horizontal form-bordered" id="edit_tenant_form" >
+                                            		
+	                                            	<div class="form-group">
+		                                                <!-- begin col-4 -->
+		                                                <input type="hidden" name="editid" id="editid" />
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>First Name:</label>
+																<input type="text" name="edittenantfname" id="edittenantfname" placeholder="" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Last Name:</label>
+																<input type="text" name="edittenantlname" id="edittenantlname" placeholder="" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>National ID / Passport No:</label>
+																<input type="text"  name="editnationalpass" id="editnationalpass" placeholder="" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Phone Number:</label>
+																<input type="text"  name="editphonenumber" id="editphonenumber" placeholder="" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Status:</label>
+																<select class="form-control selectpicker" name="editstatus" id="editstatus" data-size="2" data-live-search="true" required>
+						                                            <option value="" selected>Select a status</option>
+						                                            <option value="1">Actived</option>
+						                                            <option value="0">Deactivated</option>
+						                                        </select>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <div class="col-md-2" style="float:right;">
+															<div class="form-group">
+																<button type="submit" class="btn btn-success m-r-5 m-b-5">Edit Tenant</button>
+															</div>
+		                                                </div>
+	                                                </div>
+                                                </form>
+                                            </div>
+                                            <!-- end row -->
+										</fieldset>
+									</div>
+									<!-- end wizard step-3 -->
+									<!-- begin wizard step-4 -->
+									<div>
+										<fieldset>
 											<legend class="pull-left width-full">View all Tenants</legend>
                                             <!-- begin row -->
                                             <div class="row">
@@ -208,7 +292,7 @@
                                             <!-- end row -->
 										</fieldset>
 									</div>
-									<!-- end wizard step-3 -->
+									<!-- end wizard step-4 -->
 									
 									
 								</div>
