@@ -307,12 +307,16 @@
 			
 	</div>
 </div>
+
 <script>
 		$(document).ready(function() {
 			App.init();
 			FormWizard.init();
 			$('#table_search').change(function(){
-       		sv = $(this).val();
+				var table_search = document.getElementById('table_search');
+				var sv = table_search.value();alert(sv);
+       		// sv = $(this).val();
+       		 //console.log(sv);
        		// console.log('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv);
        		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
        			obj = jQuery.parseJSON(data);
@@ -324,7 +328,7 @@
 				$('#edit_tenant_form input#editnationalpass').val(obj.nationalid_passport);
 				$('#edit_tenant_form input#editphonenumber').val(obj.phone_number);
 			});
-       });
+       		});
 		});
 </script>
 <script>
