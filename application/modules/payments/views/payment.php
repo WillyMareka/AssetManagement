@@ -1,0 +1,181 @@
+<div>
+	<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+				<li><a href="javascript:;">Home</a></li>
+				<li class="active">Payments</li>
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">Payments</h1>
+			<!-- end page-header -->
+
+			<!--begining of content page-->
+			<div class="row">
+                <!-- begin col-12 -->
+			    <div class="col-md-12">
+			        <!-- begin panel -->
+                    <div class="panel panel-inverse">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Payments</h4>
+                        </div>
+                        <div class="panel-body">
+                            
+								<div id="wizard">
+									<ol>
+										<li>
+										    Payments
+										</li>
+										 <li>
+										    View payments
+										 </li>
+										
+									</ol>
+									<!-- begin wizard step-1 -->
+									<div>
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Pay</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                            	<form action="<?php echo base_url() .'payments/paymenttransaction';?>" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered" role="form">
+	                                            	<div class="form-group">
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Tenant ID:</label>
+																<input type="text" name="paymenttid" id="paymenttid" required placeholder="Search Tenant ID" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Method of Payment:</label>
+																<select class="form-control selectpicker" required name="paymentlmethod" id="paymentlmethod"  data-live-search="true">
+																	<?php echo $paymentmethods?>
+																</select>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Amount Paid:</label>
+																<input type="text"  name="paymentamount" required id="paymentamount" placeholder="Enter payment amount" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Payment for:</label>
+																<!-- <input type="text"  name="paymentfor" id="paymentfor" placeholder="Enter payment reason" class="form-control" /> -->
+																<div class="checkbox">
+																    <?php echo $paymentfor?>
+															    </div>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4 transaction_other">
+															<div class="form-group">
+																<label>Transaction No:</label>
+																<input type="text"  name="paymenttrans" id="paymenttrans" placeholder="Enter the transaction number" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                              
+
+
+		                                                <div class="col-md-2" style="float:right;">
+															<div class="form-group">
+																<button type="submit" class="btn btn-success m-r-5 m-b-5">Complete Transaction</button>
+																<button type="reset" class="btn btn-warning m-r-5 m-b-5">Cancel</button>
+															</div>
+		                                                </div>
+	                                                </div>
+                                                </form>
+                                            </div>
+                                            <!-- end row -->
+										</fieldset>
+									</div>
+									<!-- end wizard step-1 -->
+									<!-- begin wizard step-2 -->
+									<div>
+										<fieldset>
+											<legend class="pull-left width-full">View all payments</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <div class="table-responsive">
+                                <table id="data-table" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ID No</th>
+                                            <th>Payment Method</th>
+                                            <th>Transaction No</th>
+                                            <th>Payment Reason</th>
+                                            <th>Amount Paid</th>
+                                            <th>Date of Payment</th>
+                                        </tr>
+                                    </thead>
+                                    <?php
+                                    	echo $all_payments;
+                                    ?>
+                                </table>
+                            </div>
+                                                
+                                            </div>
+                                            <!-- end row -->
+										</fieldset>
+									</div>
+									<!-- end wizard step-2 -->
+									
+									
+								</div>
+							
+                        </div>
+                    </div>
+                    <!-- end panel -->
+                </div>
+                <!-- end col-12 -->
+            </div>
+			<!--end of content page-->
+			
+	</div>
+</div>
+<script>
+		$(document).ready(function() {
+			App.init();
+			FormWizard.init();
+			$('#table_search').change(function(){
+       		sv = $(this).val();
+       		// console.log('<?php echo base_url(); ?>payment/ajax_get_payment/'+sv);
+       		$.get('<?php echo base_url(); ?>payments/ajax_get_payment/'+sv, function(data){
+       			obj = jQuery.parseJSON(data);
+       			// console.log(obj);
+       			// alert(obj.firstname);
+       			$('#edit_payment_form input#editpaymentid').val(obj.payment_id);
+				$('#edit_payment_form input#editpaymentno').val(obj.payment_no);
+				$('#edit_payment_form input#editpaymenttype').val(obj.payment_type);
+				$('#edit_payment_form input#editpaymentblock').val(obj.payment_block);
+				$('#edit_payment_form input#editpaymentestate').val(obj.payment_estate);
+				$('#edit_payment_form input#editpaymentrent').val(obj.payment_rent);
+				$('#edit_payment_form input#editpaymentbedrooms').val(obj.payment_bedrooms);
+				$('#edit_payment_form input#editpaymentbathrooms').val(obj.payment_bathrooms);
+				$('#edit_payment_form input#editpaymentkitchen').val(obj.payment_kitchen);
+				$('#edit_payment_form input#editpaymentdescription').val(obj.payment_description);
+				$('#edit_payment_form input#editpaymentstatus').val(obj.payment_status);
+			});
+       });
+		});
+</script>
+<script>
+	function get_payment()
+	{
+		var sel = document.getElementById('table_search');
+       // var sv = sel.options[sel.selectedIndex].value;
+         
+       // console.log(sv);
+	}
+</script>

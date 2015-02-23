@@ -69,25 +69,6 @@ class House extends MY_Controller
 			echo "Error occured";
 		}
 		    }
-
-
-		$houseno = $this->input->post('houseno');
-		$housetype = $this->input->post('housetype');
-		$houseblock = $this->input->post('houseblock');
-		$houseestate = $this->input->post('houseestate');
-		$houserent = $this->input->post('houserent');
-		$housebedrooms = $this->input->post('housebedrooms');
-		$housebathrooms = $this->input->post('housebathrooms');
-		$housekitchen = $this->input->post('housekitchen');
-		$housedescription = $this->input->post('housedescription');
-
-		$insert = $this->house_model->register_house($houseno, $housetype, $houseblock, $houseestate, $houserent, $housebedrooms, $housebathrooms, $housekitchen, $housedescription);
-
-		if ($insert) {
-			echo "Insertion complete";
-		} else {
-			echo "Error occured";
-		}
 		
 	}
 

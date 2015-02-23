@@ -34,7 +34,7 @@
 						    <span>Cash Flows</span> 
 						</a>
 						<ul class="sub-menu">
-							<li><a href="<?php echo base_url(); ?>hr">Salaries & Payments</a></li>
+							<li><a href="<?php echo base_url(). 'payments'; ?>">Salaries & Payments</a></li>
 							<li><a href="<?php echo base_url(); ?>hr">Allowances & Deductions</a></li>
 							<li><a href="<?php echo base_url(); ?>hr">Penalties</a></li>
 						</ul>
