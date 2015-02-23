@@ -29,6 +29,31 @@ class House_model extends MY_Model
 
 	}
 
+	function assign_house($assignhouseid, $assignblock, $assigntenantid, $assignhouseno, $assignestate, $assignpnumber, $assignrent, $assignhousetype, $assignnapa)
+	{
+		$data = array();
+		$data['is_assigned'] = 1;
+		$this->db->where('house_id', $assignhouseid);
+        $this->db->update('house', $data);
+
+
+		$house_assign = array(
+						'ha_houseid' => $assignhouseid,
+						'ha_block' 	=> $assignblock,
+						'ha_tenantid' 	=> $assigntenantid,
+						'ha_houseno' 	=> $assignhouseno,
+						'ha_estate' 	=> $assignestate,
+						'ha_pnumber' => $assignpnumber,
+						'ha_rent' => $assignrent,
+						'ha_housetype' => $assignhousetype,
+						'ha_national' => $assignnapa
+						);
+
+		$insert = $this->db->insert('house_assign', $house_assign);
+		return $insert;
+
+	}
+
 	public function get_house_types()
     {
       $query = "SELECT * FROM house_type WHERE status = 1";
