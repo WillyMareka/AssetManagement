@@ -9,6 +9,7 @@ class employees extends MY_Controller
 	var $job_combo;
 	var $employee_tbl;
 	var $employee_combo;
+	
 	function __construct()
 	{
 		parent:: __construct();
