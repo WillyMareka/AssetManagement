@@ -73,30 +73,7 @@ class House extends MY_Controller
 		
 	}
 
-	function assignhouse()
-	{
-		
-
-		$assignhouseid = $this->input->post('assignhouseid');
-		$assignblock = $this->input->post('assignblock');
-		$assigntenantid = $this->input->post('assigntenantid');
-		$assignhouseno = $this->input->post('assignhouseno');
-		$assignestate = $this->input->post('assignestate');
-		$assignpnumber = $this->input->post('assignpnumber');
-		$assignrent = $this->input->post('assignrent');
-		$assignhousetype = $this->input->post('assignhousetype');
-		$assignnapa = $this->input->post('assignnapa');
-// print_r($_FILES);
-		$insert = $this->house_model->assign_house($assignhouseid, $assignblock, $assigntenantid, $assignhouseno, $assignestate, $assignpnumber, $assignrent, $assignhousetype, $assignnapa);
-
-		if ($insert) {
-			echo "Insertion complete";
-		} else {
-			echo "Error occured";
-		}
-		    
-		
-	}
+	
 
 	function gethousetypes()
 	{
