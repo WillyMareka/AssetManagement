@@ -27,9 +27,6 @@
 										    Register house
 										</li>
 										<li>
-										    Assign House
-										 </li>
-										<li>
 										    Edit house
 										 </li>
 										 <li>
@@ -134,7 +131,7 @@
 
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
-																<button type="submit" class="btn btn-success m-r-5 m-b-5">Register</button>
+																<button type="submit" class="btn btn-success m-r-5 m-b-5">Register House</button>
 															</div>
 		                                                </div>
 	                                                </div>
@@ -144,131 +141,7 @@
 										</fieldset>
 									</div>
 									<!-- end wizard step-1 -->
-									<!-- begin wizard step-2 -->
-									<div>
-										<fieldset>
-											<legend class="pull-left width-full">Assign House</legend>
-                                            <!-- begin row -->
-                                            <div class="row">
-                                            	<div class="form-group">
-                                            		<?php
-                                            			echo $houses_c;
-                                            		?>
-                                                        <!-- <select name="table_search" id="table_search" onchange="get_house()" class="form-control input-sm pull-right" style="width: 150px;">
-                                                        	<option value="" selected="true" disabled="on">**Select a house**</option>
-                                                        	<option value="1">Option 2</option>
-                                                        	<option value="2">Option 2</option>
-                                                        </select> -->
-                                                          <!--  <div class="input-group-btn">
-                                                              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                                                           </div> -->
-                                                    </div>
-                                            </div>
-                                            <div class="row">
-                                            	<form action="<?php echo base_url() .'house/edithouse';?>" method="POST" class="form-horizontal form-bordered" id="edit_house_form" >
-                                            		
-	                                            	<div class="form-group">
-		                                                <!-- begin col-4 -->
-		                                                <input type="hidden" name="editid" id="editid" />
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>House No:</label>
-																<input type="text" name="edithouseno" id="edithouseno" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>House Type:</label>
-																<input type="text" name="edithousetype" id="edithousetype" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Block:</label>
-																<input type="text"  name="edithouseblock" id="edithouseblock" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Estate:</label>
-																<input type="text"  name="edithouseestate" id="edithouseestate" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Rent:</label>
-																<input type="text"  name="edithouserent" id="edithouserent" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Bedrooms:</label>
-																<input type="text"  name="edithousebedrooms" id="edithousebedrooms" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Bathrooms:</label>
-																<input type="text"  name="edithousebathrooms" id="edithousebathrooms" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Kitchen:</label>
-																<input type="text"  name="edithousekitchen" id="edithousekitchen" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Description:</label>
-																<textarea name="edithousedescription" id="edithousedescription" placeholder="" class="form-control" ></textarea>
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Status:</label>
-																<select class="form-control selectpicker" name="edithousestatus" id="edithousestatus" data-size="2" data-live-search="true">
-																	<option value="" selected="true" disabled>**Select Status**</option>
-																	<option value="1">Activate</option>
-																	<option value="0">Deactivate</option>
-																</select>
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-
-
-                                                        
-
-		                                                <div class="col-md-2" style="float:right;">
-															<div class="form-group">
-																<button type="submit" class="btn btn-success m-r-5 m-b-5">Assign house</button>
-															</div>
-		                                                </div>
-	                                                </div>
-                                                </form>
-                                            </div>
-                                            <!-- end row -->
-										</fieldset>
-									</div>
-									<!-- end wizard step-2 -->
+									
 									<!-- begin wizard step-3 -->
 									<div>
 										<fieldset>

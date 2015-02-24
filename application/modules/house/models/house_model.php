@@ -29,6 +29,8 @@ class House_model extends MY_Model
 
 	}
 
+	
+
 	public function get_house_types()
     {
       $query = "SELECT * FROM house_type WHERE status = 1";

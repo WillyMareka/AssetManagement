@@ -108,11 +108,9 @@
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
-                                            		<?php
-                                            			echo $tenants_c;
-                                            		?>
-                                                        <!-- <select name="table_search" id="table_search" onchange="get_tenant()" class="form-control input-sm pull-right" style="width: 150px;">
-                                                        	<option value="" selected="true" disabled="on">**Select a Tenant**</option>
+                                            		
+                                                        <!-- <select name="table_search" id="table_search" onchange="get_house()" class="form-control input-sm pull-right" style="width: 150px;">
+                                                        	<option value="" selected="true" disabled="on">**Select a house**</option>
                                                         	<option value="1">Option 2</option>
                                                         	<option value="2">Option 2</option>
                                                         </select> -->
@@ -122,31 +120,51 @@
                                                     </div>
                                             </div>
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'tenant/edittenant';?>" method="POST" class="form-horizontal form-bordered" id="edit_tenant_form" >
+                                            	<form action="<?php echo base_url() .'tenant/assignhouse';?>" method="POST" class="form-horizontal form-bordered" id="edit_house_form" >
                                             		
 	                                            	<div class="form-group">
+		                                               
 		                                                <!-- begin col-4 -->
-		                                                <input type="hidden" name="editid" id="editid" />
 		                                                <div class="col-md-4">
 															<div class="form-group">
-																<label>First Name:</label>
-																<input type="text" name="edittenantfname" id="edittenantfname" placeholder="" class="form-control" />
+																<label>House ID:</label>
+																<input type="text" name="assignhouseid" id="assignhouseid" placeholder="Enter the tenant's house ID" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                 <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Block Name:</label>
+																<input type="text"  name="assignblock" id="assignblock" placeholder="Enter the block name" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Tenant ID:</label>
+																<input type="text"  name="assigntenantid" id="assigntenantid" placeholder="Enter the tenant ID" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+
+		                                                
+		                                               
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>House No:</label>
+																<input type="text"  name="assignhouseno" id="assignhouseno" placeholder="Enter the tenant's house no" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div class="form-group">
-																<label>Last Name:</label>
-																<input type="text" name="edittenantlname" id="edittenantlname" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>National ID / Passport No:</label>
-																<input type="text"  name="editnationalpass" id="editnationalpass" placeholder="" class="form-control" />
+																<label>Estate Name:</label>
+																<input type="text"  name="assignestate" id="assignestate" placeholder="Enter the estate name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -154,25 +172,43 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Phone Number:</label>
-																<input type="text"  name="editphonenumber" id="editphonenumber" placeholder="" class="form-control" />
+																<input type="text"  name="assignpnumber" id="assignpnumber" placeholder="Enter the tenant's phone number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div class="form-group">
-																<label>Status:</label>
-																<select class="form-control selectpicker" name="editstatus" id="editstatus" data-size="2" data-live-search="true" required>
-						                                            <option value="" selected>Select a status</option>
-						                                            <option value="1">Actived</option>
-						                                            <option value="0">Deactivated</option>
-						                                        </select>
+																<label>Rent:</label>
+																<input type="text"  name="assignrent" id="assignrent" placeholder="Enter the house rent" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>House Type:</label>
+																<input type="text"  name="assignhousetype" id="assignhousetype" placeholder="Enter the house type" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                 <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>National ID / Passport:</label>
+																<input type="text"  name="assignnapa" id="assignnapa" placeholder="Enter the tenant's National ID/Passport no" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                
+		                                                 
+
+
+                                                        
+
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
-																<button type="submit" class="btn btn-success m-r-5 m-b-5">Edit Tenant</button>
+																<button type="submit" class="btn btn-success m-r-5 m-b-5">Assign house</button>
 															</div>
 		                                                </div>
 	                                                </div>
