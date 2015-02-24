@@ -286,7 +286,7 @@
                                             <th>Bedroom(s)</th>
                                             <th>Bathroom(s)</th>
                                             <th>Kitchen(s)</th>
-                                            <th>Description</th>
+                                            
                                             <th>Status</th>
                                             <th>Date Registered</th>
                                         </tr>
