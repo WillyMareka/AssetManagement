@@ -44,11 +44,7 @@ class Tenant extends MY_Controller
 		// echo "<pre>";print_r($active_job_groups);die();
 		$count = 0;
 		$this->active_groups .= "<tbody>";
-		if ($active_job_groups == NULL) {
-			$this->active_groups .= '<tr>';
-			$this->active_groups .= '<td colspan="4"><center>No record found in the database...</center></td>';
-			$this->active_groups .= '</tr>';
-		} else {
+		if(count($active_job_groups) > 0) {
 			foreach ($active_job_groups as $key => $value) {
 				if ($value['status'] == 1) {
 					$span = '<span class="label label-success">Activated</span>';
@@ -172,10 +168,6 @@ class Tenant extends MY_Controller
 				$tenant_list .= '<td><a href = "'.base_url().'tenant/search/tenantmember/' . $value['tenant_id'] . '">View More</a></td>';
 				$tenant_list .= '</tr>';
 			}
-		}
-		else
-		{
-			$tenant_list .= '<tr><td colspan = "7"><center>No data found</center></td></tr>';
 		}
 		$tenant_list .= '</tbody>';
 
