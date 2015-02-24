@@ -117,7 +117,7 @@ class House extends MY_Controller
 				$this->active_groups .= '<td>'.$value['bedrooms'].'</td>';
 				$this->active_groups .= '<td>'.$value['bathrooms'].'</td>';
 				$this->active_groups .= '<td>'.$value['kitchen'].'</td>';
-				$this->active_groups .= '<td>'.$value['description'].'</td>';
+				
 
 				$this->active_groups .= '<td>'.$span.'</td>';
 				$this->active_groups .= '<td>'.$value['date_registered'].'</td>';
