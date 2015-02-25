@@ -15,10 +15,14 @@ class Tenant extends MY_Controller
 		$data['content_page'] = 'tenant/tenants';
 		$data['sidebar'] = 'hr_side_bar';
 		$data['tenants_c'] = $this->all_tenant_combo();
+		$data['tenants_f'] = $this->all_tenant_combo();
+		$data['houses_c'] = $this->all_vhouse_combo();
 		$data['all_tenants'] = $this->all_tenants();
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
 	}
+
+	
 
 	function registration()
 	{
@@ -127,6 +131,22 @@ class Tenant extends MY_Controller
 		echo $tenant;
 	}
 
+	function ajax_get_house($id)
+	{
+		$house = $this->m_tenant->search_house($id);
+		 //echo "<pre>";print_r($house[0]);die();
+		$house = json_encode($house[0]);
+		echo $house;
+	}
+
+	function ajax_get_atenant($id)
+	{
+		$tenant = $this->m_tenant->search_tenant($id);
+		 //echo "<pre>";print_r($tenant[0]);die();
+		$tenant = json_encode($tenant[0]);
+		echo $tenant;
+	}
+
 
 	public function edittenant()
 	{
@@ -158,6 +178,20 @@ class Tenant extends MY_Controller
 		return $this->tenants_combo;
 	}
 
+
+    function all_vhouse_combo()
+	{
+		$houses = $this->m_tenant->get_all_vhouses();
+		// echo "<pre>";print_r($houses);die();
+		$this->houses_combo .= '<select name="table_search" id="table_search" onchange="get_house()" class="form-control input-sm pull-right" style="width: 350px;">';
+		$this->houses_combo .= '<option value="0" selected>**Select a house**</option>';
+		foreach ($houses as $key => $value) {
+			$this->houses_combo .= '<option value="'.$value['house_id'].'">'.$value['house_no'].' -- '.$value['estate_name'].'</option>';
+		}
+		$this->houses_combo .= '</select>';
+
+		return $this->houses_combo;
+	}
 
 	public function searchtenant()
 	{

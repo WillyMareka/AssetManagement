@@ -66,6 +66,18 @@ class M_tenant extends MY_Model
 
 	}
 
+	function get_all_vhouses()
+	{
+		$sql = "SELECT 
+					*
+				FROM
+					`house`
+				WHERE 
+				    `is_assigned` = 0";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
 	function get_tenants()
 	{
 		$sql = "SELECT 
@@ -96,6 +108,18 @@ class M_tenant extends MY_Model
 					`tenant`
 				WHERE
 					`tenant_id` = '$id'";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
+	function search_house($id)
+	{
+		$sql = "SELECT
+					*
+				FROM 
+					`house`
+				WHERE
+					`house_id` = '$id'";
 		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
