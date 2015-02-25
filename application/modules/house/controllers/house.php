@@ -80,11 +80,11 @@ class House extends MY_Controller
         $results = $this->house_model->get_house_types();
         
         //echo '<pre>';print_r($results);echo '</pre>';die;
-            $prodcat ='<option selected="selected" value="">Select the House Type</option>';
+            $houtyp ='<option selected="selected" value="">Select the House Type</option>';
         foreach ($results as $value) {
-            $prodcat .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
+            $houtyp .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
         }
-        return $prodcat;
+        return $houtyp;
 	}
 
 
