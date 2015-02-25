@@ -9,14 +9,15 @@ class M_tenant extends MY_Model
 		parent:: __construct();
 	}
 
-	function register_tenant($tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status)
+	function register_tenant($tenant_first_name, $tenant_last_name, $path, $national_passport, $phone_number, $tenant_status)
 	{
 		$tenant = array(
 						'firstname' => $tenant_first_name,
 						'lastname' 	=> $tenant_last_name,
+						'picture' 	=> $path,
 						'nationalid_passport' 	=> $national_passport,
 						'phone_number' 	=> $phone_number,
-						'status' 	=> $tenant_status
+						'tenant_status' 	=> $tenant_status
 						);
 
 		$insert = $this->db->insert('tenant', $tenant);
@@ -49,6 +50,22 @@ class M_tenant extends MY_Model
 
 	}
 
+	function tenant_update($id,$tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status)
+	{
+		$tenant = array(
+						'firstname' => $tenant_first_name,
+						'lastname' 	=> $tenant_last_name,
+						'nationalid_passport' 	=> $national_passport,
+						'phone_number' 	=> $phone_number,
+						'tenant_status' 	=> $tenant_status
+						);
+
+		$this->db->where('tenant_id', $id);
+        $insert = $this->db->update('tenant', $tenant);
+		return $insert;
+
+	}
+
 	function get_tenants()
 	{
 		$sql = "SELECT 
@@ -74,11 +91,7 @@ class M_tenant extends MY_Model
 	function search_tenant($id)
 	{
 		$sql = "SELECT
-					`tenant_id`,
-					`firstname`,
-					`lastname`,
-					`nationalid_passport`,
-					`phone_number`
+					*
 				FROM 
 					`tenant`
 				WHERE

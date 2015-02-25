@@ -22,20 +22,44 @@ class Tenant extends MY_Controller
 
 	function registration()
 	{
+		$path = base_url().'uploads/tenants/';
+		       $config['upload_path'] = 'uploads/tenants';
+		       $config['allowed_types'] = 'jpeg|jpg|png|gif';
+		       $config['encrypt_name'] = TRUE;
+		       $this->load->library('upload', $config);
+		       $this->upload->initialize($config);
+
+		      
+			if ( ! $this->upload->do_upload('tenantpicture'))
+		    {
+			   $error = array('error' => $this->upload->display_errors());
+
+			   print_r($error);die;
+		    }
+		     else
+		     {
+		       
+                $data = array('upload_data' => $this->upload->data());
+			     foreach ($data as $key => $value) {
+				  //print_r($data);die;
+				  $path = base_url().'uploads/tenants/'.$value['file_name'];
+				
+                  }
+
 		$tenant_first_name = $this->input->post('tenantfname');
 		$tenant_last_name = $this->input->post('tenantlname');
 		$national_passport = $this->input->post('nationalpass');
 		$phone_number = $this->input->post('phonenumber');
 		$tenant_status = $this->input->post('status');
 
-		$insert = $this->m_tenant->register_tenant($tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status);
+		$insert = $this->m_tenant->register_tenant($tenant_first_name, $tenant_last_name, $path, $national_passport, $phone_number, $tenant_status);
 
 		if ($insert) {
 			echo "Insertion complete";
 		} else {
 			echo "Error occured";
 		}
-		
+		}
 	}
 
 	function assignhouse()
@@ -71,9 +95,9 @@ class Tenant extends MY_Controller
 		$this->active_groups .= "<tbody>";
 		if(count($active_job_groups) > 0) {
 			foreach ($active_job_groups as $key => $value) {
-				if ($value['status'] == 1) {
+				if ($value['tenant_status'] == 1) {
 					$span = '<span class="label label-success">Activated</span>';
-				} else if ($value['status'] == 0) {
+				} else if ($value['tenant_status'] == 0) {
 					$span = '<span class="label label-danger">Deactivated</span>';
 				}
 				$count++;
@@ -98,7 +122,7 @@ class Tenant extends MY_Controller
 	function ajax_get_tenant($id)
 	{
 		$tenant = $this->m_tenant->search_tenant($id);
-		// echo "<pre>";print_r($tenant[0]);die();
+		 //echo "<pre>";print_r($tenant[0]);die();
 		$tenant = json_encode($tenant[0]);
 		echo $tenant;
 	}
@@ -106,25 +130,15 @@ class Tenant extends MY_Controller
 
 	public function edittenant()
 	{
-		$id = $this->input->post('editid');
+		$id = $this->input->post('edittenantid');
 		$tenant_first_name = $this->input->post('edittenantfname');
 		$tenant_last_name = $this->input->post('edittenantlname');
 		$national_passport = $this->input->post('editnationalpass');
 		$phone_number = $this->input->post('editphonenumber');
-		$tenant_status = $this->input->post('editstatus');
+		$tenant_status = $this->input->post('edittenantstatus');
 		
-		$sql = "UPDATE
-					`tenant`
-				SET
-				    	`firstname` = '$tenant_first_name',
-						`lastname` 	= '$tenant_last_name',
-						`nationalid_passport` = '$national_passport',
-						`phone_number` 	= '$phone_number',
-						`status` 	= '$tenant_status'
-					
-				WHERE
-					`tenant_id` = '$id'";
-		$this->db->query($sql);
+		$result = $this->m_tenant->tenant_update($id,$tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status);
+		
 
 		$this->index();
 		

@@ -164,7 +164,7 @@ class House extends MY_Controller
 
 	function all_house_combo()
 	{
-		$houses = $this->house_model->get_houses();
+		$houses = $this->house_model->get_all_houses();
 		// echo "<pre>";print_r($houses);die();
 		$this->houses_combo .= '<select name="table_search" id="table_search" onchange="get_house()" class="form-control input-sm pull-right" style="width: 350px;">';
 		$this->houses_combo .= '<option value="0" selected>**Select a house**</option>';

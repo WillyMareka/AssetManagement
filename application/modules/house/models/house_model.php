@@ -65,17 +65,7 @@ class House_model extends MY_Model
             return $this->dataSet;
     }
 
-	function get_houses()
-	{
-		$sql = "SELECT 
-					*
-				FROM
-					`house`
-				WHERE `is_assigned` = 0";
-		$result = $this->db->query($sql);
-		return $result->result_array();
-	}
-
+	
 	function get_all_houses()
 	{
 		$sql = "SELECT 

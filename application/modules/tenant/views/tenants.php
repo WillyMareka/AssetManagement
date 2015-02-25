@@ -43,7 +43,7 @@
                                             <legend class="pull-left width-full">Registration</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'tenant/registration';?>" method="POST" class="form-horizontal form-bordered">
+                                            	<form action="<?php echo base_url() .'tenant/registration';?>" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
@@ -58,6 +58,14 @@
 															<div class="form-group">
 																<label>Last Name:</label>
 																<input type="text" name="tenantlname" id="tenantlname" placeholder="Enter Tenant Last Name" class="form-control" />
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Picture:</label>
+																<input type="file" name="tenantpicture" id="tenantpicture" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -83,7 +91,7 @@
 																<label>Status:</label>
 																<select class="form-control selectpicker" name="status" id="status" data-size="2" data-live-search="true">
 						                                            <option value="" selected>Select a status</option>
-						                                            <option value="1">Actived</option>
+						                                            <option value="1">Activated</option>
 						                                            <option value="0">Deactivated</option>
 						                                        </select>
 															</div>
@@ -243,7 +251,7 @@
                                             		
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
-		                                                <input type="hidden" name="editid" id="editid" />
+		                                                <input type="hidden" name="edittenantid" id="edittenantid" />
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>First Name:</label>
@@ -279,9 +287,9 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Status:</label>
-																<select class="form-control selectpicker" name="editstatus" id="editstatus" data-size="2" data-live-search="true" required>
+																<select class="form-control selectpicker" name="edittenantstatus" id="edittenantstatus" data-size="2" data-live-search="true" required>
 						                                            <option value="" selected>Select a status</option>
-						                                            <option value="1">Actived</option>
+						                                            <option value="1">Activated</option>
 						                                            <option value="0">Deactivated</option>
 						                                        </select>
 															</div>
@@ -290,6 +298,7 @@
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
 																<button type="submit" class="btn btn-success m-r-5 m-b-5">Edit Tenant</button>
+																<button type="reset" class="btn btn-warning m-r-5 m-b-5">Cancel</button>
 															</div>
 		                                                </div>
 	                                                </div>
@@ -349,20 +358,19 @@
 			App.init();
 			FormWizard.init();
 			$('#table_search').change(function(){
-				var table_search = document.getElementById('table_search');
-				var sv = table_search.value();alert(sv);
-       		// sv = $(this).val();
-       		 //console.log(sv);
+       		sv = $(this).val();
        		// console.log('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv);
        		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
        			obj = jQuery.parseJSON(data);
-       			// console.log(obj);
+       			//console.log(obj);
        			// alert(obj.firstname);
-       			$('#edit_tenant_form input#editid').val(obj.tenant_id);
+       			$('#edit_tenant_form input#edittenantid').val(obj.tenant_id);
 				$('#edit_tenant_form input#edittenantfname').val(obj.firstname);
 				$('#edit_tenant_form input#edittenantlname').val(obj.lastname);
+				
 				$('#edit_tenant_form input#editnationalpass').val(obj.nationalid_passport);
 				$('#edit_tenant_form input#editphonenumber').val(obj.phone_number);
+				$('#edit_tenant_form select#edittenantstatus').val(obj.tenant_status);
 			});
        		});
 		});
