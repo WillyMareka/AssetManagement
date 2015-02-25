@@ -82,7 +82,7 @@ class House extends MY_Controller
         //echo '<pre>';print_r($results);echo '</pre>';die;
             $prodcat ='<option selected="selected" value="">Select the House Type</option>';
         foreach ($results as $value) {
-            $prodcat .= '<option value="' . $value['housetype_id'] . '">' . $value['type'] . '</option>';  
+            $prodcat .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
         }
         return $prodcat;
 	}
@@ -91,26 +91,27 @@ class House extends MY_Controller
 
 	function all_houses()
 	{
-		$active_job_groups = $this->house_model->get_houses();
+		$active_job_groups = $this->house_model->get_all_houses();
 		// echo "<pre>";print_r($active_job_groups);die();
 		$count = 0;
 		$this->active_groups .= "<tbody>";
-		if ($active_job_groups == NULL) {
-			$this->active_groups .= '<tr>';
-			$this->active_groups .= '<td colspan="4"><center>No record found in the database...</center></td>';
-			$this->active_groups .= '</tr>';
-		} else {
+		
 			foreach ($active_job_groups as $key => $value) {
-				if ($value['status'] == 1) {
+				if ($value['house_status'] == 1) {
 					$span = '<span class="label label-success">Activated</span>';
-				} else if ($value['status'] == 0) {
+				} else if ($value['house_status'] == 0) {
 					$span = '<span class="label label-danger">Deactivated</span>';
+				}
+				if ($value['is_assigned'] == 0) {
+					$sign = '<span class="label label-warning">Vacant</span>';
+				} else if ($value['is_assigned'] == 1) {
+					$sign = '<span class="label label-danger">Occupied</span>';
 				}
 				$count++;
 				$this->active_groups .= '<tr>';
 				$this->active_groups .= '<td>'.$count.'</td>';
 				$this->active_groups .= '<td>'.$value['house_no'].'</td>';
-				$this->active_groups .= '<td>'.$value['housetype_id'].'</td>';
+				$this->active_groups .= '<td>'.$value['house_type'].'</td>';
 				$this->active_groups .= '<td>'.$value['block'].'</td>';
 				$this->active_groups .= '<td>'.$value['estate_name'].'</td>';
 				$this->active_groups .= '<td>'.$value['rent'].'</td>';
@@ -118,13 +119,13 @@ class House extends MY_Controller
 				$this->active_groups .= '<td>'.$value['bathrooms'].'</td>';
 				$this->active_groups .= '<td>'.$value['kitchen'].'</td>';
 				
-
+                $this->active_groups .= '<td>'.$sign.'</td>';
 				$this->active_groups .= '<td>'.$span.'</td>';
 				$this->active_groups .= '<td>'.$value['date_registered'].'</td>';
 				
 				$this->active_groups .= '</tr>';
 			}
-		}
+		
 		
 		$this->active_groups .= "</tbody>";
 
@@ -134,7 +135,7 @@ class House extends MY_Controller
 	function ajax_get_house($id)
 	{
 		$house = $this->house_model->search_house($id);
-		// echo "<pre>";print_r($house[0]);die();
+		 //echo "<pre>";print_r($house[0]);die();
 		$house = json_encode($house[0]);
 		echo $house;
 	}
@@ -142,25 +143,20 @@ class House extends MY_Controller
 
 	public function edithouse()
 	{
-		$id = $this->input->post('editid');
-		$house_first_name = $this->input->post('edithousefname');
-		$house_last_name = $this->input->post('edithouselname');
-		$national_passport = $this->input->post('editnationalpass');
-		$phone_number = $this->input->post('editphonenumber');
-		$house_status = $this->input->post('editstatus');
+		$id = $this->input->post('edithouseid');
+		$house_houseno = $this->input->post('edithouseno');
+		$house_housetype = $this->input->post('edithousetype');
+		$house_block = $this->input->post('edithouseblock');
+		$house_estate = $this->input->post('edithouseestate');
+		$house_rent = $this->input->post('edithouserent');
+		$house_bedrooms = $this->input->post('edithousebedrooms');
+		$house_bathrooms = $this->input->post('edithousebathrooms');
+		$house_kitchen = $this->input->post('edithousekitchen');
+		$house_description = $this->input->post('edithousedescription');
+		$house_status = $this->input->post('edithousestatus');
+
+		$result = $this->house_model->house_update($id,$house_houseno,$house_housetype,$house_block,$house_estate,$house_rent,$house_bedrooms,$house_bathrooms,$house_kitchen,$house_description,$house_status);
 		
-		$sql = "UPDATE
-					`house`
-				SET
-				    	`firstname` = '$house_first_name',
-						`lastname` 	= '$house_last_name',
-						`nationalid_passport` = '$national_passport',
-						`phone_number` 	= '$phone_number',
-						`status` 	= '$house_status'
-					
-				WHERE
-					`house_id` = '$id'";
-		$this->db->query($sql);
 
 		$this->index();
 		
@@ -170,10 +166,10 @@ class House extends MY_Controller
 	{
 		$houses = $this->house_model->get_houses();
 		// echo "<pre>";print_r($houses);die();
-		$this->houses_combo .= '<select name="table_search" id="table_search" onchange="get_house()" class="form-control input-sm pull-right" style="width: 150px;">';
+		$this->houses_combo .= '<select name="table_search" id="table_search" onchange="get_house()" class="form-control input-sm pull-right" style="width: 350px;">';
 		$this->houses_combo .= '<option value="0" selected>**Select a house**</option>';
 		foreach ($houses as $key => $value) {
-			$this->houses_combo .= '<option value="'.$value['house_id'].'">'.$value['house_id'].'</option>';
+			$this->houses_combo .= '<option value="'.$value['house_id'].'">'.$value['house_no'].' -- '.$value['estate_name'].'</option>';
 		}
 		$this->houses_combo .= '</select>';
 

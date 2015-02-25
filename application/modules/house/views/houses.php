@@ -286,7 +286,7 @@
                                             <th>Bedroom(s)</th>
                                             <th>Bathroom(s)</th>
                                             <th>Kitchen(s)</th>
-                                            
+                                            <th>Vacancy</th>
                                             <th>Status</th>
                                             <th>Date Registered</th>
                                         </tr>
@@ -325,19 +325,19 @@
        		// console.log('<?php echo base_url(); ?>house/ajax_get_house/'+sv);
        		$.get('<?php echo base_url(); ?>house/ajax_get_house/'+sv, function(data){
        			obj = jQuery.parseJSON(data);
-       			// console.log(obj);
+       			 //console.log(obj);
        			// alert(obj.firstname);
        			$('#edit_house_form input#edithouseid').val(obj.house_id);
 				$('#edit_house_form input#edithouseno').val(obj.house_no);
 				$('#edit_house_form input#edithousetype').val(obj.house_type);
-				$('#edit_house_form input#edithouseblock').val(obj.house_block);
-				$('#edit_house_form input#edithouseestate').val(obj.house_estate);
-				$('#edit_house_form input#edithouserent').val(obj.house_rent);
-				$('#edit_house_form input#edithousebedrooms').val(obj.house_bedrooms);
-				$('#edit_house_form input#edithousebathrooms').val(obj.house_bathrooms);
-				$('#edit_house_form input#edithousekitchen').val(obj.house_kitchen);
-				$('#edit_house_form input#edithousedescription').val(obj.house_description);
-				$('#edit_house_form input#edithousestatus').val(obj.house_status);
+				$('#edit_house_form input#edithouseblock').val(obj.block);
+				$('#edit_house_form input#edithouseestate').val(obj.estate_name);
+				$('#edit_house_form input#edithouserent').val(obj.rent);
+				$('#edit_house_form input#edithousebedrooms').val(obj.bedrooms);
+				$('#edit_house_form input#edithousebathrooms').val(obj.bathrooms);
+				$('#edit_house_form input#edithousekitchen').val(obj.kitchen);
+				$('#edit_house_form textarea#edithousedescription').val(obj.house_description);
+				$('#edit_house_form select#edithousestatus').val(obj.house_status);
 			});
        });
 		});
@@ -347,7 +347,6 @@
 	{
 		var sel = document.getElementById('table_search');
        // var sv = sel.options[sel.selectedIndex].value;
-
        // console.log(sv);
 	}
 </script>
