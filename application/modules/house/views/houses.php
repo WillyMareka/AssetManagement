@@ -327,6 +327,7 @@
        			obj = jQuery.parseJSON(data);
        			 //console.log(obj);
        			// alert(obj.firstname);
+       			$('#edit_house_form #edithousepicture').attr('src', obj.picture);
        			$('#edit_house_form input#edithouseid').val(obj.house_id);
 				$('#edit_house_form input#edithouseno').val(obj.house_no);
 				$('#edit_house_form input#edithousetype').val(obj.house_type);
