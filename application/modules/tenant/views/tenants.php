@@ -248,7 +248,7 @@
 	                                            		 <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div id="divpic"  class="form-group">
-																<img name="edittenantpicture" id="edittenantpicture"  width="250px" height="250px" alt="Profile Pic" src= "">
+																<img type="file" name="edittenantpicture" id="edittenantpicture"  width="250px" height="250px" alt="Profile Pic" src= "">
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -375,7 +375,7 @@
 				
 				//$("#edittenantpicture").attr("src",+ val(obj.picture) +);
 
-				//$('#edit_tenant_form src#edittenantpicture').val(obj.picture);
+				$('#edit_tenant_form #edittenantpicture').attr('src', obj.picture);
 				$('#edit_tenant_form input#edittenantlname').val(obj.lastname);
 				$('#edit_tenant_form input#editnationalpass').val(obj.nationalid_passport);
 				$('#edit_tenant_form input#editphonenumber').val(obj.phone_number);
