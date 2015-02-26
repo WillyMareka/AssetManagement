@@ -31,6 +31,8 @@
 	<link href="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-combobox/css/bootstrap-combobox.css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>assets/template_files/plugins/DataTables-1.10.2/css/data-table.css" rel="stylesheet" />
+
+	<link href="<?php echo base_url(); ?>assets/template_files/css/main.css" rel="stylesheet" />
 	
 </head>
     <script src="<?php echo base_url(); ?>assets/template_files/js/jquery2.js" ></script>

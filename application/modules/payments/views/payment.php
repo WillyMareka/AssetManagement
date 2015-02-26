@@ -47,24 +47,7 @@
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Method of Payment:</label>
-																<select class="form-control selectpicker" required name="paymentlmethod" id="paymentlmethod"  data-live-search="true">
-																	<?php echo $paymentmethods?>
-																</select>
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
-																<label>Amount Paid:</label>
-																<input type="text"  name="paymentamount" required id="paymentamount" placeholder="Enter payment amount" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
+
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div class="form-group">
@@ -76,6 +59,22 @@
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
+
+		                                                
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
+																<label>Method of Payment:</label>
+																<select class="form-control selectpicker" required name="paymentlmethod" id="paymentlmethod"  data-live-search="true">
+																	<?php echo $paymentmethods?>
+																</select>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+		                                                
+		                                               
+		                                               
+
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4 transaction_other">
 															<div class="form-group">
@@ -84,6 +83,8 @@
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
+
+		                                                 
 		                                              
 
 
@@ -114,8 +115,9 @@
                                             <th>ID No</th>
                                             <th>Payment Method</th>
                                             <th>Transaction No</th>
-                                            <th>Payment Reason</th>
-                                            <th>Amount Paid</th>
+                                            <th>Rent Paid</th>
+                                            <th>Security Paid</th>
+                                            <th>Maintenance Paid</th>
                                             <th>Date of Payment</th>
                                         </tr>
                                     </thead>

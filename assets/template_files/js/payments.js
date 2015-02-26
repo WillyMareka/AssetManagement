@@ -1,7 +1,9 @@
 $(document).ready(function(){
    $(".transaction_other").hide();
 
+   // $(".transaction_other").attr();
 
+ $()
 
  $('#paymentlmethod').change(function(){
 		
@@ -16,7 +18,17 @@ $(document).ready(function(){
 	});
 
 
+    $('#paymentfor_1').change(function(){
+      $("#payment_1").prop("disabled", !$(this).is(':checked'));
+    });
 
+    $('#paymentfor_2').change(function(){
+      $("#payment_2").prop("disabled", !$(this).is(':checked'));
+    });
+
+    $('#paymentfor_3').change(function(){
+      $("#payment_3").prop("disabled", !$(this).is(':checked'));
+    });
 
 
 
