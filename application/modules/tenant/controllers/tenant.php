@@ -15,26 +15,79 @@ class Tenant extends MY_Controller
 		$data['content_page'] = 'tenant/tenants';
 		$data['sidebar'] = 'hr_side_bar';
 		$data['tenants_c'] = $this->all_tenant_combo();
+		$data['tenants_f'] = $this->all_tenant_combo();
+		$data['houses_c'] = $this->all_vhouse_combo();
 		$data['all_tenants'] = $this->all_tenants();
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
 	}
 
+	
+
 	function registration()
 	{
+		$path = base_url().'uploads/tenants/';
+		       $config['upload_path'] = 'uploads/tenants';
+		       $config['allowed_types'] = 'jpeg|jpg|png|gif';
+		       $config['encrypt_name'] = TRUE;
+		       $this->load->library('upload', $config);
+		       $this->upload->initialize($config);
+
+		      
+			if ( ! $this->upload->do_upload('tenantpicture'))
+		    {
+			   $error = array('error' => $this->upload->display_errors());
+
+			   print_r($error);die;
+		    }
+		     else
+		     {
+		       
+                $data = array('upload_data' => $this->upload->data());
+			     foreach ($data as $key => $value) {
+				  //print_r($data);die;
+				  $path = base_url().'uploads/tenants/'.$value['file_name'];
+				
+                  }
+
 		$tenant_first_name = $this->input->post('tenantfname');
 		$tenant_last_name = $this->input->post('tenantlname');
 		$national_passport = $this->input->post('nationalpass');
 		$phone_number = $this->input->post('phonenumber');
 		$tenant_status = $this->input->post('status');
 
-		$insert = $this->m_tenant->register_tenant($tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status);
+		$insert = $this->m_tenant->register_tenant($tenant_first_name, $tenant_last_name, $path, $national_passport, $phone_number, $tenant_status);
 
 		if ($insert) {
 			echo "Insertion complete";
 		} else {
 			echo "Error occured";
 		}
+		}
+	}
+
+	function assignhouse()
+	{
+		
+
+		$assignhouseid = $this->input->post('assignhouseid');
+		$assignblock = $this->input->post('assignblock');
+		$assigntenantid = $this->input->post('assigntenantid');
+		$assignhouseno = $this->input->post('assignhouseno');
+		$assignestate = $this->input->post('assignestate');
+		$assignpnumber = $this->input->post('assignpnumber');
+		$assignrent = $this->input->post('assignrent');
+		$assignhousetype = $this->input->post('assignhousetype');
+		$assignnapa = $this->input->post('assignnapa');
+// print_r($_FILES);
+		$insert = $this->m_tenant->assign_house($assignhouseid, $assignblock, $assigntenantid, $assignhouseno, $assignestate, $assignpnumber, $assignrent, $assignhousetype, $assignnapa);
+
+		if ($insert) {
+			echo "Insertion complete";
+		} else {
+			echo "Error occured";
+		}
+		    
 		
 	}
 
@@ -44,15 +97,11 @@ class Tenant extends MY_Controller
 		// echo "<pre>";print_r($active_job_groups);die();
 		$count = 0;
 		$this->active_groups .= "<tbody>";
-		if ($active_job_groups == NULL) {
-			$this->active_groups .= '<tr>';
-			$this->active_groups .= '<td colspan="4"><center>No record found in the database...</center></td>';
-			$this->active_groups .= '</tr>';
-		} else {
+		if(count($active_job_groups) > 0) {
 			foreach ($active_job_groups as $key => $value) {
-				if ($value['status'] == 1) {
+				if ($value['tenant_status'] == 1) {
 					$span = '<span class="label label-success">Activated</span>';
-				} else if ($value['status'] == 0) {
+				} else if ($value['tenant_status'] == 0) {
 					$span = '<span class="label label-danger">Deactivated</span>';
 				}
 				$count++;
@@ -77,7 +126,23 @@ class Tenant extends MY_Controller
 	function ajax_get_tenant($id)
 	{
 		$tenant = $this->m_tenant->search_tenant($id);
-		// echo "<pre>";print_r($tenant[0]);die();
+		 //echo "<pre>";print_r($tenant[0]);die();
+		$tenant = json_encode($tenant[0]);
+		echo $tenant;
+	}
+
+	function ajax_get_house($id)
+	{
+		$house = $this->m_tenant->search_house($id);
+		 //echo "<pre>";print_r($house[0]);die();
+		$house = json_encode($house[0]);
+		echo $house;
+	}
+
+	function ajax_get_atenant($id)
+	{
+		$tenant = $this->m_tenant->search_tenant($id);
+		 //echo "<pre>";print_r($tenant[0]);die();
 		$tenant = json_encode($tenant[0]);
 		echo $tenant;
 	}
@@ -85,25 +150,15 @@ class Tenant extends MY_Controller
 
 	public function edittenant()
 	{
-		$id = $this->input->post('editid');
+		$id = $this->input->post('edittenantid');
 		$tenant_first_name = $this->input->post('edittenantfname');
 		$tenant_last_name = $this->input->post('edittenantlname');
 		$national_passport = $this->input->post('editnationalpass');
 		$phone_number = $this->input->post('editphonenumber');
-		$tenant_status = $this->input->post('editstatus');
+		$tenant_status = $this->input->post('edittenantstatus');
 		
-		$sql = "UPDATE
-					`tenant`
-				SET
-				    	`firstname` = '$tenant_first_name',
-						`lastname` 	= '$tenant_last_name',
-						`nationalid_passport` = '$national_passport',
-						`phone_number` 	= '$phone_number',
-						`status` 	= '$tenant_status'
-					
-				WHERE
-					`tenant_id` = '$id'";
-		$this->db->query($sql);
+		$result = $this->m_tenant->tenant_update($id,$tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status);
+		
 
 		$this->index();
 		
@@ -123,6 +178,20 @@ class Tenant extends MY_Controller
 		return $this->tenants_combo;
 	}
 
+
+    function all_vhouse_combo()
+	{
+		$houses = $this->m_tenant->get_all_vhouses();
+		// echo "<pre>";print_r($houses);die();
+		$this->houses_combo .= '<select name="table_search" id="table_search" onchange="get_house()" class="form-control input-sm pull-right" style="width: 350px;">';
+		$this->houses_combo .= '<option value="0" selected>**Select a house**</option>';
+		foreach ($houses as $key => $value) {
+			$this->houses_combo .= '<option value="'.$value['house_id'].'">'.$value['house_no'].' -- '.$value['estate_name'].'</option>';
+		}
+		$this->houses_combo .= '</select>';
+
+		return $this->houses_combo;
+	}
 
 	public function searchtenant()
 	{
@@ -172,10 +241,6 @@ class Tenant extends MY_Controller
 				$tenant_list .= '<td><a href = "'.base_url().'tenant/search/tenantmember/' . $value['tenant_id'] . '">View More</a></td>';
 				$tenant_list .= '</tr>';
 			}
-		}
-		else
-		{
-			$tenant_list .= '<tr><td colspan = "7"><center>No data found</center></td></tr>';
 		}
 		$tenant_list .= '</tbody>';
 

@@ -23,8 +23,8 @@
 						<ul class="sub-menu">
 						    <li><a href="<?php echo base_url(); ?>hr/employees">Employee Registration</a></li>
 						    <li><a href="<?php echo base_url(); ?>hr/job_groups">Job Groups <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
-						    <li><a href="<?php echo base_url(), 'tenant'; ?>">Tenants</a></li>
-
+						    <li><a href="<?php echo base_url(). 'tenant'; ?>">Tenants Registration</a></li>
+                            <li><a href="<?php echo base_url(). 'house'; ?>">House Registration</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -34,7 +34,7 @@
 						    <span>Cash Flows</span> 
 						</a>
 						<ul class="sub-menu">
-							<li><a href="<?php echo base_url(); ?>hr">Salaries & Payments</a></li>
+							<li><a href="<?php echo base_url(). 'payments'; ?>">Salaries & Payments</a></li>
 							<li><a href="<?php echo base_url(); ?>hr">Allowances & Deductions</a></li>
 							<li><a href="<?php echo base_url(); ?>hr">Penalties</a></li>
 						</ul>
