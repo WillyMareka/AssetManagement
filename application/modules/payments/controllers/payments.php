@@ -41,8 +41,9 @@ class Payments extends MY_Controller
 				$this->active_payments .= '<td>'.$value['tenant_id'].'</td>';
 				$this->active_payments .= '<td>'.$value['method'].'</td>';
 				$this->active_payments .= '<td>'.$value['transaction_no'].'</td>';
-				$this->active_payments .= '<td>'.$value['payment_for'].'</td>';
-				$this->active_payments .= '<td>'.$value['amount_paid'].'</td>';
+				$this->active_payments .= '<td>'.$value['rent_paid'].'</td>';
+				$this->active_payments .= '<td>'.$value['security_paid'].'</td>';
+				$this->active_payments .= '<td>'.$value['maintenance_paid'].'</td>';
 				$this->active_payments .= '<td>'.$value['date_of_payment'].'</td>';
 				
 				$this->active_payments .= '</tr>';
@@ -62,9 +63,16 @@ class Payments extends MY_Controller
 		$payment_tid = $this->input->post('paymenttid');
 		$payment_method = $this->input->post('paymentlmethod');
 		$payment_transaction_no = $this->input->post('paymenttrans');
-		$payment_amount = $this->input->post('paymentamount');
 
-		$insert = $this->payment_model->enter_payment($payment_tid, $payment_method, $payment_transaction_no, $payment_for, $payment_amount);
+		$rent = $this->input->post('paymentfor_1');
+		$pay_rent = $this->input->post('payment_1');
+		$maintenance = $this->input->post('paymentfor_2');
+		$pay_maintenance = $this->input->post('payment_2');
+		$security = $this->input->post('paymentfor_3');
+		$pay_security = $this->input->post('payment_3');
+		
+
+		$insert = $this->payment_model->enter_payment($payment_tid, $payment_method, $payment_transaction_no, $rent, $pay_rent, $maintenance, $pay_maintenance, $security, $pay_security);
 
 		if ($insert) {
 			echo "Insertion complete";
@@ -93,18 +101,33 @@ class Payments extends MY_Controller
         
         //echo '<pre>';print_r($results);echo '</pre>';die;
             $count = 0;
-             $payfor='';
+             $payfor .= '';  
+
         foreach ($results as $value) {
         	$count++;
-            $payfor .= '<label class="checkbox-inline">';  
-            $payfor .= '<input name="paymentfor[]" id="paymentfor_'.$count.'" type="checkbox" id="inlineCheckbox'.$count.'" value="' . $value['name'] . '">' . $value['name'] . ' ';  
-            $payfor .= '</label>';  
+
+        	$payfor .= '<div class="row">
+        	              <div class="col-lg-6">
+                          <div class="input-group payments">';
+              
+            $payfor .= '<span class="input-group-addon pay-group">';  
+            $payfor .= '<input name="paymentfor_'.$count.'" id="paymentfor_'.$count.'" class="paybox" type="checkbox" aria-label="..." value="1">' . $value['name'] . ' ';  
+            $payfor .= '</span>'; 
+            $payfor .= '<input name="payment_'.$count.'" placeholder="0" id="payment_'.$count.'" type="text" disabled class="form-control payfield" aria-label="Lebel">';
+            
+            $payfor .= '  </div></div>
+                        </div>'; 
         }
+             
+            
             
         return $payfor;
 	}
 
-  
+                                                              
+                                                                
+                                                              
+                                                              
 	
 
 }

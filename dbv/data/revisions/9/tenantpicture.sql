@@ -1,0 +1,1 @@
+ALTER TABLE `tenant` ADD `picture` TEXT NOT NULL AFTER `lastname`;

@@ -9,14 +9,18 @@ class Payment_model extends MY_Model
 		parent:: __construct();
 	}
 
-	function enter_payment($payment_tid, $payment_method, $payment_transaction_no, $payment_for, $payment_amount)
+	function enter_payment($payment_tid, $payment_method, $payment_transaction_no, $rent, $pay_rent, $maintenance, $pay_maintenance, $security, $pay_security)
 	{
 		$tenant_payment = array(
 						'tenant_id' => $payment_tid,
 						'method' 	=> $payment_method,
 						'transaction_no' 	=> $payment_transaction_no,
-						'payment_for' 	=> $payment_for,
-						'amount_paid' 	=> $payment_amount
+						'rent' 	=> $rent,
+						'rent_paid' 	=> $pay_rent,
+						'security' 	=> $security,
+						'security_paid' 	=> $pay_security,
+						'maintenance' 	=> $maintenance,
+						'maintenance_paid' 	=> $pay_maintenance
 						);
 
 		$insert = $this->db->insert('tenant_payment', $tenant_payment);
