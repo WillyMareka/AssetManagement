@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/select2/css/select2.min.css">
 <div>
 	<div id="content" class="content">
 			<!-- begin breadcrumb -->
@@ -226,8 +227,9 @@
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
+                                            		<select class="js-example-data-array form-control input-sm pull-right" name="table_search" id="table_search" style="width: 150px;"></select>
                                             		<?php
-                                            			echo $tenants_c;
+                                            			// echo $tenants_c;
                                             		?>
                                                         <!-- <select name="table_search" id="table_search" onchange="get_tenant()" class="form-control input-sm pull-right" style="width: 150px;">
                                                         	<option value="" selected="true" disabled="on">**Select a Tenant**</option>
@@ -353,7 +355,7 @@
 			
 	</div>
 </div>
-
+<script type="text/javascript" src="<?php echo base_url();?>assets/select2/js/select.min.js"></script>
 <script>
 		$(document).ready(function() {
 			App.init();
@@ -361,31 +363,37 @@
 			$('#table_search').change(function(){
        		sv = $(this).val();
        		// console.log('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv);
-       		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
-       			obj = jQuery.parseJSON(data);
-       			//console.log(obj);
-       			// alert(obj.firstname);
-       			// var img = val(obj.picture);
-       			// imgList += '<img name="edittenantpicture" id="edittenantpicture"  width="300px" height="300px" alt="Profile Pic" src= "' + img + '">';
+	       		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
+	       			obj = jQuery.parseJSON(data);
+	       			//console.log(obj);
+	       			// alert(obj.firstname);
+	       			// var img = val(obj.picture);
+	       			// imgList += '<img name="edittenantpicture" id="edittenantpicture"  width="300px" height="300px" alt="Profile Pic" src= "' + img + '">';
 
-       			//alert(pic);
-       			$('#edit_tenant_form input#edittenantid').val(obj.tenant_id);
-				$('#edit_tenant_form input#edittenantfname').val(obj.firstname);
+	       			//alert(pic);
+	       			$('#edit_tenant_form input#edittenantid').val(obj.tenant_id);
+					$('#edit_tenant_form input#edittenantfname').val(obj.firstname);
 
-				
-				//$("#edittenantpicture").attr("src",+ val(obj.picture) +);
+					
+					//$("#edittenantpicture").attr("src",+ val(obj.picture) +);
 
-				$('#edit_tenant_form #edittenantpicture').attr('src', obj.picture);
-				$('#edit_tenant_form input#edittenantlname').val(obj.lastname);
-				$('#edit_tenant_form input#editnationalpass').val(obj.nationalid_passport);
-				$('#edit_tenant_form input#editphonenumber').val(obj.phone_number);
-				$('#edit_tenant_form select#edittenantstatus').val(obj.tenant_status);
-                // $('#divpic').append(imgList);
+					$('#edit_tenant_form #edittenantpicture').attr('src', obj.picture);
+					$('#edit_tenant_form input#edittenantlname').val(obj.lastname);
+					$('#edit_tenant_form input#editnationalpass').val(obj.nationalid_passport);
+					$('#edit_tenant_form input#editphonenumber').val(obj.phone_number);
+					$('#edit_tenant_form select#edittenantstatus').val(obj.tenant_status);
+	                // $('#divpic').append(imgList);
 
-				//$("#divpic").append("<img id='edittenantpicture' src="'+ val(obj.picture) +'" />");
-			});
+					//$("#divpic").append("<img id='edittenantpicture' src="'+ val(obj.picture) +'" />");
+				});
 
        		});
+			
+			var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+
+			$(".js-example-data-array").select2({
+				data: data
+			});
 
 
 

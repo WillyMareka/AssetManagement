@@ -11,15 +11,16 @@ class hr extends MY_Controller
 	{
 		parent:: __construct();
 		$this->load->model('hr_model');
+		$this->load->module('dashboard');
 	}
 
 	function index()
 	{
-		
-		$data['content_page'] = 'hr/dashboard';
-		$data['sidebar'] = 'hr_side_bar';
-		// echo "<pre>";print_r($data);die();
-		$this->template->call_template($data);
+		$this->dashboard->hr_dashboard();
+		// $data['content_page'] = 'dashboard/hr_dashboard';
+		// $data['sidebar'] = 'hr_side_bar';
+		// // echo "<pre>";print_r($data);die();
+		// $this->template->call_template($data);
 	}
 }
 
