@@ -18,5 +18,10 @@ class template extends MY_Controller
 		// echo "<pre>";print_r($data);die();
 		$this->load->view('template_view', $data);
 	}
+
+	function call_login($data = NULL)
+	{
+		$this->load->view("login_view", $data);
+	}
 }
 ?>

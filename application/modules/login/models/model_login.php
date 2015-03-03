@@ -8,6 +8,22 @@ class model_login extends MY_Model {
         parent::__construct();
     }
 
+    function authenticate($username,$password)
+    {
+    	$sql = "SELECT 
+    				* 
+    			FROM 
+    				`users`
+    			WHERE
+    				`username` = '$username'
+    			AND 
+    				`password` = '$password'";
+
+    	$res = $this->db->query($sql);
+    	$res = $res->result_array();
+    	
+    	return $res;
+    }
 
 
    

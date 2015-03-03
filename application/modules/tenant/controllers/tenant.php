@@ -168,14 +168,15 @@ class Tenant extends MY_Controller
 	{
 		$tenants = $this->m_tenant->get_tenants();
 		// echo "<pre>";print_r($tenants);die();
-		$this->tenants_combo .= '<select name="table_search" id="table_search" onchange="get_tenant()" class="form-control input-sm pull-right" style="width: 150px;">';
-		$this->tenants_combo .= '<option value="0" selected>**Select a tenant**</option>';
+		$data = array();
 		foreach ($tenants as $key => $value) {
-			$this->tenants_combo .= '<option value="'.$value['tenant_id'].'">'.$value['firstname'].' '.$value['lastname'].'</option>';
+			foreach ($value as $k => $v) {
+				$data[$k] = $v;
+			}
 		}
-		$this->tenants_combo .= '</select>';
-
-		return $this->tenants_combo;
+		// echo "<pre>";print_r($data);die();
+		
+		
 	}
 
 
