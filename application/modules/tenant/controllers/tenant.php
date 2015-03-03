@@ -59,7 +59,7 @@ class Tenant extends MY_Controller
 		$insert = $this->m_tenant->register_tenant($tenant_first_name, $tenant_last_name, $path, $national_passport, $phone_number, $tenant_status);
 
 		if ($insert) {
-			echo "Insertion complete";
+			redirect(base_url() .'tenant/index');
 		} else {
 			echo "Error occured";
 		}

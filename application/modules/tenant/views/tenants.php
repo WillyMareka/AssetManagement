@@ -99,7 +99,7 @@
 		                                                <!-- end col-4 -->
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
-																<button type="submit" class="btn btn-success m-r-5 m-b-5">Register</button>
+																<button id="registertenant" type="submit" class="btn btn-success m-r-5 m-b-5">Register</button>
 															</div>
 		                                                </div>
 	                                                </div>
