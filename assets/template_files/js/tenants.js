@@ -5,17 +5,25 @@ $(document).ready(function(){
 //    $tabs.tabs('enable', 1).tabs('select', 1).tabs('disable', 0);        
 // }); 
 
-$(".tabtenant").tabs(); 
+//action="<?php echo base_url() .'tenant/registration';?>"
 
-    $(".tabtenant").tabs( "option", "disabled", [ 1 ] );
 
-    $("#registertenant").click(function () {
-        $(".tabtenant").tabs( "enable", $(".tabtenant").tabs('option', 'active')+1 );
-        $(".tabtenant").tabs( "option", "active", $("#tabs").tabs('option', 'active')+1 );
-    });
-
-    $(".btnPrev").click(function () {
-        $(".tabtenant").tabs( "option", "active", $(".tabtenant").tabs('option', 'active')-1 );
+ $("#insert").click(function() 
+    {
+        var kunnr = $("#kunnr").val;
+        var sKey = $("#skey").val;
+        var sVal = $("#sval").val;
+        var dataString = "kunnr="+kunnr+"&sKey="+sKey+"&sVal="sVal;
+        $.ajax(
+        {
+            type: "GET",
+                url: "your url", // in the page of url write the code to insert in db
+                data: dataString,
+                success: function(result) 
+                {               
+                    alert(result); // you can just check whether the row is inserted or not.
+                }
+            });
     });
 
 

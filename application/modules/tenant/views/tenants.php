@@ -43,7 +43,7 @@
                                             <legend class="pull-left width-full">Registration</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'tenant/registration';?>" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
+                                            	<form id="tenantregistration" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
