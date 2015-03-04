@@ -10,7 +10,7 @@
 			<!-- begin page-header -->
 			<h1 class="page-header">Tenants</h1>
 			<!-- end page-header -->
-
+            <div id="tenantreg" class="alert alert-success fade in " role="alert">Tenant Registered !!!</div>
 			<!--begining of content page-->
 			<div class="row">
                 <!-- begin col-12 -->
@@ -98,7 +98,7 @@
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
-		                                                <span id="result"></span>
+		                                                
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
 																<button id="registertenant" class="btn btn-success m-r-5 m-b-5">Register</button>
@@ -395,6 +395,8 @@
 			$(".js-example-data-array").select2({
 				data: data
 			});
+
+			
 
 
 
