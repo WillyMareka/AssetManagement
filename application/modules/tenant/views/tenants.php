@@ -22,12 +22,12 @@
                         </div>
                         <div class="panel-body">
                             
-								<div id="wizard">
+								<div id="wizard" class="tabs">
 									<ol>
-										<li>
+										<li id="registerten">
 										    Register Tenant
 										</li>
-										<li>
+										<li id="assignten">
 										    Assign House
 										 </li>
 										<li>

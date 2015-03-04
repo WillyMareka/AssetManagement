@@ -1,23 +1,30 @@
 $(document).ready(function(){
 
-// var $tabs = $('.tabtenant').tabs({ selected: 0, disabled: [1,2,3] }); 
-// $("#registertenant").click(function(){
-//    $tabs.tabs('enable', 1).tabs('select', 1).tabs('disable', 0);        
-// }); 
 
-//action="<?php echo base_url() .'tenant/registration';?>"
 
  $(function(){
        $("#tenantregistration").submit(function(){
-         dataString = $("#tenantregistration").serialize();
+
+
+         var formData = new FormData($(this)[0]);
  
          $.ajax({
            type: "POST",
            url: "tenant/registration",
-           data: dataString,
- 
+           data: formData,
+           async: false,
+           cache: false,
+           contentType: false,
+           processData: false,
            success: function(data){
-               //alert(dataString);
+               
+               
+
+
+              $("#registerten").click(function(){
+              $("#assignten").tabs( "option", "active", 2 );
+              });
+
            }
  
          });
@@ -30,3 +37,5 @@ $(document).ready(function(){
 
 
 });
+
+

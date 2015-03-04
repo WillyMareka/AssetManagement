@@ -9,12 +9,12 @@ class M_tenant extends MY_Model
 		parent:: __construct();
 	}
 
-	function register_tenant($tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status)
+	function register_tenant($tenant_first_name, $tenant_last_name, $path, $national_passport, $phone_number, $tenant_status)
 	{
 		$tenant = array(
 						'firstname' => $tenant_first_name,
 						'lastname' 	=> $tenant_last_name,
-						'picture' 	=> 'picture',
+						'picture' 	=> $path,
 						'nationalid_passport' 	=> $national_passport,
 						'phone_number' 	=> $phone_number,
 						'tenant_status' 	=> $tenant_status
