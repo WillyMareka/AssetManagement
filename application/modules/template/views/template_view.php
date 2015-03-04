@@ -41,6 +41,7 @@
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-ui-1.10.4/ui/minified/jquery-ui.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/select2/js/select2.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/js/validation.js" type="text/javascript"></script>
 <body>
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in"><span class="spinner"></span></div>

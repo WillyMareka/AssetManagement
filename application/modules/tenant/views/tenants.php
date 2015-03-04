@@ -44,7 +44,7 @@
                                             <legend class="pull-left width-full">Registration</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<form id="tenantregistration"  enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
+                                            	<form id="tenantregistration" name="tenantregistration" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
@@ -90,8 +90,8 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Status:</label>
-																<select class="form-control selectpicker" name="status" id="status" data-size="2" data-live-search="true">
-						                                            <option value="" selected>Select a status</option>
+																<select class="form-control selectpicker" name="tenantstatus" id="tenantstatus" data-size="2" data-live-search="true">
+						                                            <option value="000" selected>Select a status</option>
 						                                            <option value="1">Activated</option>
 						                                            <option value="0">Deactivated</option>
 						                                        </select>
@@ -396,7 +396,7 @@
 				data: data
 			});
 
-			
+
 
 
 
