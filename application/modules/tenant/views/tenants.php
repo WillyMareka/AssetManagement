@@ -44,7 +44,7 @@
                                             <legend class="pull-left width-full">Registration</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<form id="tenantregistration" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
+                                            	<form id="tenantregistration"  enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
@@ -98,9 +98,10 @@
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
+		                                                <span id="result"></span>
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
-																<button id="registertenant" type="submit" class="btn btn-success m-r-5 m-b-5">Register</button>
+																<button id="registertenant" class="btn btn-success m-r-5 m-b-5">Register</button>
 															</div>
 		                                                </div>
 	                                                </div>
@@ -210,7 +211,7 @@
 
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
-																<button type="submit" class="btn btn-success m-r-5 m-b-5">Assign house</button>
+																<button id="assignbutton" type="submit" class="btn btn-success m-r-5 m-b-5">Assign house</button>
 															</div>
 		                                                </div>
 	                                                </div>

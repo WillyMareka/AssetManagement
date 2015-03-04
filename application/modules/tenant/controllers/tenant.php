@@ -26,29 +26,30 @@ class Tenant extends MY_Controller
 
 	function registration()
 	{
-		$path = base_url().'uploads/tenants/';
-		       $config['upload_path'] = 'uploads/tenants';
-		       $config['allowed_types'] = 'jpeg|jpg|png|gif';
-		       $config['encrypt_name'] = TRUE;
-		       $this->load->library('upload', $config);
-		       $this->upload->initialize($config);
+	
+		// $path = base_url().'uploads/tenants/';
+		//        $config['upload_path'] = 'uploads/tenants';
+		//        $config['allowed_types'] = 'jpeg|jpg|png|gif';
+		//        $config['encrypt_name'] = TRUE;
+		//        $this->load->library('upload', $config);
+		//        $this->upload->initialize($config);
 
 		      
-			if ( ! $this->upload->do_upload('tenantpicture'))
-		    {
-			   $error = array('error' => $this->upload->display_errors());
+		// 	if ( !$this->upload->do_upload('tenantpicture'))
+		//     {
+		// 	   $error = array('error' => $this->upload->display_errors());
 
-			   print_r($error);die;
-		    }
-		     else
-		     {
+		// 	   print_r($error);die;
+		//     }
+		//      else
+		//      {
 		       
-                $data = array('upload_data' => $this->upload->data());
-			     foreach ($data as $key => $value) {
-				  //print_r($data);die;
-				  $path = base_url().'uploads/tenants/'.$value['file_name'];
+  //               $data = array('upload_data' => $this->upload->data());
+		// 	     foreach ($data as $key => $value) {
+		// 		  //print_r($data);die;
+		// 		  $path = base_url().'uploads/tenants/'.$value['file_name'];
 				
-                  }
+  //                 }
 
 		$tenant_first_name = $this->input->post('tenantfname');
 		$tenant_last_name = $this->input->post('tenantlname');
@@ -56,10 +57,10 @@ class Tenant extends MY_Controller
 		$phone_number = $this->input->post('phonenumber');
 		$tenant_status = $this->input->post('status');
 
-		$insert = $this->m_tenant->register_tenant($tenant_first_name, $tenant_last_name, $path, $national_passport, $phone_number, $tenant_status);
-
-		echo json_encode($insert);
-		}
+		$insert = $this->m_tenant->register_tenant($tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status);
+        //echo "<pre>";print_r($error);echo "</pre>";die();
+		
+		//}
 	}
 
 	function assignhouse()

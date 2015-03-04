@@ -7,24 +7,25 @@ $(document).ready(function(){
 
 //action="<?php echo base_url() .'tenant/registration';?>"
 
-
- $("#insert").click(function() 
-    {
-        var kunnr = $("#kunnr").val;
-        var sKey = $("#skey").val;
-        var sVal = $("#sval").val;
-        var dataString = "kunnr="+kunnr+"&sKey="+sKey+"&sVal="sVal;
-        $.ajax(
-        {
-            type: "GET",
-                url: "your url", // in the page of url write the code to insert in db
-                data: dataString,
-                success: function(result) 
-                {               
-                    alert(result); // you can just check whether the row is inserted or not.
-                }
-            });
-    });
+ $(function(){
+       $("#tenantregistration").submit(function(){
+         dataString = $("#tenantregistration").serialize();
+ 
+         $.ajax({
+           type: "POST",
+           url: "tenant/registration",
+           data: dataString,
+ 
+           success: function(data){
+               //alert(dataString);
+           }
+ 
+         });
+ 
+         return false;  //stop the actual form post !important!
+ 
+      });
+   });
 
 
 
