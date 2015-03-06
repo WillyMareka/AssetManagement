@@ -53,7 +53,7 @@
 															<div class="form-group">
 																<label>Payment for:</label>
 																<!-- <input type="text"  name="paymentfor" id="paymentfor" placeholder="Enter payment reason" class="form-control" /> -->
-																<div class="checkbox">
+																<div class="checkbox paycheck">
 																    <?php echo $paymentfor?>
 															    </div>
 															</div>
@@ -88,7 +88,7 @@
 		                                              
 
 
-		                                                <div class="col-md-2" style="float:right;">
+		                                                <div class="col-md-4" style="float:right;">
 															<div class="form-group">
 																<button type="submit" class="btn btn-success m-r-5 m-b-5">Complete Transaction</button>
 																<button type="reset" class="btn btn-warning m-r-5 m-b-5">Cancel</button>
