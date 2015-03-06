@@ -26,7 +26,7 @@ class House extends MY_Controller
 	}
 
 
-	function registration()
+	function houseregistration()
 	{
 		$path = base_url().'uploads/houses/';
 		       $config['upload_path'] = 'uploads/houses';
@@ -64,11 +64,7 @@ class House extends MY_Controller
 // print_r($_FILES);
 		$insert = $this->house_model->register_house($houseno, $housetype, $houseblock, $houseestate, $houserent, $path, $housebedrooms, $housebathrooms, $housekitchen, $housedescription);
 
-		if ($insert) {
-			echo "Insertion complete";
-		} else {
-			echo "Error occured";
-		}
+		return $insert;
 		    }
 		
 	}

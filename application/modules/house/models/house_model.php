@@ -13,7 +13,7 @@ class House_model extends MY_Model
 	{
 		$house = array(
 						'house_no' => $houseno,
-						'housetype_id' 	=> $housetype,
+						'house_type' 	=> $housetype,
 						'block' 	=> $houseblock,
 						'estate_name' 	=> $houseestate,
 						'rent' 	=> $houserent,

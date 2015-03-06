@@ -3,7 +3,7 @@ $(document).ready(function(){
 
    // $(".transaction_other").attr();
 
- $()
+
 
  $('#paymentlmethod').change(function(){
 		
@@ -29,6 +29,39 @@ $(document).ready(function(){
     $('#paymentfor_3').change(function(){
       $("#payment_3").prop("disabled", !$(this).is(':checked'));
     });
+
+
+    // ....Function for registering tenants.... //
+ $(function(){
+       $("#paymentransaction").submit(function(){
+          
+
+         var formData = new FormData($(this)[0]);
+ 
+         $.ajax({
+           type: "POST",
+           url: "payments/paymenttransaction",
+           data: formData,
+           async: false,
+           cache: false,
+           contentType: false,
+           processData: false,
+           success: function(data){
+               // ....After successful registration, then....//
+              
+              swal({   title: "Payment Done",   text: "Payment Recorded",   timer: 3000 });
+
+
+           }
+ 
+         });
+ 
+         return false;  //stop the actual form post !important!
+ 
+      });
+   });
+
+     // ....end of function.... //
 
 
 

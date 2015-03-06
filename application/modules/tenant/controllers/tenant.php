@@ -16,10 +16,23 @@ class Tenant extends MY_Controller
 		$data['sidebar'] = 'hr_side_bar';
 		$data['tenants_c'] = $this->all_tenant_combo();
 		$data['tenants_f'] = $this->all_tenant_combo();
+		$data['housetypes'] = $this->gethousetypes();
 		$data['houses_c'] = $this->all_vhouse_combo();
 		$data['all_tenants'] = $this->all_tenants();
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
+	}
+
+	function gethousetypes()
+	{
+        $results = $this->m_tenant->get_house_types();
+        
+        //echo '<pre>';print_r($results);echo '</pre>';die;
+            $houtyp ='<option selected="selected" value="">Select the House Type</option>';
+        foreach ($results as $value) {
+            $houtyp .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
+        }
+        return $houtyp;
 	}
 
 	

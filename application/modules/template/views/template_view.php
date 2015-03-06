@@ -109,6 +109,7 @@
 	<script src="<?php echo base_url(); ?>assets/template_files/js/apps.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/sweetalert/lib/sweet-alert.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/js/payments.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/js/house.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/js/tenants.js"></script>
 	
 	<script>

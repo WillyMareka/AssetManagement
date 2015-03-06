@@ -190,7 +190,9 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House Type:</label>
-																<input type="text"  name="assignhousetype" id="assignhousetype" required placeholder="Enter the house type" class="form-control" />
+																<select class="form-control selectpicker" required name="assignhousetype" id="assignhousetype"  data-live-search="true">
+																	<?php echo $housetypes?>
+																</select>
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -371,17 +373,17 @@
 	       			// imgList += '<img name="edittenantpicture" id="edittenantpicture"  width="300px" height="300px" alt="Profile Pic" src= "' + img + '">';
 
 	       			//alert(pic);
-	       			$('#edit_tenant_form input#edittenantid').val(obj.tenant_id);
-					$('#edit_tenant_form input#edittenantfname').val(obj.firstname);
+	       			$('#tenantediting input#edittenantid').val(obj.tenant_id);
+					$('#tenantediting input#edittenantfname').val(obj.firstname);
 
 					
 					//$("#edittenantpicture").attr("src",+ val(obj.picture) +);
 
-					$('#edit_tenant_form #edittenantpicture').attr('src', obj.picture);
-					$('#edit_tenant_form input#edittenantlname').val(obj.lastname);
-					$('#edit_tenant_form input#editnationalpass').val(obj.nationalid_passport);
-					$('#edit_tenant_form input#editphonenumber').val(obj.phone_number);
-					$('#edit_tenant_form select#edittenantstatus').val(obj.tenant_status);
+					$('#tenantediting #edittenantpicture').attr('src', obj.picture);
+					$('#tenantediting input#edittenantlname').val(obj.lastname);
+					$('#tenantediting input#editnationalpass').val(obj.nationalid_passport);
+					$('#tenantediting input#editphonenumber').val(obj.phone_number);
+					$('#tenantediting select#edittenantstatus').val(obj.tenant_status);
 	                // $('#divpic').append(imgList);
 
 					//$("#divpic").append("<img id='edittenantpicture' src="'+ val(obj.picture) +'" />");

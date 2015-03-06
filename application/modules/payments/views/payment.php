@@ -37,7 +37,7 @@
                                             <legend class="pull-left width-full">Pay</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'payments/paymenttransaction';?>" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered" role="form">
+                                            	<form id="paymentransaction" name="paymentransaction" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered" role="form">
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
