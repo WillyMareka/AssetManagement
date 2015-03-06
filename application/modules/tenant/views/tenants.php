@@ -10,7 +10,7 @@
 			<!-- begin page-header -->
 			<h1 class="page-header">Tenants</h1>
 			<!-- end page-header -->
-            <div id="tenantreg" class="alert alert-success fade in " role="alert">Tenant Registered !!!</div>
+           
 			<!--begining of content page-->
 			<div class="row">
                 <!-- begin col-12 -->
@@ -123,7 +123,7 @@
                                                 
                                             </div>
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'tenant/assignhouse';?>" method="POST" class="form-horizontal form-bordered" id="assign_tenant_form" >
+                                            	<form id="tenantassigning" name="tenantassigning" method="POST" class="form-horizontal form-bordered" >
                                             		
 	                                            	<div class="form-group">
 		                                               
@@ -131,7 +131,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House ID:</label>
-																<input type="text" name="assignhouseid" id="assignhouseid" placeholder="Enter the tenant's house ID" class="form-control" />
+																<input type="text" name="assignhouseid" id="assignhouseid" required placeholder="Enter the tenant's house ID" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -139,7 +139,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Block Name:</label>
-																<input type="text"  name="assignblock" id="assignblock" placeholder="Enter the block name" class="form-control" />
+																<input type="text"  name="assignblock" id="assignblock" required placeholder="Enter the block name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -148,7 +148,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Tenant ID:</label>
-																<input type="text"  name="assigntenantid" id="assigntenantid" placeholder="Enter the tenant ID" class="form-control" />
+																<input type="text"  name="assigntenantid" id="assigntenantid" required placeholder="Enter the tenant ID" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -159,7 +159,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House No:</label>
-																<input type="text"  name="assignhouseno" id="assignhouseno" placeholder="Enter the tenant's house no" class="form-control" />
+																<input type="text"  name="assignhouseno" id="assignhouseno" required placeholder="Enter the tenant's house no" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -167,7 +167,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Estate Name:</label>
-																<input type="text"  name="assignestate" id="assignestate" placeholder="Enter the estate name" class="form-control" />
+																<input type="text"  name="assignestate" id="assignestate" required placeholder="Enter the estate name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -175,7 +175,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Phone Number:</label>
-																<input type="text"  name="assignpnumber" id="assignpnumber" placeholder="Enter the tenant's phone number" class="form-control" />
+																<input type="text"  name="assignpnumber" id="assignpnumber" required placeholder="Enter the tenant's phone number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -183,7 +183,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Rent:</label>
-																<input type="text"  name="assignrent" id="assignrent" placeholder="Enter the house rent" class="form-control" />
+																<input type="text"  name="assignrent" id="assignrent" required placeholder="Enter the house rent" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -191,7 +191,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House Type:</label>
-																<input type="text"  name="assignhousetype" id="assignhousetype" placeholder="Enter the house type" class="form-control" />
+																<input type="text"  name="assignhousetype" id="assignhousetype" required placeholder="Enter the house type" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -199,7 +199,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>National ID / Passport:</label>
-																<input type="text"  name="assignnapa" id="assignnapa" placeholder="Enter the tenant's National ID/Passport no" class="form-control" />
+																<input type="text"  name="assignnapa" id="assignnapa" required placeholder="Enter the tenant's National ID/Passport no" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -243,7 +243,7 @@
                                                     </div>
                                             </div>
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'tenant/edittenant';?>" method="POST" class="form-horizontal form-bordered" id="edit_tenant_form" >
+                                            	<form id="tenantediting" name="tenantediting" method="POST" class="form-horizontal form-bordered" >
                                             		
 	                                            	<div class="form-group">
 	                                            		<input type="hidden" name="edittenantid" id="edittenantid" />
@@ -259,7 +259,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>First Name:</label>
-																<input type="text" name="edittenantfname" id="edittenantfname" placeholder="" class="form-control" />
+																<input type="text" name="edittenantfname" id="edittenantfname" required placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -267,7 +267,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Last Name:</label>
-																<input type="text" name="edittenantlname" id="edittenantlname" placeholder="" class="form-control" />
+																<input type="text" name="edittenantlname" id="edittenantlname" required placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -275,7 +275,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>National ID / Passport No:</label>
-																<input type="text"  name="editnationalpass" id="editnationalpass" placeholder="" class="form-control" />
+																<input type="text"  name="editnationalpass" id="editnationalpass" required placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -283,7 +283,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Phone Number:</label>
-																<input type="text"  name="editphonenumber" id="editphonenumber" placeholder="" class="form-control" />
+																<input type="text"  name="editphonenumber" id="editphonenumber" required placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->

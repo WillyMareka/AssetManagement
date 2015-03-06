@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-$('#tenantreg').hide();
+
 
 
 function validate()
@@ -102,6 +102,89 @@ function validate()
    });
 
      // ....end of function.... //
+
+
+
+     // ....Function for assigning tenants.... //
+ $(function(){
+       $("#tenantassigning").submit(function(){
+          
+      
+
+         var formData = new FormData($(this)[0]);
+ 
+         $.ajax({
+           type: "POST",
+           url: "tenant/assignhouse",
+           data: formData,
+           async: false,
+           cache: false,
+           contentType: false,
+           processData: false,
+           success: function(data){
+               // ....After successful assigning, then....//
+              
+              swal({   title: "Tenant Assigning",   text: "Tenant has been assigned house",   timer: 3000 });
+
+             
+             
+
+           }
+ 
+         });
+ 
+         return false;  //stop the actual form post !important!
+ 
+      });
+   });
+
+     // ....end of function.... //
+
+
+
+
+     // ....Function for editing tenants.... //
+ $(function(){
+       $("#tenantediting").submit(function(){
+          
+  
+     
+
+         var formData = new FormData($(this)[0]);
+ 
+         $.ajax({
+           type: "POST",
+           url: "tenant/edittenant",
+           data: formData,
+           async: false,
+           cache: false,
+           contentType: false,
+           processData: false,
+           success: function(data){
+               // ....After successful editing, then....//
+              
+              swal({   title: "Tenant Editing",   text: "Tenant has been updated",   timer: 3000 });
+
+              
+             
+
+           }
+ 
+         });
+ 
+         return false;  //stop the actual form post !important!
+ 
+      });
+   });
+
+     // ....end of function.... //
+
+
+
+
+
+
+
 
 
 
