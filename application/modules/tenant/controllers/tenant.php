@@ -55,11 +55,11 @@ class Tenant extends MY_Controller
 		$tenant_last_name = $this->input->post('tenantlname');
 		$national_passport = $this->input->post('nationalpass');
 		$phone_number = $this->input->post('phonenumber');
-		$tenant_status = $this->input->post('status');
+		$tenant_status = $this->input->post('tenantstatus');
 
 		$insert = $this->m_tenant->register_tenant($tenant_first_name, $tenant_last_name, $path, $national_passport, $phone_number, $tenant_status);
-        //echo "<pre>";print_r($error);echo "</pre>";die();
-		
+        //echo "<pre>";print_r($insert);echo "</pre>";die();
+		return $insert;
 		}
 	}
 
@@ -79,11 +79,7 @@ class Tenant extends MY_Controller
 // print_r($_FILES);
 		$insert = $this->m_tenant->assign_house($assignhouseid, $assignblock, $assigntenantid, $assignhouseno, $assignestate, $assignpnumber, $assignrent, $assignhousetype, $assignnapa);
 
-		if ($insert) {
-			echo "Insertion complete";
-		} else {
-			echo "Error occured";
-		}
+		return $insert;
 		    
 		
 	}
@@ -157,7 +153,7 @@ class Tenant extends MY_Controller
 		$result = $this->m_tenant->tenant_update($id,$tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status);
 		
 
-		$this->index();
+		return $insert;
 		
 	}
 

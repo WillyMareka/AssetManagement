@@ -10,7 +10,7 @@
 			<!-- begin page-header -->
 			<h1 class="page-header">Tenants</h1>
 			<!-- end page-header -->
-
+           
 			<!--begining of content page-->
 			<div class="row">
                 <!-- begin col-12 -->
@@ -43,13 +43,13 @@
                                             <legend class="pull-left width-full">Registration</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<form id="tenantregistration"  enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
+                                            	<form id="tenantregistration" name="tenantregistration" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>First Name:</label>
-																<input type="text" name="tenantfname" id="tenantfname" placeholder="Enter Tenant First Name" class="form-control" />
+																<input type="text" name="tenantfname" id="tenantfname" required placeholder="Enter Tenant First Name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -57,7 +57,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Last Name:</label>
-																<input type="text" name="tenantlname" id="tenantlname" placeholder="Enter Tenant Last Name" class="form-control" />
+																<input type="text" name="tenantlname" id="tenantlname" required placeholder="Enter Tenant Last Name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -65,7 +65,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Picture:</label>
-																<input type="file" name="tenantpicture" id="tenantpicture" class="form-control" />
+																<input type="file" name="tenantpicture" id="tenantpicture" required class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -73,7 +73,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>National ID / Passport No:</label>
-																<input type="text"  name="nationalpass" id="nationalpass" placeholder="Enter National ID or Passport Number" class="form-control" />
+																<input type="text"  name="nationalpass" id="nationalpass" required placeholder="Enter National ID or Passport Number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -81,7 +81,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Phone Number:</label>
-																<input type="text"  name="phonenumber" id="phonenumber" placeholder="Enter Mobile Phone Number" class="form-control" />
+																<input type="text"  name="phonenumber" id="phonenumber" required placeholder="Enter Mobile Phone Number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -89,7 +89,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Status:</label>
-																<select class="form-control selectpicker" name="status" id="status" data-size="2" data-live-search="true">
+																<select class="form-control selectpicker" name="tenantstatus" required id="tenantstatus" data-size="2" data-live-search="true">
 						                                            <option value="" selected>Select a status</option>
 						                                            <option value="1">Activated</option>
 						                                            <option value="0">Deactivated</option>
@@ -97,7 +97,7 @@
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
-		                                                <span id="result"></span>
+		                                                
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
 																<button id="registertenant" class="btn btn-success m-r-5 m-b-5">Register</button>
@@ -122,7 +122,7 @@
                                                 
                                             </div>
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'tenant/assignhouse';?>" method="POST" class="form-horizontal form-bordered" id="assign_tenant_form" >
+                                            	<form id="tenantassigning" name="tenantassigning" method="POST" class="form-horizontal form-bordered" >
                                             		
 	                                            	<div class="form-group">
 		                                               
@@ -130,7 +130,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House ID:</label>
-																<input type="text" name="assignhouseid" id="assignhouseid" placeholder="Enter the tenant's house ID" class="form-control" />
+																<input type="text" name="assignhouseid" id="assignhouseid" required placeholder="Enter the tenant's house ID" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -138,7 +138,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Block Name:</label>
-																<input type="text"  name="assignblock" id="assignblock" placeholder="Enter the block name" class="form-control" />
+																<input type="text"  name="assignblock" id="assignblock" required placeholder="Enter the block name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -147,7 +147,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Tenant ID:</label>
-																<input type="text"  name="assigntenantid" id="assigntenantid" placeholder="Enter the tenant ID" class="form-control" />
+																<input type="text"  name="assigntenantid" id="assigntenantid" required placeholder="Enter the tenant ID" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -158,7 +158,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House No:</label>
-																<input type="text"  name="assignhouseno" id="assignhouseno" placeholder="Enter the tenant's house no" class="form-control" />
+																<input type="text"  name="assignhouseno" id="assignhouseno" required placeholder="Enter the tenant's house no" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -166,7 +166,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Estate Name:</label>
-																<input type="text"  name="assignestate" id="assignestate" placeholder="Enter the estate name" class="form-control" />
+																<input type="text"  name="assignestate" id="assignestate" required placeholder="Enter the estate name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -174,7 +174,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Phone Number:</label>
-																<input type="text"  name="assignpnumber" id="assignpnumber" placeholder="Enter the tenant's phone number" class="form-control" />
+																<input type="text"  name="assignpnumber" id="assignpnumber" required placeholder="Enter the tenant's phone number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -182,7 +182,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Rent:</label>
-																<input type="text"  name="assignrent" id="assignrent" placeholder="Enter the house rent" class="form-control" />
+																<input type="text"  name="assignrent" id="assignrent" required placeholder="Enter the house rent" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -190,7 +190,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House Type:</label>
-																<input type="text"  name="assignhousetype" id="assignhousetype" placeholder="Enter the house type" class="form-control" />
+																<input type="text"  name="assignhousetype" id="assignhousetype" required placeholder="Enter the house type" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -198,7 +198,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>National ID / Passport:</label>
-																<input type="text"  name="assignnapa" id="assignnapa" placeholder="Enter the tenant's National ID/Passport no" class="form-control" />
+																<input type="text"  name="assignnapa" id="assignnapa" required placeholder="Enter the tenant's National ID/Passport no" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -242,7 +242,7 @@
                                                     </div>
                                             </div>
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'tenant/edittenant';?>" method="POST" class="form-horizontal form-bordered" id="edit_tenant_form" >
+                                            	<form id="tenantediting" name="tenantediting" method="POST" class="form-horizontal form-bordered" >
                                             		
 	                                            	<div class="form-group">
 	                                            		<input type="hidden" name="edittenantid" id="edittenantid" />
@@ -258,7 +258,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>First Name:</label>
-																<input type="text" name="edittenantfname" id="edittenantfname" placeholder="" class="form-control" />
+																<input type="text" name="edittenantfname" id="edittenantfname" required placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -266,7 +266,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Last Name:</label>
-																<input type="text" name="edittenantlname" id="edittenantlname" placeholder="" class="form-control" />
+																<input type="text" name="edittenantlname" id="edittenantlname" required placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -274,7 +274,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>National ID / Passport No:</label>
-																<input type="text"  name="editnationalpass" id="editnationalpass" placeholder="" class="form-control" />
+																<input type="text"  name="editnationalpass" id="editnationalpass" required placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -282,7 +282,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Phone Number:</label>
-																<input type="text"  name="editphonenumber" id="editphonenumber" placeholder="" class="form-control" />
+																<input type="text"  name="editphonenumber" id="editphonenumber" required placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -394,6 +394,8 @@
 			$(".js-example-data-array").select2({
 				data: data
 			});
+
+
 
 
 

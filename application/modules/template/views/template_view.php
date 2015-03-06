@@ -34,13 +34,14 @@
 
 	<link href="<?php echo base_url(); ?>assets/template_files/css/main.css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/select2/css/select2.min.css">
-	
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/sweetalert/lib/sweet-alert.css">
 </head>
     <script src="<?php echo base_url(); ?>assets/template_files/js/jquery2.js" ></script>
 	// <script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-1.8.2/jquery-1.8.2.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-ui-1.10.4/ui/minified/jquery-ui.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/select2/js/select2.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/js/validation.js" type="text/javascript"></script>
 <body>
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -106,6 +107,7 @@
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/DataTables-1.10.2/js/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/DataTables-1.10.2/js/data-table.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/js/apps.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/sweetalert/lib/sweet-alert.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/js/payments.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/js/tenants.js"></script>
 	
