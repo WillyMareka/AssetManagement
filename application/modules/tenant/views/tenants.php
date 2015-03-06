@@ -50,7 +50,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>First Name:</label>
-																<input type="text" name="tenantfname" id="tenantfname" placeholder="Enter Tenant First Name" class="form-control" />
+																<input type="text" name="tenantfname" id="tenantfname" required placeholder="Enter Tenant First Name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -58,7 +58,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Last Name:</label>
-																<input type="text" name="tenantlname" id="tenantlname" placeholder="Enter Tenant Last Name" class="form-control" />
+																<input type="text" name="tenantlname" id="tenantlname" required placeholder="Enter Tenant Last Name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -66,7 +66,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Picture:</label>
-																<input type="file" name="tenantpicture" id="tenantpicture" class="form-control" />
+																<input type="file" name="tenantpicture" id="tenantpicture" required class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -74,7 +74,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>National ID / Passport No:</label>
-																<input type="text"  name="nationalpass" id="nationalpass" placeholder="Enter National ID or Passport Number" class="form-control" />
+																<input type="text"  name="nationalpass" id="nationalpass" required placeholder="Enter National ID or Passport Number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -82,7 +82,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Phone Number:</label>
-																<input type="text"  name="phonenumber" id="phonenumber" placeholder="Enter Mobile Phone Number" class="form-control" />
+																<input type="text"  name="phonenumber" id="phonenumber" required placeholder="Enter Mobile Phone Number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -90,8 +90,8 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Status:</label>
-																<select class="form-control selectpicker" name="tenantstatus" id="tenantstatus" data-size="2" data-live-search="true">
-						                                            <option value="000" selected>Select a status</option>
+																<select class="form-control selectpicker" name="tenantstatus" required id="tenantstatus" data-size="2" data-live-search="true">
+						                                            <option value="" selected>Select a status</option>
 						                                            <option value="1">Activated</option>
 						                                            <option value="0">Deactivated</option>
 						                                        </select>
