@@ -49,7 +49,7 @@ $(document).ready(function(){
            success: function(data){
                // ....After successful registration, then....//
               
-              swal({   title: "Payment Done",   text: "Payment Recorded",   timer: 3000 });
+              swal({   title: "Payment Done",   text: "Payment has been Recorded",   timer: 3000 });
 
 
            }
