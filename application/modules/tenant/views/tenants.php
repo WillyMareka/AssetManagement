@@ -36,7 +36,6 @@
 										 <li>
 										    View Tenants
 										 </li>
-										
 									</ol>
 									<!-- begin wizard step-1 -->
 									<div>
