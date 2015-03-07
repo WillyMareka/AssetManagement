@@ -100,6 +100,19 @@ class M_tenant extends MY_Model
 		return $result->result_array();
 	}
 
+	function select2_search_tenant()
+	{
+		$sql = "SELECT
+					`tenant_id` AS `id`,
+					`lastname` AS `text`
+				FROM 
+					`tenant`";
+		$result = $this->db->query($sql);
+
+		$tenant = $result->result_array();
+		return $result->result_array();
+	}
+
 	function search_tenant($id)
 	{
 		$sql = "SELECT
