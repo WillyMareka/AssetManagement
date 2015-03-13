@@ -19,6 +19,7 @@ class Tenant extends MY_Controller
 		$data['housetypes'] = $this->gethousetypes();
 		$data['houses_c'] = $this->all_vhouse_combo();
 		$data['all_tenants'] = $this->all_tenants();
+		
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
 	}
@@ -128,12 +129,19 @@ class Tenant extends MY_Controller
 
 		return $this->active_groups;
 	}
+	function ajax_search_get_tenant()
+	{
+		$tenants = $this->m_tenant->select2_search_tenant();
+		// echo "<pre>";print_r($tenants);die();
+		$tenants = json_encode($tenants);
+		echo $tenants;
+	}
 
 	function ajax_get_tenant($id)
 	{
 		$tenant = $this->m_tenant->search_tenant($id);
-		 //echo "<pre>";print_r($tenant[0]);die();
-		$tenant = json_encode($tenant[0]);
+		// echo "<pre>";print_r($tenant);die();
+		$tenant = json_encode($tenant);
 		echo $tenant;
 	}
 
@@ -174,13 +182,14 @@ class Tenant extends MY_Controller
 	{
 		$tenants = $this->m_tenant->get_tenants();
 		// echo "<pre>";print_r($tenants);die();
-		$data = array();
+		$this->tenant_combo .= '<select name="table_search_tenant" id="table_search_tenant" onchange="get_house()" class="form-control input-sm js-example-basic-single" style="width: 350px;">';
+		$this->tenant_combo .= '<option value="" selected>**Search for a Tenant**</option>';
 		foreach ($tenants as $key => $value) {
-			foreach ($value as $k => $v) {
-				$data[$k] = $v;
-			}
+			$this->tenant_combo .= '<option value="'.$value['tenant_id'].'">'.$value['firstname'].' '.$value['lastname'].'</option>';
 		}
-		// echo "<pre>";print_r($data);die();
+		$this->tenant_combo .= '</select>';
+
+		return $this->tenant_combo;
 		
 		
 	}
