@@ -229,18 +229,11 @@
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
-                                            		<!-- <select class="js-example-data-array form-control input-sm pull-right" name="table_search" id="table_search" style="width: 150px;"></select> -->
+                                            		
                                             		<?php
                                             			echo $tenants_c;
                                             		?>
-                                                        <!-- <select name="table_search" id="table_search" onchange="get_tenant()" class="form-control input-sm pull-right" style="width: 150px;">
-                                                        	<option value="" selected="true" disabled="on">**Select a Tenant**</option>
-                                                        	<option value="1">Option 2</option>
-                                                        	<option value="2">Option 2</option>
-                                                        </select> -->
-                                                          <!--  <div class="input-group-btn">
-                                                              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                                                           </div> -->
+                                                  
                                                     </div>
                                             </div>
                                             <div class="row">
@@ -357,7 +350,7 @@
 			
 	</div>
 </div>
-<script type="text/javascript" src="<?php echo base_url();?>assets/select2/js/select.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/select2/js/select2.min.js"></script>
 <script>
 		$(document).ready(function() {
 			App.init();
@@ -365,11 +358,11 @@
 			 $(".js-example-basic-single").select2();
 			$('#table_search_tenant').change(function(){
        		sv = $(this).val();
-       		console.log(sv);
+       		//console.log(sv);
        		// console.log('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv);
 	       		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
 	       			obj = jQuery.parseJSON(data);
-	       			//console.log(obj);
+	       			console.log(obj);
 	       			// alert(obj.firstname);
 	       			// var img = val(obj.picture);
 	       			// imgList += '<img name="edittenantpicture" id="edittenantpicture"  width="300px" height="300px" alt="Profile Pic" src= "' + img + '">';
@@ -377,12 +370,8 @@
 	       			//alert(pic);
 	       			$('#tenantediting input#edittenantid').val(obj.tenant_id);
 					$('#tenantediting input#edittenantfname').val(obj.firstname);
-
-					
-					//$("#edittenantpicture").attr("src",+ val(obj.picture) +);
-
-					$('#tenantediting #edittenantpicture').attr('src', obj.picture);
 					$('#tenantediting input#edittenantlname').val(obj.lastname);
+					$('#tenantediting #edittenantpicture').attr('src', obj.picture);
 					$('#tenantediting input#editnationalpass').val(obj.nationalid_passport);
 					$('#tenantediting input#editphonenumber').val(obj.phone_number);
 					$('#tenantediting select#edittenantstatus').val(obj.tenant_status);
@@ -393,19 +382,18 @@
 
        		});
 			
-<<<<<<< HEAD
-			var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
 
-			$(".js-example-data-array").select2({
-				data: data
-			});
+			// var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
 
-
+			// $(".js-example-data-array").select2({
+			// 	data: data
+			// });
 
 
 
-=======
->>>>>>> 7f858d78d5411219c3b38570f5eaf6a268b0b2fe
+
+
+
 			// $.get('<?php echo base_url(); ?>tenant/ajax_get_house/'+sv, function(data){
    //     			obj = jQuery.parseJSON(data);
    //     			//console.log(obj);

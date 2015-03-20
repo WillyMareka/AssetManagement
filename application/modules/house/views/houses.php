@@ -317,6 +317,7 @@
 			
 	</div>
 </div>
+<script type="text/javascript" src="<?php echo base_url();?>assets/select2/js/select2.min.js"></script>
 <script>
 		$(document).ready(function() {
 			App.init();

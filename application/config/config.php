@@ -14,6 +14,7 @@
 | path to your installation.
 |
 */
+
 $config['base_url']	= 'http://'.$_SERVER['SERVER_NAME'].'/assetmanagement/';
 
 /*
