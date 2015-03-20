@@ -229,9 +229,13 @@
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
+<<<<<<< HEAD
                                             		
+=======
+                                            		<select class="js-example-data-array form-control input-sm pull-right" name="table_search" id="table_search" style="width: 150px;"></select>
+>>>>>>> f5d07595bf42fad19fd98966f4f55fd1bb10259a
                                             		<?php
-                                            			echo $tenants_c;
+                                            			// echo $tenants_c;
                                             		?>
                                                   
                                                     </div>
@@ -355,10 +359,17 @@
 		$(document).ready(function() {
 			App.init();
 			FormWizard.init();
+<<<<<<< HEAD
 			 
 			$('#table_search_tenant').change(function(){
+=======
+			$('#table_search').change(function(){
+>>>>>>> 8a1245ebc216b78454c9b99381be8013ee89913e
        		sv = $(this).val();
+<<<<<<< HEAD
        		//console.log(sv);
+=======
+>>>>>>> f5d07595bf42fad19fd98966f4f55fd1bb10259a
        		// console.log('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv);
 	       		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
 	       			obj = jQuery.parseJSON(data);
@@ -378,6 +389,53 @@
 	                
 				});
        		});
+<<<<<<< HEAD
+=======
+			
+<<<<<<< HEAD
+=======
+			var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+>>>>>>> f5d07595bf42fad19fd98966f4f55fd1bb10259a
+
+			// var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+
+			// $(".js-example-data-array").select2({
+			// 	data: data
+			// });
+
+
+
+
+
+
+			// $.get('<?php echo base_url(); ?>tenant/ajax_get_house/'+sv, function(data){
+   //     			obj = jQuery.parseJSON(data);
+   //     			//console.log(obj);
+   //     			// alert(obj.firstname);
+
+   //     			//gets vacant houses
+   //     			$('#assign_tenant_form input#assignhouseid').val(obj.house_id);
+			// 	$('#assign_tenant_form input#assignhouseno').val(obj.house_no);
+			// 	$('#assign_tenant_form input#assignhousetype').val(obj.house_type);
+			// 	$('#assign_tenant_form input#assignblock').val(obj.block);
+			// 	$('#assign_tenant_form input#assignestate').val(obj.estate_name);
+			// 	$('#assign_tenant_form input#assignrent').val(obj.rent);
+
+               
+				
+				
+			// });
+
+			// $.get('<?php echo base_url(); ?>tenant/ajax_get_atenant/'+sv, function(data){
+   //     			obj = jQuery.parseJSON(data);
+   //     			//console.log(obj);
+   //     			// alert(obj.firstname);
+   //     			 //gets tenant
+			// 	$('#assign_tenant_formm input#assigntenantid').val(obj.tenant_id);
+			// 	$('#assign_tenant_formm input#assignnapa').val(obj.nationalid_passport);
+			// 	$('#assign_tenant_formm input#assignpnumber').val(obj.phone_number);
+			// });
+>>>>>>> 8a1245ebc216b78454c9b99381be8013ee89913e
 		});
 </script>
 <script>
