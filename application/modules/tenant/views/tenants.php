@@ -229,9 +229,13 @@
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
+<<<<<<< HEAD
                                             		
+=======
+                                            		<select class="js-example-data-array form-control input-sm pull-right" name="table_search" id="table_search" style="width: 150px;"></select>
+>>>>>>> f5d07595bf42fad19fd98966f4f55fd1bb10259a
                                             		<?php
-                                            			echo $tenants_c;
+                                            			// echo $tenants_c;
                                             		?>
                                                   
                                                     </div>
@@ -355,10 +359,12 @@
 		$(document).ready(function() {
 			App.init();
 			FormWizard.init();
-			 $(".js-example-basic-single").select2();
-			$('#table_search_tenant').change(function(){
+			$('#table_search').change(function(){
        		sv = $(this).val();
+<<<<<<< HEAD
        		//console.log(sv);
+=======
+>>>>>>> f5d07595bf42fad19fd98966f4f55fd1bb10259a
        		// console.log('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv);
 	       		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
 	       			obj = jQuery.parseJSON(data);
@@ -382,6 +388,10 @@
 
        		});
 			
+<<<<<<< HEAD
+=======
+			var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+>>>>>>> f5d07595bf42fad19fd98966f4f55fd1bb10259a
 
 			// var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
 
