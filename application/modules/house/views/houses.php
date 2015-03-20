@@ -40,13 +40,13 @@
                                             <legend class="pull-left width-full">Registration</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'house/registration';?>" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered" role="form">
+                                            	<form id="houseregistration" name="houseregistration" role="form" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House No:</label>
-																<input type="text" name="houseno" id="houseno" placeholder="Enter House No" class="form-control" />
+																<input type="text" name="houseno" id="houseno" required placeholder="Enter House No" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -54,7 +54,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House Type:</label>
-																<select class="form-control selectpicker" name="housetype" id="housetype"  data-live-search="true">
+																<select class="form-control selectpicker" required name="housetype" id="housetype"  data-live-search="true">
 																	<?php echo $housetypes?>
 																</select>
 															</div>
@@ -72,7 +72,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Estate Name:</label>
-																<input type="text"  name="houseestate" id="houseestate" placeholder="Enter estate name" class="form-control" />
+																<input type="text"  name="houseestate" required id="houseestate" placeholder="Enter estate name" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -80,7 +80,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Rent:</label>
-																<input type="text"  name="houserent" id="houserent" placeholder="Enter Rent for the house" class="form-control" />
+																<input type="text"  name="houserent" required id="houserent" placeholder="Enter Rent for the house" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -96,7 +96,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Bedrooms:</label>
-																<input type="text"  name="housebedrooms" id="housebedrooms" placeholder="Enter Bedroom Number" class="form-control" />
+																<input type="text"  name="housebedrooms" required id="housebedrooms" placeholder="Enter Bedroom Number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -104,7 +104,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Bathrooms:</label>
-																<input type="text"  name="housebathrooms" id="housebathrooms" placeholder="Enter Bathroom Number" class="form-control" />
+																<input type="text"  name="housebathrooms" required id="housebathrooms" placeholder="Enter Bathroom Number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -112,7 +112,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Kitchen:</label>
-																<input type="text"  name="housekitchen" id="housekitchen" placeholder="Enter Kitchen Number" class="form-control" />
+																<input type="text"  name="housekitchen" required id="housekitchen" placeholder="Enter Kitchen Number" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -163,7 +163,7 @@
                                                     </div>
                                             </div>
                                             <div class="row">
-                                            	<form action="<?php echo base_url() .'house/edithouse';?>" method="POST" class="form-horizontal form-bordered" id="edit_house_form" >
+                                            	<form id="houseediting" name="houseediting" method="POST" class="form-horizontal form-bordered"  >
                                             		
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
@@ -171,7 +171,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House No:</label>
-																<input type="text" name="edithouseno" id="edithouseno" placeholder="" class="form-control" />
+																<input type="text" name="edithouseno" required id="edithouseno" placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -179,7 +179,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House Type:</label>
-																<input type="text" name="edithousetype" id="edithousetype" placeholder="" class="form-control" />
+																<input type="text" name="edithousetype" required id="edithousetype" placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -195,7 +195,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Estate:</label>
-																<input type="text"  name="edithouseestate" id="edithouseestate" placeholder="" class="form-control" />
+																<input type="text"  name="edithouseestate" required id="edithouseestate" placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -203,7 +203,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Rent:</label>
-																<input type="text"  name="edithouserent" id="edithouserent" placeholder="" class="form-control" />
+																<input type="text"  name="edithouserent" required id="edithouserent" placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -211,7 +211,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Bedrooms:</label>
-																<input type="text"  name="edithousebedrooms" id="edithousebedrooms" placeholder="" class="form-control" />
+																<input type="text"  name="edithousebedrooms" required id="edithousebedrooms" placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -219,7 +219,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Bathrooms:</label>
-																<input type="text"  name="edithousebathrooms" id="edithousebathrooms" placeholder="" class="form-control" />
+																<input type="text"  name="edithousebathrooms" required id="edithousebathrooms" placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -227,7 +227,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Kitchen:</label>
-																<input type="text"  name="edithousekitchen" id="edithousekitchen" placeholder="" class="form-control" />
+																<input type="text"  name="edithousekitchen" required id="edithousekitchen" placeholder="" class="form-control" />
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -258,6 +258,7 @@
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
 																<button type="submit" class="btn btn-success m-r-5 m-b-5">Edit house</button>
+																<button type="reset" class="btn btn-warning m-r-5 m-b-5">Cancel</button>
 															</div>
 		                                                </div>
 	                                                </div>
@@ -327,18 +328,18 @@
        			obj = jQuery.parseJSON(data);
        			 //console.log(obj);
        			// alert(obj.firstname);
-       			$('#edit_house_form #edithousepicture').attr('src', obj.picture);
-       			$('#edit_house_form input#edithouseid').val(obj.house_id);
-				$('#edit_house_form input#edithouseno').val(obj.house_no);
-				$('#edit_house_form input#edithousetype').val(obj.house_type);
-				$('#edit_house_form input#edithouseblock').val(obj.block);
-				$('#edit_house_form input#edithouseestate').val(obj.estate_name);
-				$('#edit_house_form input#edithouserent').val(obj.rent);
-				$('#edit_house_form input#edithousebedrooms').val(obj.bedrooms);
-				$('#edit_house_form input#edithousebathrooms').val(obj.bathrooms);
-				$('#edit_house_form input#edithousekitchen').val(obj.kitchen);
-				$('#edit_house_form textarea#edithousedescription').val(obj.house_description);
-				$('#edit_house_form select#edithousestatus').val(obj.house_status);
+       			$('#houseediting #edithousepicture').attr('src', obj.picture);
+       			$('#houseediting input#edithouseid').val(obj.house_id);
+				$('#houseediting input#edithouseno').val(obj.house_no);
+				$('#houseediting input#edithousetype').val(obj.house_type);
+				$('#houseediting input#edithouseblock').val(obj.block);
+				$('#houseediting input#edithouseestate').val(obj.estate_name);
+				$('#houseediting input#edithouserent').val(obj.rent);
+				$('#houseediting input#edithousebedrooms').val(obj.bedrooms);
+				$('#houseediting input#edithousebathrooms').val(obj.bathrooms);
+				$('#houseediting input#edithousekitchen').val(obj.kitchen);
+				$('#houseediting textarea#edithousedescription').val(obj.house_description);
+				$('#houseediting select#edithousestatus').val(obj.house_status);
 			});
        });
 		});

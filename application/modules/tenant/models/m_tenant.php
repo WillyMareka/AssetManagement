@@ -25,6 +25,19 @@ class M_tenant extends MY_Model
 
 	}
 
+	public function get_house_types()
+    {
+      $query = "SELECT * FROM house_type WHERE status = 1";
+            try {
+                $this->dataSet = $this->db->query($query);
+                $this->dataSet = $this->dataSet->result_array();
+            }
+            catch(exception $ex) {
+            }
+            
+            return $this->dataSet;
+    }
+
 	function assign_house($assignhouseid, $assignblock, $assigntenantid, $assignhouseno, $assignestate, $assignpnumber, $assignrent, $assignhousetype, $assignnapa)
 	{
 		$data = array();

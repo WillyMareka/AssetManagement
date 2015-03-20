@@ -1,6 +1,6 @@
 
 .payments{
-	margin: 10px;
+	margin-bottom: 10px;
 	width:300px;
 }
 
@@ -9,9 +9,13 @@
 }
 
 .payfield{
-  width:150px !important;
+  width:140px !important;
 }
 
 .pay-group{
-	width:150px;
+	width:140px;
+}
+
+.paycheck{
+	margin-left:-20px;
 }

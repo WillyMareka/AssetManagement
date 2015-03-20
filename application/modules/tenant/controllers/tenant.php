@@ -16,6 +16,7 @@ class Tenant extends MY_Controller
 		$data['sidebar'] = 'hr_side_bar';
 		$data['tenants_c'] = $this->all_tenant_combo();
 		$data['tenants_f'] = $this->all_tenant_combo();
+		$data['housetypes'] = $this->gethousetypes();
 		$data['houses_c'] = $this->all_vhouse_combo();
 		$data['all_tenants'] = $this->all_tenants();
 		
@@ -23,10 +24,23 @@ class Tenant extends MY_Controller
 		$this->template->call_template($data);
 	}
 
+	function gethousetypes()
+	{
+        $results = $this->m_tenant->get_house_types();
+        
+        //echo '<pre>';print_r($results);echo '</pre>';die;
+            $houtyp ='<option selected="selected" value="">Select the House Type</option>';
+        foreach ($results as $value) {
+            $houtyp .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
+        }
+        return $houtyp;
+	}
+
 	
 
 	function registration()
 	{
+	
 		$path = base_url().'uploads/tenants/';
 		       $config['upload_path'] = 'uploads/tenants';
 		       $config['allowed_types'] = 'jpeg|jpg|png|gif';
@@ -35,7 +49,7 @@ class Tenant extends MY_Controller
 		       $this->upload->initialize($config);
 
 		      
-			if ( ! $this->upload->do_upload('tenantpicture'))
+			if ( !$this->upload->do_upload('tenantpicture'))
 		    {
 			   $error = array('error' => $this->upload->display_errors());
 
@@ -55,15 +69,11 @@ class Tenant extends MY_Controller
 		$tenant_last_name = $this->input->post('tenantlname');
 		$national_passport = $this->input->post('nationalpass');
 		$phone_number = $this->input->post('phonenumber');
-		$tenant_status = $this->input->post('status');
+		$tenant_status = $this->input->post('tenantstatus');
 
 		$insert = $this->m_tenant->register_tenant($tenant_first_name, $tenant_last_name, $path, $national_passport, $phone_number, $tenant_status);
-
-		if ($insert) {
-			echo "Insertion complete";
-		} else {
-			echo "Error occured";
-		}
+        //echo "<pre>";print_r($insert);echo "</pre>";die();
+		return $insert;
 		}
 	}
 
@@ -83,11 +93,7 @@ class Tenant extends MY_Controller
 // print_r($_FILES);
 		$insert = $this->m_tenant->assign_house($assignhouseid, $assignblock, $assigntenantid, $assignhouseno, $assignestate, $assignpnumber, $assignrent, $assignhousetype, $assignnapa);
 
-		if ($insert) {
-			echo "Insertion complete";
-		} else {
-			echo "Error occured";
-		}
+		return $insert;
 		    
 		
 	}
@@ -168,7 +174,7 @@ class Tenant extends MY_Controller
 		$result = $this->m_tenant->tenant_update($id,$tenant_first_name, $tenant_last_name, $national_passport, $phone_number, $tenant_status);
 		
 
-		$this->index();
+		return $insert;
 		
 	}
 
