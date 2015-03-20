@@ -322,7 +322,7 @@
 		$(document).ready(function() {
 			App.init();
 			FormWizard.init();
-			$('#table_search').change(function(){
+			$('#table_search_house').change(function(){
        		sv = $(this).val();
        		// console.log('<?php echo base_url(); ?>house/ajax_get_house/'+sv);
        		$.get('<?php echo base_url(); ?>house/ajax_get_house/'+sv, function(data){

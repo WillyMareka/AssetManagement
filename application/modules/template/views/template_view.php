@@ -9,7 +9,7 @@
 	<title>Asset Management | Dashboard</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
-	<meta content="Bakasa Joshua Neyole" name="author" />
+	<meta content="Mareka Willy Michael" name="author" />
 	
 	
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -37,7 +37,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/sweetalert/lib/sweet-alert.css">
 </head>
     <script src="<?php echo base_url(); ?>assets/template_files/js/jquery2.js" ></script>
-	// <script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-1.8.2/jquery-1.8.2.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-1.8.2/jquery-1.8.2.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-ui-1.10.4/ui/minified/jquery-ui.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/select2/js/select2.min.js" type="text/javascript"></script>

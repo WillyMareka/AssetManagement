@@ -355,14 +355,14 @@
 		$(document).ready(function() {
 			App.init();
 			FormWizard.init();
-			 $(".js-example-basic-single").select2();
+			 
 			$('#table_search_tenant').change(function(){
        		sv = $(this).val();
        		//console.log(sv);
        		// console.log('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv);
 	       		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
 	       			obj = jQuery.parseJSON(data);
-	       			console.log(obj);
+	       			//console.log(obj);
 	       			// alert(obj.firstname);
 	       			// var img = val(obj.picture);
 	       			// imgList += '<img name="edittenantpicture" id="edittenantpicture"  width="300px" height="300px" alt="Profile Pic" src= "' + img + '">';
@@ -375,52 +375,9 @@
 					$('#tenantediting input#editnationalpass').val(obj.nationalid_passport);
 					$('#tenantediting input#editphonenumber').val(obj.phone_number);
 					$('#tenantediting select#edittenantstatus').val(obj.tenant_status);
-	                // $('#divpic').append(imgList);
-
-					//$("#divpic").append("<img id='edittenantpicture' src="'+ val(obj.picture) +'" />");
+	                
 				});
-
        		});
-			
-
-			// var data = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
-
-			// $(".js-example-data-array").select2({
-			// 	data: data
-			// });
-
-
-
-
-
-
-			// $.get('<?php echo base_url(); ?>tenant/ajax_get_house/'+sv, function(data){
-   //     			obj = jQuery.parseJSON(data);
-   //     			//console.log(obj);
-   //     			// alert(obj.firstname);
-
-   //     			//gets vacant houses
-   //     			$('#assign_tenant_form input#assignhouseid').val(obj.house_id);
-			// 	$('#assign_tenant_form input#assignhouseno').val(obj.house_no);
-			// 	$('#assign_tenant_form input#assignhousetype').val(obj.house_type);
-			// 	$('#assign_tenant_form input#assignblock').val(obj.block);
-			// 	$('#assign_tenant_form input#assignestate').val(obj.estate_name);
-			// 	$('#assign_tenant_form input#assignrent').val(obj.rent);
-
-               
-				
-				
-			// });
-
-			// $.get('<?php echo base_url(); ?>tenant/ajax_get_atenant/'+sv, function(data){
-   //     			obj = jQuery.parseJSON(data);
-   //     			//console.log(obj);
-   //     			// alert(obj.firstname);
-   //     			 //gets tenant
-			// 	$('#assign_tenant_formm input#assigntenantid').val(obj.tenant_id);
-			// 	$('#assign_tenant_formm input#assignnapa').val(obj.nationalid_passport);
-			// 	$('#assign_tenant_formm input#assignpnumber').val(obj.phone_number);
-			// });
 		});
 </script>
 <script>

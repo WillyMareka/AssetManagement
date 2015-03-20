@@ -1,7 +1,10 @@
 $(document).ready(function(){
 
 
-
+$(".js-example-placeholder-single").select2({
+  placeholder: "Select a Tenant",
+  allowClear: true
+});
 
 function validate()
 {
@@ -164,9 +167,6 @@ function validate()
                // ....After successful editing, then....//
               
               swal({   title: "Tenant Editing",   text: "Tenant has been updated",   timer: 3000 });
-
-              
-             
 
            }
  

@@ -15,7 +15,7 @@ class Tenant extends MY_Controller
 		$data['content_page'] = 'tenant/tenants';
 		$data['sidebar'] = 'hr_side_bar';
 		$data['tenants_c'] = $this->all_tenant_combo();
-		$data['tenants_f'] = $this->all_tenant_combo();
+		
 		$data['housetypes'] = $this->gethousetypes();
 		$data['houses_c'] = $this->all_vhouse_combo();
 		$data['all_tenants'] = $this->all_tenants();
@@ -182,8 +182,8 @@ class Tenant extends MY_Controller
 	{
 		$tenants = $this->m_tenant->get_tenants();
 		// echo "<pre>";print_r($tenants);die();
-		$this->tenant_combo .= '<select name="table_search_tenant" id="table_search_tenant" onchange="get_house()" class="form-control input-sm js-example-basic-single" style="width: 350px;">';
-		$this->tenant_combo .= '<option value="" selected>**Search for a Tenant**</option>';
+		$this->tenant_combo .= '<select name="table_search_tenant" id="table_search_tenant" onchange="get_house()" class="form-control input-sm pull-right js-example-placeholder-single" style="width: 350px;">';
+		$this->tenant_combo .= '<option value="" selected>**Search a Tenant**</option>';
 		foreach ($tenants as $key => $value) {
 			$this->tenant_combo .= '<option value="'.$value['tenant_id'].'">'.$value['firstname'].' '.$value['lastname'].'</option>';
 		}

@@ -1,6 +1,11 @@
 $(document).ready(function(){
 
 
+$(".js-example-placeholder-single").select2({
+  placeholder: "Select: House no -- Estate Name",
+  allowClear: true
+});
+
 
 // ....Function for registering houses.... //
  $(function(){
