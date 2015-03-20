@@ -229,9 +229,9 @@
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
-                                            		<select class="js-example-data-array form-control input-sm pull-right" name="table_search" id="table_search" style="width: 150px;"></select>
+                                            		<!-- <select class="js-example-data-array form-control input-sm pull-right" name="table_search" id="table_search" style="width: 150px;"></select> -->
                                             		<?php
-                                            			// echo $tenants_c;
+                                            			echo $tenants_c;
                                             		?>
                                                         <!-- <select name="table_search" id="table_search" onchange="get_tenant()" class="form-control input-sm pull-right" style="width: 150px;">
                                                         	<option value="" selected="true" disabled="on">**Select a Tenant**</option>
