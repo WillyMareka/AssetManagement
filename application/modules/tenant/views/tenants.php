@@ -3,7 +3,7 @@
 	<div id="content" class="content">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-				<li><a href="javascript:;">Home</a></li>
+				<li><a href="<?php echo base_url();?>hr">Home</a></li>
 				<li class="active">Tenants</li>
 			</ol>
 			<!-- end breadcrumb -->
