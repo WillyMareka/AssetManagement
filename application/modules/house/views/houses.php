@@ -152,14 +152,7 @@
                                             		<?php
                                             			echo $houses_c;
                                             		?>
-                                                        <!-- <select name="table_search" id="table_search" onchange="get_house()" class="form-control input-sm pull-right" style="width: 150px;">
-                                                        	<option value="" selected="true" disabled="on">**Select a house**</option>
-                                                        	<option value="1">Option 2</option>
-                                                        	<option value="2">Option 2</option>
-                                                        </select> -->
-                                                          <!--  <div class="input-group-btn">
-                                                              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                                                           </div> -->
+                                                      
                                                     </div>
                                             </div>
                                             <div class="row">
@@ -348,7 +341,7 @@
 <script>
 	function get_house()
 	{
-		var sel = document.getElementById('table_search');
+		var sel = document.getElementById('table_search_house');
        // var sv = sel.options[sel.selectedIndex].value;
        // console.log(sv);
 	}

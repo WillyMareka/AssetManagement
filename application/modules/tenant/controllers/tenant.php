@@ -141,7 +141,7 @@ class Tenant extends MY_Controller
 	{
 		$tenant = $this->m_tenant->search_tenant($id);
 		// echo "<pre>";print_r($tenant);die();
-		$tenant = json_encode($tenant);
+		$tenant = json_encode($tenant[0]);
 		echo $tenant;
 	}
 
@@ -182,7 +182,7 @@ class Tenant extends MY_Controller
 	{
 		$tenants = $this->m_tenant->get_tenants();
 		// echo "<pre>";print_r($tenants);die();
-		$this->tenant_combo .= '<select name="table_search_tenant" id="table_search_tenant" onchange="get_house()" class="form-control input-sm pull-right js-example-placeholder-single" style="width: 350px;">';
+		$this->tenant_combo .= '<select name="table_search_tenant" id="table_search_tenant" onchange="get_tenant()" class="form-control input-sm js-example-placeholder-single pull-right" style="width: 350px;">';
 		$this->tenant_combo .= '<option value="" selected>**Search a Tenant**</option>';
 		foreach ($tenants as $key => $value) {
 			$this->tenant_combo .= '<option value="'.$value['tenant_id'].'">'.$value['firstname'].' '.$value['lastname'].'</option>';

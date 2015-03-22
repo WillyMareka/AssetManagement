@@ -229,17 +229,11 @@
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
-
-
-                                            		<select class="js-example-data-array form-control input-sm pull-right" name="table_search_tenant" id="table_search" style="width: 150px;"></select>
-
-
                                             		
-
                                             		<?php
-                                            			echo $tenants_c;
+                                            			 echo $tenants_c;
                                             		?>
-                                                  
+                                                     
                                                     </div>
                                             </div>
                                             <div class="row">
@@ -360,21 +354,15 @@
 <script>
 		$(document).ready(function() {
 			App.init();
-			FormWizard.init();
-
-			 
+			FormWizard.init();			 
 			$('#table_search_tenant').change(function(){
-
        		sv = $(this).val();
-
        		// console.log('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv);
 	       		$.get('<?php echo base_url(); ?>tenant/ajax_get_tenant/'+sv, function(data){
 	       			obj = jQuery.parseJSON(data);
 	       			//console.log(obj);
 	       			// alert(obj.firstname);
-	       			// var img = val(obj.picture);
-	       			// imgList += '<img name="edittenantpicture" id="edittenantpicture"  width="300px" height="300px" alt="Profile Pic" src= "' + img + '">';
-
+	       			
 	       			//alert(pic);
 	       			$('#tenantediting input#edittenantid').val(obj.tenant_id);
 					$('#tenantediting input#edittenantfname').val(obj.firstname);
@@ -400,43 +388,12 @@
 
 
 
-
-
-
-			// $.get('<?php echo base_url(); ?>tenant/ajax_get_house/'+sv, function(data){
-   //     			obj = jQuery.parseJSON(data);
-   //     			//console.log(obj);
-   //     			// alert(obj.firstname);
-
-   //     			//gets vacant houses
-   //     			$('#assign_tenant_form input#assignhouseid').val(obj.house_id);
-			// 	$('#assign_tenant_form input#assignhouseno').val(obj.house_no);
-			// 	$('#assign_tenant_form input#assignhousetype').val(obj.house_type);
-			// 	$('#assign_tenant_form input#assignblock').val(obj.block);
-			// 	$('#assign_tenant_form input#assignestate').val(obj.estate_name);
-			// 	$('#assign_tenant_form input#assignrent').val(obj.rent);
-
-               
-				
-				
-			// });
-
-			// $.get('<?php echo base_url(); ?>tenant/ajax_get_atenant/'+sv, function(data){
-   //     			obj = jQuery.parseJSON(data);
-   //     			//console.log(obj);
-   //     			// alert(obj.firstname);
-   //     			 //gets tenant
-			// 	$('#assign_tenant_formm input#assigntenantid').val(obj.tenant_id);
-			// 	$('#assign_tenant_formm input#assignnapa').val(obj.nationalid_passport);
-			// 	$('#assign_tenant_formm input#assignpnumber').val(obj.phone_number);
-			// });
-
 		});
 </script>
 <script>
 	function get_tenant()
 	{
-		var sel = document.getElementById('table_search');
+		var sel = document.getElementById('table_search_tenant');
        // var sv = sel.options[sel.selectedIndex].value;
 
        // console.log(sv);
@@ -444,7 +401,7 @@
 
 	function get_house()
 	{
-		var sel = document.getElementById('table_search');
+		var sel = document.getElementById('table_search_house');
        // var sv = sel.options[sel.selectedIndex].value;
 
        // console.log(sv);
