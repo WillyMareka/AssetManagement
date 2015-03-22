@@ -229,13 +229,13 @@
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
-<<<<<<< HEAD
+
 
                                             		<select class="js-example-data-array form-control input-sm pull-right" name="table_search_tenant" id="table_search" style="width: 150px;"></select>
 
-=======
-                                            		<!-- <select class="js-example-data-array form-control input-sm pull-right" name="table_search" id="table_search" style="width: 150px;"></select> -->
->>>>>>> 8ee61873fe8130cddb99482f731ca144b5b38212
+
+                                            		
+
                                             		<?php
                                             			echo $tenants_c;
                                             		?>
