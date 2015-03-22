@@ -15,9 +15,8 @@ class Tenant extends MY_Controller
 		$data['content_page'] = 'tenant/tenants';
 		$data['sidebar'] = 'hr_side_bar';
 		$data['tenants_c'] = $this->all_tenant_combo();
-		
+		$data['available_estates'] = $this->get_av_estates();
 		$data['housetypes'] = $this->gethousetypes();
-		$data['houses_c'] = $this->all_vhouse_combo();
 		$data['all_tenants'] = $this->all_tenants();
 		
 		// echo "<pre>";print_r($data);die();
@@ -199,8 +198,8 @@ class Tenant extends MY_Controller
 	{
 		$houses = $this->m_tenant->get_all_vhouses();
 		// echo "<pre>";print_r($houses);die();
-		$this->houses_combo .= '<select name="table_search" id="table_search" onchange="get_house()" class="form-control input-sm pull-right" style="width: 350px;">';
-		$this->houses_combo .= '<option value="0" selected>**Select a house**</option>';
+		$this->houses_combo .= '<select name="table_search_house" id="table_search_house" onchange="get_house()" class="form-control js-example-placeholder-single input-sm pull-right" style="width: 350px;">';
+		$this->houses_combo .= '<option value="" selected>**Select a house**</option>';
 		foreach ($houses as $key => $value) {
 			$this->houses_combo .= '<option value="'.$value['house_id'].'">'.$value['house_no'].' -- '.$value['estate_name'].'</option>';
 		}
@@ -208,6 +207,37 @@ class Tenant extends MY_Controller
 
 		return $this->houses_combo;
 	}
+
+	function get_av_estates()
+	{
+		$estates = $this->m_tenant->get_available_estates();
+		// echo "<pre>";print_r($houses);die();
+		$this->estates_combo .= '<form id="estate_dropdowm" class="estate_dropdown">'
+		$this->estates_combo .= '<select name="table_search_estate" id="table_search_estate" class="form-control js-example-placeholder-single input-sm pull-right" style="width: 150px;">';
+		$this->estates_combo .= '<option value="" selected>**Select an estate**</option>';
+		foreach ($estates as $key => $value) {
+			$this->estates_combo .= '<option value="'.$value['estate_name'].'">'.$value['estate_name'].'</option>';
+		}
+		$this->estates_combo .= '</select>';
+		$this->estates_combo .= '</form>';
+
+		return $this->estates_combo;
+	}
+
+	public function buildDropHouses()  
+   {  
+      //set selected country id from POST  
+      echo $id_house = $this->input->post('id',TRUE);  
+      //run the query for the cities we specified earlier  
+      $districtData['districtDrop']=$this->m_tenant->getHouseByEstate($id_country);  
+      $output = null;  
+      foreach ($districtData['districtDrop'] as $row)  
+      {  
+         //here we build a dropdown item line for each query result  
+         $output .= "<option value='".$row->sub_name."'>".$row->sub_name."</option>";  
+      }  
+      echo $output;  
+   }  
 
 	public function searchtenant()
 	{

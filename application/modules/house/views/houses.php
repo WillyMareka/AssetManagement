@@ -149,6 +149,7 @@
                                             <!-- begin row -->
                                             <div class="row">
                                             	<div class="form-group">
+                                            		Select a House
                                             		<?php
                                             			echo $houses_c;
                                             		?>

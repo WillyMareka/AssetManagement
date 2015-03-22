@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 
 $(".js-example-placeholder-single").select2({
-  placeholder: "Select a Tenant",
+  placeholder: "Select an Option",
   allowClear: true
 });
 
@@ -179,7 +179,22 @@ function validate()
 
      // ....end of function.... //
 
-
+    
+                  
+            $("#table_search_estate").change(function(){  
+                     /*dropdown post *///  
+                     $.ajax({  
+                        url:"tenant/buildDropHouses",  
+                        data: {id:  
+                           $(this).val()},  
+                        type: "POST",  
+                        success:function(data){  
+                        $("#houseDrp").html(data);  
+                     }  
+                  });  
+               });  
+            
+         
 
 
 

@@ -86,10 +86,32 @@ class M_tenant extends MY_Model
 				FROM
 					`house`
 				WHERE 
-				    `is_assigned` = 0";
+				    `is_assigned` = 0
+				AND 
+				    `house_status` = 1";
 		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
+
+	function get_available_estates()
+	{
+		$sql = "SELECT 
+					`estate_name`
+				FROM
+					`estates`
+				WHERE  
+				    `estate_status` = 1";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
+	 public function getHouseByEstate($estate=string)  
+   {  
+      $this->db->from('house');  
+      $this->db->where('estate_name',$estate);  
+      $query = $this->db->get();  
+      return $query->result();  
+   } 
 
 	function get_tenants()
 	{
