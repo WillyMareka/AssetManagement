@@ -116,13 +116,17 @@
 											<legend class="pull-left width-full">Assign House</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<div class="form-group">
-                                            		Select an available estate
-                                            		<?php
-                                            			 echo $available_estates;
-                                            		?>
-                                                     
-                                                    </div>
+                                            	<form id="asset-estate" class="asset-estate">
+                                            		   Select an available estate
+                                            		   <?php
+                                            		   	    echo $available_estates;
+                                            		   ?>
+                                                </form>
+                                                <form id="asset-house" class="asset-house">
+                                                            Select an available house
+                                                     <div id="houseDrp" class="form-group houseDrp">
+                                                     </div>
+                                                </form>
                                             </div>
                                             <div class="row">
                                             	<form id="tenantassigning" name="tenantassigning" method="POST" class="form-horizontal form-bordered" >

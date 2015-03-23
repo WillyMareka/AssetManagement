@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-
+$('#asset-house').hide();
 $(".js-example-placeholder-single").select2({
   placeholder: "Select an Option",
   allowClear: true
@@ -182,17 +182,20 @@ function validate()
     
                   
             $("#table_search_estate").change(function(){  
-                     /*dropdown post *///  
-                     $.ajax({  
-                        url:"tenant/buildDropHouses",  
-                        data: {id:  
-                           $(this).val()},  
+                     /*dropdown post */// 
+                     var query = $(this).serialize();
+                    
+                     $.ajax({
                         type: "POST",  
-                        success:function(data){  
-                        $("#houseDrp").html(data);  
-                     }  
-                  });  
-               });  
+                        url:"tenant/buildDropHouses", 
+                        data: query,  
+                        dataType: 'json',
+                        success:function(data){ 
+                           $('#asset-house').show();
+                           $("#houseDrp").html(data);  
+                        }  
+                     });  
+            });  
             
          
 

@@ -105,11 +105,28 @@ class M_tenant extends MY_Model
 		return $result->result_array();
 	}
 
-	 public function getHouseByEstate($estate=string)  
+	 public function getEstates()  
+   {  
+      $this->db->select('estate_id,estate_name');  
+      $this->db->from('estates');
+      $this->db->where('estate_status',1);  
+      $query = $this->db->get();  
+      // the query mean select cat_id,category from category  
+      foreach($query->result_array() as $row){  
+         $data[$row['estate_id']]=$row['estate_name'];  
+      }  
+      // the fetching data from database is return  
+      return $data;  
+   } 
+
+	 public function getHouseByEstate($estate)  
    {  
       $this->db->from('house');  
       $this->db->where('estate_name',$estate);  
-      $query = $this->db->get();  
+      $this->db->where('house_status',1);  
+      $this->db->where('is_assigned',0);  
+      $query = $this->db->get(); 
+      //echo'<pre>'; print_r($estate);echo '</pre>';die(); 
       return $query->result();  
    } 
 
