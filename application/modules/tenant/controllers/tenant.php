@@ -212,7 +212,7 @@ class Tenant extends MY_Controller
 	{
 		$estates = $this->m_tenant->get_available_estates();
 		// echo "<pre>";print_r($houses);die();
-		$this->estates_combo .= '<form id="estate_dropdowm" class="estate_dropdown">'
+		$this->estates_combo .= '<form id="estate_dropdowm" class="estate_dropdown">';
 		$this->estates_combo .= '<select name="table_search_estate" id="table_search_estate" class="form-control js-example-placeholder-single input-sm pull-right" style="width: 150px;">';
 		$this->estates_combo .= '<option value="" selected>**Select an estate**</option>';
 		foreach ($estates as $key => $value) {
