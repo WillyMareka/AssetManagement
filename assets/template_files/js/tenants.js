@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 $('#asset-house').hide();
+
 $(".js-example-placeholder-single").select2({
   placeholder: "Select an Option",
   allowClear: true
@@ -8,8 +9,6 @@ $(".js-example-placeholder-single").select2({
 
 function validate()
 {
- 
-  
    // var emailID = document.tenantregistration.email.value;
    // atpos = emailID.indexOf("@");
    // dotpos = emailID.lastIndexOf(".");
@@ -19,16 +18,12 @@ function validate()
    //     document.tenantregistration.email.focus() ;
    //     return false;
    // }
-
    return( true );
 }
 
 // ....Function for registering tenants.... //
  $(function(){
        $("#tenantregistration").submit(function(){
-          
-         
-
    //         if( document.tenantregistration.tenantfname.value == "" )
    // {
    // 	  swal({   title: "Tenant First Name",   text: "Please the first name!",   timer: 2000 });
@@ -111,8 +106,6 @@ function validate()
      // ....Function for assigning tenants.... //
  $(function(){
        $("#tenantassigning").submit(function(){
-          
-      
 
          var formData = new FormData($(this)[0]);
  
@@ -192,7 +185,10 @@ function validate()
                         dataType: 'json',
                         success:function(data){ 
                            $('#asset-house').show();
-                           $("#houseDrp").html(data);  
+                           $("#houseDrp").select2({
+                            data: data
+                           }); 
+                           console.log(data);
                         }  
                      });  
             });  

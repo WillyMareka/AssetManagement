@@ -213,20 +213,21 @@ class Tenant extends MY_Controller
 	{
 		$estates = $this->m_tenant->get_available_estates();
 		// echo "<pre>";print_r($houses);echo "</pre>";die();
-		$this->estates_combo .= '<form id="estate_dropdown" class="estate_dropdown">';
+		
 		$this->estates_combo .= '<select name="table_search_estate" id="table_search_estate" class="form-control js-example-placeholder-single input-sm pull-right" style="width: 200px;">';
 		$this->estates_combo .= '<option value="" selected>**Select an estate**</option>';
 		foreach ($estates as $key => $value) {
 			$this->estates_combo .= '<option value="'.$value['estate_name'].'">'.$value['estate_name'].'</option>';
 		}
 		$this->estates_combo .= '</select>';
-		$this->estates_combo .= '</form>';
+		
 
 		return $this->estates_combo;
 	}
 
 	public function buildDropHouses()  
    {  
+   		$house_data = array();
       //set selected country id from POST  
       $estate_name = $this->input->post('table_search_estate');
 
@@ -236,15 +237,19 @@ class Tenant extends MY_Controller
       //echo "<pre>";print_r($houseData);echo "</pre>";die(); 
       $output = null; 
       
-      $output .= '<select name="table_search_house" id="table_search_house" class="form-control js-example-placeholder-single input-sm pull-left" style="width: 200px;">';
+      $output .= '<select name="table_search_house" id="table_search_house" class="form-control input-sm pull-left js-example-placeholder-single" style="width: 200px;">';
+        $counter = 0;
          foreach ($houseData['houseDrop'] as $row)  
          {  
                //here we build a dropdown item line for each query result 
-            $output .= "<option value='".$row->house_id."'>".$row->house_no."</option>";  
-         }  
+            // $output .= "<option value='".$row->house_id."'>".$row->house_no."</option>";  
+            $house_data[$counter] = array('id' => $row->house_id, 'text' => 'House No: '. $row->house_no);
+            $counter++;
+         } 
+
       $output .= '</select>';
-      //echo $output;
-      echo json_encode($output);  
+      
+      echo json_encode($house_data);  
    }  
 
 	public function searchtenant()
