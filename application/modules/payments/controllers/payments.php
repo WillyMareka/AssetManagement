@@ -22,6 +22,7 @@ class Payments extends MY_Controller
 		$data['all_payments'] = $this->all_payments();
 		$data['paymentmethods'] = $this->getpaymentmethods();
 		$data['paymentfor'] = $this->getpaymentfor();
+		$data['paymentmonth'] = $this->getpaymentmonths();
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
 	}
@@ -41,6 +42,8 @@ class Payments extends MY_Controller
 				$this->active_payments .= '<td>'.$value['tenant_id'].'</td>';
 				$this->active_payments .= '<td>'.$value['method'].'</td>';
 				$this->active_payments .= '<td>'.$value['transaction_no'].'</td>';
+				$this->active_payments .= '<td>'.$value['payment_year'].'</td>';
+				$this->active_payments .= '<td>'.$value['payment_month'].'</td>';
 				$this->active_payments .= '<td>'.$value['rent_paid'].'</td>';
 				$this->active_payments .= '<td>'.$value['security_paid'].'</td>';
 				$this->active_payments .= '<td>'.$value['maintenance_paid'].'</td>';
@@ -61,9 +64,10 @@ class Payments extends MY_Controller
 	        $payment_for = implode(",", $this->input->post('paymentfor'));	
         }
 		$payment_tid = $this->input->post('paymenttid');
-		$payment_method = $this->input->post('paymentlmethod');
+		$payment_method = $this->input->post('paymentmethod');
 		$payment_transaction_no = $this->input->post('paymenttrans');
-
+        $payment_year = $this->input->post('paymentyear');
+		$payment_month = $this->input->post('paymentmonth');
 		$rent = $this->input->post('paymentfor_1');
 		$pay_rent = $this->input->post('payment_1');
 		$maintenance = $this->input->post('paymentfor_2');
@@ -72,7 +76,7 @@ class Payments extends MY_Controller
 		$pay_security = $this->input->post('payment_3');
 		
 
-		$insert = $this->payment_model->enter_payment($payment_tid, $payment_method, $payment_transaction_no, $rent, $pay_rent, $maintenance, $pay_maintenance, $security, $pay_security);
+		$insert = $this->payment_model->enter_payment($payment_tid, $payment_method, $payment_transaction_no, $payment_year, $payment_month, $rent, $pay_rent, $maintenance, $pay_maintenance, $security, $pay_security);
 
 		if ($insert) {
 			echo "Insertion complete";
@@ -87,11 +91,35 @@ class Payments extends MY_Controller
         $results = $this->payment_model->get_payment_methods();
         
         //echo '<pre>';print_r($results);echo '</pre>';die;
-            $paymeth ='<option selected="selected" value="">Select the Payment Method</option>';
+            $paymeth ='<select class="form-control selectpicker js-example-placeholder-single paymeth" required name="paymentmethod" id="paymentmethod"  data-live-search="true">';
+            $paymeth .='<option selected="selected" value="">Select the Payment Method</option>';
         foreach ($results as $value) {
             $paymeth .= '<option value="' . $value['method_name'] . '" >' . $value['method_name'] . '</option>';  
         }
+            $paymeth .= '</select>';
+        return $paymeth;
+	}
 
+	function getpaymentmonths()
+	{
+   
+            $paymeth ='<select class="form-control js-example-placeholder-single paymonth" required name="paymentmonth" id="paymentlmonth"  data-live-search="true">';
+            $paymeth .='<option selected="selected" value="">Select the Month of Payment</option>';
+      
+            $paymeth .= '<option value="1" >January</option>';
+            $paymeth .= '<option value="2" >February</option>';
+            $paymeth .= '<option value="3" >March</option>';
+            $paymeth .= '<option value="4" >April</option>';
+            $paymeth .= '<option value="5" >May</option>';
+            $paymeth .= '<option value="6" >June</option>';
+            $paymeth .= '<option value="7" >July</option>';
+            $paymeth .= '<option value="8" >August</option>';
+            $paymeth .= '<option value="9" >September</option>';
+            $paymeth .= '<option value="10" >October</option>';
+            $paymeth .= '<option value="11" >November</option>';
+            $paymeth .= '<option value="12" >December</option>';  
+        
+            $paymeth .= '</select>';
         return $paymeth;
 	}
 

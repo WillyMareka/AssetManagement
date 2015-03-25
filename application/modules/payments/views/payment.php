@@ -51,6 +51,19 @@
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div class="form-group">
+																<label>Payment Period:</label>
+															  <div class="paymentperiod">
+																<input type="text"  name="paymentyear" id="paymentyear" placeholder="Enter the year paid for" class="form-control paymentyear" />
+																
+																<?php echo $paymentmonth?>
+															  </div>
+															</div>
+		                                                </div>
+		                                                <!-- end col-4 -->
+
+		                                                <!-- begin col-4 -->
+		                                                <div class="col-md-4">
+															<div class="form-group">
 																<label>Payment for:</label>
 																<!-- <input type="text"  name="paymentfor" id="paymentfor" placeholder="Enter payment reason" class="form-control" /> -->
 																<div class="checkbox paycheck">
@@ -60,17 +73,19 @@
 		                                                </div>
 		                                                <!-- end col-4 -->
 
+
+
 		                                                
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>Method of Payment:</label>
-																<select class="form-control selectpicker" required name="paymentlmethod" id="paymentlmethod"  data-live-search="true">
 																	<?php echo $paymentmethods?>
-																</select>
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
+
+
 		                                                
 		                                               
 		                                               
@@ -83,6 +98,8 @@
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
+
+		                                                
 
 		                                                 
 		                                              
@@ -115,6 +132,8 @@
                                             <th>Tenant ID</th>
                                             <th>Payment Method</th>
                                             <th>Transaction No</th>
+                                            <th>Year Paid For</th>
+                                            <th>Month Paid For</th>
                                             <th>Rent Paid</th>
                                             <th>Security Paid</th>
                                             <th>Maintenance Paid</th>

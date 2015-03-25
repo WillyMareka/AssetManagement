@@ -2,7 +2,10 @@ $(document).ready(function(){
    $(".transaction_other").hide();
 
    // $(".transaction_other").attr();
-
+   $(".js-example-placeholder-single .paymeth").select2({
+  placeholder: "Select the Payment Method",
+  allowClear: true
+   });
 
 
  $('#paymentlmethod').change(function(){
