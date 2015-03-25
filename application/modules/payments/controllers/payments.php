@@ -58,14 +58,41 @@ class Payments extends MY_Controller
 		return $this->active_payments;
 	}
 
+	function getReceiptNumber(){
+		$result = $this->payment_model->generateReceipt();
+          foreach ($result as $key => $value) {
+          	foreach ($value as $key2 => $val) {
+          		//echo '<pre>'; print_r($val); echo '</pre>'; die();
+          	}
+          	
+          }
+
+          return $val;
+		
+	}
+
 	function paymenttransaction()
 	{
 		if($this->input->post('paymentfor')) {
 	        $payment_for = implode(",", $this->input->post('paymentfor'));	
         }
+
+
 		$payment_tid = $this->input->post('paymenttid');
 		$payment_method = $this->input->post('paymentmethod');
-		$payment_transaction_no = $this->input->post('paymenttrans');
+
+		if($payment_method = "Cash"){
+			$receipt = $this->getReceiptNumber();
+            //echo '<pre>'; print_r($receipt); echo '</pre>'; die();
+            $payment_transaction_no = 'AS';
+            $payment_transaction_no .= mt_rand(10,90);
+            $payment_transaction_no .= $receipt;
+            $payment_transaction_no .= mt_rand(10,90);
+            $payment_transaction_no .= 'MGT';
+		}else{
+		    $payment_transaction_no = $this->input->post('paymenttrans');
+	    }
+		    //echo '<pre>'; print_r($payment_method); echo '</pre>'; die();
         $payment_year = $this->input->post('paymentyear');
 		$payment_month = $this->input->post('paymentmonth');
 		$rent = $this->input->post('paymentfor_1');
@@ -74,6 +101,8 @@ class Payments extends MY_Controller
 		$pay_maintenance = $this->input->post('payment_2');
 		$security = $this->input->post('paymentfor_3');
 		$pay_security = $this->input->post('payment_3');
+
+		
 		
 
 		$insert = $this->payment_model->enter_payment($payment_tid, $payment_method, $payment_transaction_no, $payment_year, $payment_month, $rent, $pay_rent, $maintenance, $pay_maintenance, $security, $pay_security);

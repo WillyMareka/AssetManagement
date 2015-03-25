@@ -9,6 +9,19 @@ class Payment_model extends MY_Model
 		parent:: __construct();
 	}
 
+	function generateReceipt()
+	{
+        $query = "SELECT MAX(tp_id) FROM tenant_payment";
+            try {
+                $this->dataSet = $this->db->query($query);
+                $this->dataSet = $this->dataSet->result_array();
+            }
+            catch(exception $ex) {
+            }
+            
+            return $this->dataSet;
+	}
+
 	function enter_payment($payment_tid, $payment_method, $payment_transaction_no, $payment_year, $payment_month, $rent, $pay_rent, $maintenance, $pay_maintenance, $security, $pay_security)
 	{
 		$tenant_payment = array(
