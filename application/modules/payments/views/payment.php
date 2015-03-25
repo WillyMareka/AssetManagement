@@ -54,8 +54,7 @@
 																<label>Payment Period:</label>
 															  <div class="paymentperiod">
 																<input type="text"  name="paymentyear" id="paymentyear" placeholder="Enter the year paid for" class="form-control paymentyear" />
-																
-																<?php echo $paymentmonth?>
+																<?php echo $paymentmonth?><!-- Select for months -->
 															  </div>
 															</div>
 		                                                </div>
@@ -73,7 +72,7 @@
 		                                                </div>
 		                                                <!-- end col-4 -->
 
-
+                                                       
 
 		                                                
 		                                                <!-- begin col-4 -->
@@ -87,9 +86,6 @@
 
 
 		                                                
-		                                               
-		                                               
-
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4 transaction_other">
 															<div class="form-group">
@@ -98,11 +94,7 @@
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
-
-		                                                
-
-		                                                 
-		                                              
+		                                               
 
 
 		                                                <div class="col-md-4" style="float:right;">

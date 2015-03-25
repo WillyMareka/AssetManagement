@@ -81,7 +81,7 @@ class Payments extends MY_Controller
 		$payment_tid = $this->input->post('paymenttid');
 		$payment_method = $this->input->post('paymentmethod');
 
-		if($payment_method = "Cash"){
+		if($payment_method == "Cash"){
 			$receipt = $this->getReceiptNumber();
             //echo '<pre>'; print_r($receipt); echo '</pre>'; die();
             $payment_transaction_no = 'AS';

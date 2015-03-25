@@ -2,15 +2,12 @@ $(document).ready(function(){
    $(".transaction_other").hide();
 
    // $(".transaction_other").attr();
-   $(".js-example-placeholder-single .paymeth").select2({
-  placeholder: "Select the Payment Method",
-  allowClear: true
-   });
+   
 
 
- $('#paymentlmethod').change(function(){
+ $('#paymentmethod').change(function(){
 		
-		var tran_other = $('#paymentlmethod option:selected').val();
+		var tran_other = $('#paymentmethod option:selected').val();
 		if (tran_other != 'Cash') {
 			$('.transaction_other').slideDown();
 			$('#paymenttrans').prop('required',true);
@@ -19,6 +16,11 @@ $(document).ready(function(){
 			$('#paymenttrans').prop('required',false);
 		};
 	});
+
+ // $(".js-example-placeholder-single").select2({
+ //     placeholder: "Select the Payment Method",
+ //     allowClear: true
+ //  });
 
 
     $('#paymentfor_1').change(function(){
