@@ -1,14 +1,5 @@
 <style type="text/css">
-	.non-deco
-	{
-		text-decoration: none;
-		color: white;
-	}
-	.non-deco:hover
-	{
-		color: blue;
-		text-decoration: none;
-	}
+	
 </style>
 <div>
 	<div id="content" class="content">

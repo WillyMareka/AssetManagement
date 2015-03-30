@@ -4,6 +4,7 @@
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
+					<?php $username = $this->session->userdata('username');?>
 					<!-- <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span>Asset Management</a> -->
 					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 						<span class="icon-bar"></span>
@@ -85,7 +86,7 @@
 					<li class="dropdown navbar-user">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 							<img src="assets/img/user-13.jpg" alt="" /> 
-							<span class="hidden-xs">Adam Schwartz</span> <b class="caret"></b>
+							<span class="hidden-xs"><?php echo $username; ?></span> <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
@@ -94,7 +95,7 @@
 							<li><a href="javascript:;">Calendar</a></li>
 							<li><a href="javascript:;">Setting</a></li>
 							<li class="divider"></li>
-							<li><a href="javascript:;">Log Out</a></li>
+							<li><a href="<?php echo base_url().'login/logout'?>">Log Out</a></li>
 						</ul>
 					</li>
 				</ul>

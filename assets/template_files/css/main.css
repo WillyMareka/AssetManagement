@@ -1,3 +1,13 @@
+.non-deco
+	{
+		text-decoration: none;
+		color: #FFF;
+	}
+	.non-deco:hover
+	{
+		color: #34495e;
+		text-decoration: none;
+	}
 
 .payments{
 	margin-bottom: 10px;

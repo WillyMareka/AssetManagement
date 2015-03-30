@@ -16,6 +16,12 @@ class login extends MY_Controller {
 		$this->template->call_login($data);
 	}
 
+	function logout()
+	{
+		$this->session->sess_destroy();
+		redirect(base_url());
+	}
+
 	function authenticate()
 	{
 		$username = $this->input->post('username');
@@ -62,7 +68,7 @@ class login extends MY_Controller {
                     
                     switch($this->session->userdata('user_type')){
                         case '1':
-                          redirect(base_url().'hr/index');
+                          redirect(base_url().'hr');
                         break;
 
                         case '2':
