@@ -65,6 +65,19 @@ class House_model extends MY_Model
             return $this->dataSet;
     }
 
+    public function get_house_estates()
+    {
+      $query = "SELECT * FROM estates WHERE estate_status = 1";
+            try {
+                $this->dataSet = $this->db->query($query);
+                $this->dataSet = $this->dataSet->result_array();
+            }
+            catch(exception $ex) {
+            }
+            
+            return $this->dataSet;
+    }
+
 	
 	function get_all_houses()
 	{

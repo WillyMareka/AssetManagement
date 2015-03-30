@@ -21,6 +21,7 @@ class House extends MY_Controller
 		$data['houses_c'] = $this->all_house_combo();
 		$data['all_houses'] = $this->all_houses();
 		$data['housetypes'] = $this->gethousetypes();
+		$data['houseestates'] = $this->gethouseestates();
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
 	}
@@ -35,7 +36,8 @@ class House extends MY_Controller
 		       $this->load->library('upload', $config);
 		       $this->upload->initialize($config);
 
-		      
+		      $housepicture = $this->input->post('housepicture');
+		      echo '<pre>';print_r($housepicture);echo '</pre>';die();
 			if ( ! $this->upload->do_upload('housepicture'))
 		    {
 			   $error = array('error' => $this->upload->display_errors());
@@ -76,10 +78,27 @@ class House extends MY_Controller
         $results = $this->house_model->get_house_types();
         
         //echo '<pre>';print_r($results);echo '</pre>';die;
-            $houtyp ='<option selected="selected" value="">Select the House Type</option>';
+            $houtyp ='<select class="form-control selectpicker  js-example-placeholder-single" required name="housetype" id="housetype"  data-live-search="true">';
+            $houtyp .='<option selected="selected" value="">Select the House Type</option>';
         foreach ($results as $value) {
             $houtyp .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
         }
+            $houtyp .='</select>';
+        return $houtyp;
+	}
+
+
+	function gethouseestates()
+	{
+        $results = $this->house_model->get_house_estates();
+        
+        //echo '<pre>';print_r($results);echo '</pre>';die;
+            $houtyp ='<select class="form-control selectpicker js-example-placeholder-single" required name="houseestate" id="houseestate"  data-live-search="true">';
+            $houtyp .='<option selected="selected" value="">Select the House Estate</option>';
+        foreach ($results as $value) {
+            $houtyp .= '<option value="' . $value['estate_name'] . '">' . $value['estate_name'] . '</option>';  
+        }
+            $houtyp .='</select>';
         return $houtyp;
 	}
 

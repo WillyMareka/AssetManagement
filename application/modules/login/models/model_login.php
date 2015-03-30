@@ -8,22 +8,22 @@ class model_login extends MY_Model {
         parent::__construct();
     }
 
-    function authenticate($username,$password)
-    {
-    	$sql = "SELECT 
-    				* 
-    			FROM 
-    				`users`
-    			WHERE
-    				`username` = '$username'
-    			AND 
-    				`password` = '$password'";
+    // function authenticate($username,$password)
+    // {
+    // 	$sql = "SELECT 
+    // 				* 
+    // 			FROM 
+    // 				`users`
+    // 			WHERE
+    // 				`username` = '$username'
+    // 			AND 
+    // 				`password` = '$password'";
 
-    	$res = $this->db->query($sql);
-    	$res = $res->result_array();
+    // 	$res = $this->db->query($sql);
+    // 	$res = $res->result_array();
     	
-    	return $res;
-    }
+    // 	return $res;
+    // }
 
     function authentication(){
         $username = $this->input->post('username');
@@ -31,9 +31,6 @@ class model_login extends MY_Model {
 
         $sql = "SELECT * FROM users WHERE username = '$username'
         AND password = '$password' LIMIT 1";
-
-
-
 
         $result = $this->db->query($sql);
 

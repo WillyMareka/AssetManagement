@@ -13,7 +13,9 @@
 	<meta content="" name="author" />
 	
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="<?php echo base_url() . 'assets/fonts/asset2.ico'?>" />
 	<link href="<?php echo base_url(); ?>assets/template_files/plugins/jquery-ui-1.10.4/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>assets/template_files/plugins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" />
