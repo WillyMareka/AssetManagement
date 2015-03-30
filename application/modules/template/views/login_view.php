@@ -37,6 +37,12 @@
                 <div class="brand">
                     <span class="logo"></span> Asset Management
                     <small>Managing Rental Assets</small>
+                    <small><?php if(isset($new_user)){
+                    	echo $new_user?>
+                    </small>
+                    <?php }else{ ?>
+                    <small>Enter your credentials</small>
+                    <?php }?>
                 </div>
                 <div class="icon">
                     <i class="fa fa-sign-in"></i>
@@ -44,7 +50,7 @@
             </div>
             <!-- end brand -->
             <div class="login-content">
-                <form action="<?php echo base_url();?>login/authenticate" method="POST" class="margin-bottom-0">
+                <form action="<?php echo base_url();?>login/auth" method="POST" class="margin-bottom-0">
                     <div class="form-group m-b-20">
                         <input type="text" class="form-control input-lg" placeholder="Username" name="username" id="username" />
                     </div>
