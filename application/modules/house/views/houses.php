@@ -174,7 +174,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House Type:</label>
-																<input type="text" name="edithousetype" required id="edithousetype" placeholder="" class="form-control" />
+																<?php echo $housetypes2?>
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->
@@ -327,7 +327,7 @@
        			$('#houseediting #edithousepicture').attr('src', obj.picture);
        			$('#houseediting input#edithouseid').val(obj.house_id);
 				$('#houseediting input#edithouseno').val(obj.house_no);
-				$('#houseediting input#edithousetype').val(obj.house_type);
+				$('#houseediting select#edithousetype').val(obj.house_type);
 				$('#houseediting input#edithouseblock').val(obj.block);
 				$('#houseediting input#edithouseestate').val(obj.estate_name);
 				$('#houseediting input#edithouserent').val(obj.rent);

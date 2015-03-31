@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 
 $(".js-example-placeholder-single").select2({
-  placeholder: "Select: PLease select one",
+  placeholder: "Select: Please select one",
   allowClear: true
 });
 

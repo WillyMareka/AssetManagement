@@ -21,6 +21,7 @@ class House extends MY_Controller
 		$data['houses_c'] = $this->all_house_combo();
 		$data['all_houses'] = $this->all_houses();
 		$data['housetypes'] = $this->gethousetypes();
+		$data['housetypes2'] = $this->gethousetypes2();
 		$data['houseestates'] = $this->gethouseestates();
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
@@ -37,7 +38,7 @@ class House extends MY_Controller
 		       $this->upload->initialize($config);
 
 		      $housepicture = $this->input->post('housepicture');
-		      echo '<pre>';print_r($housepicture);echo '</pre>';die();
+		      //echo '<pre>';print_r($housepicture);echo '</pre>';die();
 			if ( ! $this->upload->do_upload('housepicture'))
 		    {
 			   $error = array('error' => $this->upload->display_errors());
@@ -78,7 +79,7 @@ class House extends MY_Controller
         $results = $this->house_model->get_house_types();
         
         //echo '<pre>';print_r($results);echo '</pre>';die;
-            $houtyp ='<select class="form-control selectpicker  js-example-placeholder-single" required name="housetype" id="housetype"  data-live-search="true">';
+            $houtyp ='<select class="form-control selectpicker js-example-placeholder-single" required name="housetype" id="housetype"  data-live-search="true">';
             $houtyp .='<option selected="selected" value="">Select the House Type</option>';
         foreach ($results as $value) {
             $houtyp .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
@@ -160,7 +161,7 @@ class House extends MY_Controller
 	{
 		$id = $this->input->post('edithouseid');
 		$house_houseno = $this->input->post('edithouseno');
-		$house_housetype = $this->input->post('edithousetype');
+		$house_housetype = $this->input->post('housetype');
 		$house_block = $this->input->post('edithouseblock');
 		$house_estate = $this->input->post('edithouseestate');
 		$house_rent = $this->input->post('edithouserent');
@@ -175,6 +176,20 @@ class House extends MY_Controller
 
 		$this->index();
 		
+	}
+
+	function gethousetypes2()
+	{
+        $results = $this->house_model->get_house_types();
+        
+        //echo '<pre>';print_r($results);echo '</pre>';die;
+            $houtyp ='<select class="form-control selectpicker" required name="edithousetype" id="edithousetype"  data-live-search="true style="width: 350px;">';
+            $houtyp .='<option selected="selected" value="">Select the House Type</option>';
+        foreach ($results as $value) {
+            $houtyp .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
+        }
+            $houtyp .='</select>';
+        return $houtyp;
 	}
 
 	function all_house_combo()
