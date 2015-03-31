@@ -20,8 +20,7 @@ class Estate extends MY_Controller
 		$data['sidebar'] = 'hr_side_bar';
 		$data['estates_c'] = $this->all_estate_combo();
 		$data['all_estates'] = $this->all_estates();
-		$data['estatetypes'] = $this->getestatetypes();
-		// echo "<pre>";print_r($data);die();
+		
 		$this->template->call_template($data);
 	}
 
@@ -52,38 +51,17 @@ class Estate extends MY_Controller
 				
   //                 }
 
-		$estateno = $this->input->post('estateno');
-		$estatetype = $this->input->post('estatetype');
-		$estateblock = $this->input->post('estateblock');
-		$estateestate = $this->input->post('estateestate');
-		$estaterent = $this->input->post('estaterent');
-		$estatebedrooms = $this->input->post('estatebedrooms');
-		$estatebathrooms = $this->input->post('estatebathrooms');
-		$estatekitchen = $this->input->post('estatekitchen');
-		$estatedescription = $this->input->post('estatedescription');
-// print_r($_FILES);
-		$insert = $this->estate_model->register_estate($estateno, $estatetype, $estateblock, $estateestate, $estaterent, $path, $estatebedrooms, $estatebathrooms, $estatekitchen, $estatedescription);
+		
+		$estatename = $this->input->post('estatename');
+		
+		$estatelocation = $this->input->post('estatelocation');
+
+		$insert = $this->estate_model->register_estate($estatename, $estatelocation);
 
 		return $insert;
 		   // }
 		
 	}
-
-	
-
-	function getestatetypes()
-	{
-        $results = $this->estate_model->get_estate_types();
-        
-        //echo '<pre>';print_r($results);echo '</pre>';die;
-            $houtyp ='<option selected="selected" value="">Select the estate Type</option>';
-        foreach ($results as $value) {
-            $houtyp .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
-        }
-        return $houtyp;
-	}
-
-
 
 	function all_estates()
 	{
@@ -94,29 +72,17 @@ class Estate extends MY_Controller
 		
 			foreach ($active_job_groups as $key => $value) {
 				if ($value['estate_status'] == 1) {
-					$span = '<span class="label label-success">Activated</span>';
+					$state = '<span class="label label-success">Activated</span>';
 				} else if ($value['estate_status'] == 0) {
-					$span = '<span class="label label-danger">Deactivated</span>';
+					$state = '<span class="label label-danger">Deactivated</span>';
 				}
-				if ($value['is_assigned'] == 0) {
-					$sign = '<span class="label label-warning">Vacant</span>';
-				} else if ($value['is_assigned'] == 1) {
-					$sign = '<span class="label label-danger">Occupied</span>';
-				}
+				
 				$count++;
 				$this->active_groups .= '<tr>';
 				$this->active_groups .= '<td>'.$count.'</td>';
-				$this->active_groups .= '<td>'.$value['estate_no'].'</td>';
-				$this->active_groups .= '<td>'.$value['estate_type'].'</td>';
-				$this->active_groups .= '<td>'.$value['block'].'</td>';
 				$this->active_groups .= '<td>'.$value['estate_name'].'</td>';
-				$this->active_groups .= '<td>'.$value['rent'].'</td>';
-				$this->active_groups .= '<td>'.$value['bedrooms'].'</td>';
-				$this->active_groups .= '<td>'.$value['bathrooms'].'</td>';
-				$this->active_groups .= '<td>'.$value['kitchen'].'</td>';
-				
-                $this->active_groups .= '<td>'.$sign.'</td>';
-				$this->active_groups .= '<td>'.$span.'</td>';
+				$this->active_groups .= '<td>'.$value['estate_location'].'</td>';
+				$this->active_groups .= '<td>'.$state.'</td>';
 				$this->active_groups .= '<td>'.$value['date_registered'].'</td>';
 				
 				$this->active_groups .= '</tr>';
@@ -140,18 +106,11 @@ class Estate extends MY_Controller
 	public function editestate()
 	{
 		$id = $this->input->post('editestateid');
-		$estate_estateno = $this->input->post('editestateno');
-		$estate_estatetype = $this->input->post('editestatetype');
-		$estate_block = $this->input->post('editestateblock');
-		$estate_estate = $this->input->post('editestateestate');
-		$estate_rent = $this->input->post('editestaterent');
-		$estate_bedrooms = $this->input->post('editestatebedrooms');
-		$estate_bathrooms = $this->input->post('editestatebathrooms');
-		$estate_kitchen = $this->input->post('editestatekitchen');
-		$estate_description = $this->input->post('editestatedescription');
+		$estate_name = $this->input->post('editestatename');
+		$estate_location = $this->input->post('editestatelocation');
 		$estate_status = $this->input->post('editestatestatus');
 
-		$result = $this->estate_model->estate_update($id,$estate_estateno,$estate_estatetype,$estate_block,$estate_estate,$estate_rent,$estate_bedrooms,$estate_bathrooms,$estate_kitchen,$estate_description,$estate_status);
+		$result = $this->estate_model->estate_update($id,$estate_name,$estate_location,$estate_status);
 		
 
 		$this->index();
@@ -160,12 +119,12 @@ class Estate extends MY_Controller
 
 	function all_estate_combo()
 	{
-		$estates = $this->estate_model->get_all_estates();
+		$estates = $this->estate_model->get_av_estates();
 		// echo "<pre>";print_r($estates);die();
 		$this->estates_combo .= '<select name="table_search_estate" id="table_search_estate" onchange="get_estate()" class="form-control input-sm js-example-placeholder-single pull-right" style="width: 350px;">';
-		$this->estates_combo .= '<option value="0" selected>Select: estate no -- Estate Name</option>';
+		$this->estates_combo .= '<option value="0" selected>Select: Estate Name</option>';
 		foreach ($estates as $key => $value) {
-			$this->estates_combo .= '<option value="'.$value['estate_id'].'">'.$value['estate_no'].' -- '.$value['estate_name'].'</option>';
+			$this->estates_combo .= '<option value="'.$value['estate_id'].'">'.$value['estate_name'].'</option>';
 		}
 		$this->estates_combo .= '</select>';
 

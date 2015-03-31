@@ -248,7 +248,7 @@
                                             		
 	                                            	<div class="form-group">
 	                                            		<input type="hidden" name="edittenantid" id="edittenantid" />
-	                                            		<input type="hidden" name="edittenantpicture" id="edittenantpicture" />
+	                                            		
 	                                            		 <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div id="divpic"  class="form-group">

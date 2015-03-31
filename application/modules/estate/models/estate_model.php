@@ -9,69 +9,50 @@ class Estate_model extends MY_Model
 		parent:: __construct();
 	}
 
-	function register_estate($estateno, $estatetype, $estateblock, $estateestate, $estaterent, $path, $estatebedrooms, $estatebathrooms, $estatekitchen, $estatedescription)
+	function register_estate($estatename, $estatelocation)
 	{
 		$estate = array(
-						'estate_no' => $estateno,
-						'estate_type' 	=> $estatetype,
-						'block' 	=> $estateblock,
-						'estate_name' 	=> $estateestate,
-						'rent' 	=> $estaterent,
-						'picture' => $path,
-						'bedrooms' => $estatebedrooms,
-						'bathrooms' => $estatebathrooms,
-						'kitchen' => $estatekitchen,
-						'estate_description' => $estatedescription
+						'estate_name' 	=> $estatename,
+						'estate_location' => $estatelocation
 						);
 
-		$insert = $this->db->insert('estate', $estate);
+		$insert = $this->db->insert('estates', $estate);
 		return $insert;
 
 	}
 
-	function estate_update($id,$estate_estateno,$estate_estatetype,$estate_block,$estate_estate,$estate_rent,$estate_bedrooms,$estate_bathrooms,$estate_kitchen,$estate_description,$estate_status)
+	function estate_update($id,$estate_name,$estate_location,$estate_status)
 	{
 		$estate = array(
-						'estate_no' => $estate_estateno,
-						'estate_type' 	=> $estate_estatetype,
-						'block' 	=> $estate_block,
-						'estate_name' 	=> $estate_estate,
-						'rent' 	=> $estate_rent,
-						'bedrooms' => $estate_bedrooms,
-						'bathrooms' => $estate_bathrooms,
-						'kitchen' => $estate_kitchen,
-						'estate_description' => $estate_description,
+						'estate_name' 	=> $estate_name,
+						'estate_location' => $estate_location,
 						'estate_status' => $estate_status
 						);
 
 		$this->db->where('estate_id', $id);
-        $insert = $this->db->update('estate', $estate);
+        $insert = $this->db->update('estates', $estate);
 		return $insert;
 
 	}
-
-	
-
-	public function get_estate_types()
-    {
-      $query = "SELECT * FROM estate_type WHERE status = 1";
-            try {
-                $this->dataSet = $this->db->query($query);
-                $this->dataSet = $this->dataSet->result_array();
-            }
-            catch(exception $ex) {
-            }
-            
-            return $this->dataSet;
-    }
-
 	
 	function get_all_estates()
 	{
 		$sql = "SELECT 
 					*
 				FROM
-					`estate`";
+					`estates`";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
+	function get_av_estates()
+	{
+		$sql = "SELECT 
+					*
+				FROM
+					`estates`
+				WHERE 
+				   `estate_status` = 1";
 		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
@@ -81,7 +62,7 @@ class Estate_model extends MY_Model
 		$sql = "SELECT
 					*
 				FROM 
-					`estate`
+					`estates`
 				WHERE
 					`estate_id` = '$id'";
 		$result = $this->db->query($sql);

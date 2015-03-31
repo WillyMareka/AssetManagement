@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 
 $(".js-example-placeholder-single").select2({
-  placeholder: "Select: Estate Name",
+  placeholder: "Select: PLease select one",
   allowClear: true
 });
 

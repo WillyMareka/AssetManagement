@@ -89,6 +89,20 @@ class House_model extends MY_Model
 		return $result->result_array();
 	}
 
+	function get_av_houses()
+	{
+		$sql = "SELECT 
+					*
+				FROM
+					`house`
+				WHERE 
+				    `house_status` = 1
+				AND 
+				    `is_assigned` = 0";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
+
 	function search_house($id)
 	{
 		$sql = "SELECT
