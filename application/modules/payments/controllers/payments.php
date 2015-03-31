@@ -35,6 +35,7 @@ class Payments extends MY_Controller
 		$this->active_payments .= "<tbody>";
 		if(isset($active_payment_payments)){
 			foreach ($active_payment_payments as $key => $value) {
+				$count++;
 				if ($value['payment_month'] == 1) {
 					$month = 'January';
 				} else if ($value['payment_month'] == 2) {
@@ -60,7 +61,7 @@ class Payments extends MY_Controller
 				} else if ($value['payment_month'] == 12) {
 					$month = 'December';
 				}
-				$count++;
+				
 				$this->active_payments .= '<tr>';
 				$this->active_payments .= '<td>'.$count.'</td>';
 				$this->active_payments .= '<td>'.$value['tenant_id'].'</td>';
