@@ -54,7 +54,7 @@ $(".js-example-placeholder-single").select2({
  
          $.ajax({
            type: "POST",
-           url: "house/edithouse",
+           url: "<?php echo base_url();?>house/edithouse",
            data: formData,
            async: false,
            cache: false,
@@ -62,11 +62,8 @@ $(".js-example-placeholder-single").select2({
            processData: false,
            success: function(data){
                // ....After successful editing, then....//
-              
+              //alert(data);
               swal({   title: "House Editing",   text: "House has been updated",   timer: 3000 });
-
-              
-             
 
            }
  

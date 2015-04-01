@@ -22,6 +22,7 @@
 	<link href="<?php echo base_url(); ?>assets/template_files/css/animate.min.css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>assets/template_files/css/style.min.css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>assets/template_files/css/style-responsive.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/sweetalert/lib/sweet-alert.css">
 	<link href="<?php echo base_url(); ?>assets/template_files/css/theme/default.css" rel="stylesheet" id="theme" />
 	<!-- ================== END BASE CSS STYLE ================== -->
 </head>
@@ -52,17 +53,12 @@
             </div>
             <!-- end brand -->
             <div class="login-content">
-                <form action="<?php echo base_url();?>login/auth" method="POST" class="margin-bottom-0">
+                <form enctype="multipart/form-data" id="loginauthentication" name="loginauthentication" method="POST" class="margin-bottom-0 ">
                     <div class="form-group m-b-20">
-                        <input type="text" class="form-control input-lg" placeholder="Username" name="username" id="username" />
+                        <input type="text" class="form-control input-lg" required placeholder="Username" name="username" id="username" />
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="password" class="form-control input-lg" placeholder="Password" name="password" id="password" />
-                    </div>
-                    <div class="checkbox m-b-20">
-                        <label>
-                            <input type="checkbox" /> Remember Me
-                        </label>
+                        <input type="password" class="form-control input-lg" required placeholder="Password" name="password" id="password" />
                     </div>
                     <div class="login-buttons">
                         <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
@@ -91,21 +87,15 @@
 	
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 	<script src="<?php echo base_url(); ?>assets/template_files/js/apps.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/template_files/js/login.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	<script>
 		$(document).ready(function() {
 			App.init();
 		});
 	</script>
-	<script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-53034621-1', 'auto');
-      ga('send', 'pageview');
-    </script>
+	
 </body>
 
 <!-- Mirrored from seantheme.com/color-admin-v1.4/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Dec 2014 13:53:50 GMT -->

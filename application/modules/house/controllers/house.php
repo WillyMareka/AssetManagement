@@ -21,7 +21,7 @@ class House extends MY_Controller
 		$data['houses_c'] = $this->all_house_combo();
 		$data['all_houses'] = $this->all_houses();
 		$data['housetypes'] = $this->gethousetypes();
-		$data['housetypes2'] = $this->gethousetypes2();
+		
 		$data['houseestates'] = $this->gethouseestates();
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
@@ -79,7 +79,7 @@ class House extends MY_Controller
         $results = $this->house_model->get_house_types();
         
         //echo '<pre>';print_r($results);echo '</pre>';die;
-            $houtyp ='<select class="form-control selectpicker js-example-placeholder-single" required name="housetype" id="housetype"  data-live-search="true">';
+            $houtyp ='<select class="form-control selectpicker" required name="edithousetype" id="edithousetype"  data-live-search="true">';
             $houtyp .='<option selected="selected" value="">Select the House Type</option>';
         foreach ($results as $value) {
             $houtyp .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
@@ -178,19 +178,7 @@ class House extends MY_Controller
 		
 	}
 
-	function gethousetypes2()
-	{
-        $results = $this->house_model->get_house_types();
-        
-        //echo '<pre>';print_r($results);echo '</pre>';die;
-            $houtyp ='<select class="form-control selectpicker" required name="edithousetype" id="edithousetype"  data-live-search="true style="width: 350px;">';
-            $houtyp .='<option selected="selected" value="">Select the House Type</option>';
-        foreach ($results as $value) {
-            $houtyp .= '<option value="' . $value['type'] . '">' . $value['type'] . '</option>';  
-        }
-            $houtyp .='</select>';
-        return $houtyp;
-	}
+	
 
 	function all_house_combo()
 	{

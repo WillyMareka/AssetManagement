@@ -113,6 +113,7 @@
 	<script src="<?php echo base_url(); ?>assets/template_files/js/house.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/js/tenants.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/js/estate.js"></script>
+	<script src="<?php echo base_url(); ?>assets/template_files/js/login.js"></script>
 	
 	<script>
       // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

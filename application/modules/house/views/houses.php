@@ -40,10 +40,8 @@
                                             <legend class="pull-left width-full">Registration</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                            	<form id="houseregistration" method="POST" action="<?php echo base_url().'house/houseregistration'?>" name="houseregistration" role="form" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
-	                                            	<?php 
-                                                        echo form_open_multipart(base_url().'products/choosefilter');
-                                                    ?>
+                                            	<form id="houseregistration" method="POST" name="houseregistration" role="form" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered">
+	                                            	
 	                                            	<div class="form-group">
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
@@ -174,7 +172,7 @@
 		                                                <div class="col-md-4">
 															<div class="form-group">
 																<label>House Type:</label>
-																<?php echo $housetypes2?>
+																<?php echo $housetypes?>
 															</div>
 		                                                </div>
 		                                                <!-- end col-4 -->

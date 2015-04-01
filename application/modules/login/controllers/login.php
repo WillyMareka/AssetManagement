@@ -50,15 +50,16 @@ class login extends MY_Controller {
 		$this->load->library('form_validation');
         
         $this->form_validation->set_rules('password', 'Password', 'trim|min_length[3]|required|max_length[15]|required|xss_clean');
-        $this->form_validation->set_rules('username', 'User Name', 'trim|min_length[3]|required|xss_clean');
+        $this->form_validation->set_rules('username', 'User Name', 'trim|min_length[3]|required|xss_clean|');
         
         if($this->form_validation->run() == FALSE){
         	$data['title'] = 'Login Validation | Login Validation';
         	$data['new_user'] = 'Didnt meet the requirements 1';
-			$this->template->call_login($data);
-		    
+			//$this->template->call_login($data);
+		    echo 'validation';
 		}else{
-			
+			$username = $this->input->post('username');
+			//echo $username;
 			$result = $this->model_login->authentication();		
             
              //echo '<pre>';print_r($result);echo'</pre>';die;
@@ -68,15 +69,18 @@ class login extends MY_Controller {
                     
                     switch($this->session->userdata('user_type')){
                         case '1':
-                          redirect(base_url().'hr');
+                          //redirect(base_url().'hr');
+                           echo '1';
                         break;
 
                         case '2':
-                          redirect(base_url().'caretaker/home');
+                          //redirect(base_url().'caretaker/home');
+                           echo '2';
                         break;
 
                         default:
-                          echo 'Not finding user type';
+                          //echo 'Not finding user type';
+                            echo '3';
                         break;
 
                     }
@@ -86,23 +90,27 @@ class login extends MY_Controller {
 				case 'incorrect_password':
 		            $data['title'] = 'Asset Management | Login';
         	        $data['new_user'] = 'Entered wrong username and password';
-			        $this->template->call_login($data);
+			        //$this->template->call_login($data);
+			        echo 'incorrect';
 				break;
 
 				case 'not_activated':
 		            $data['title'] = 'Asset Management | Login';
         	        $data['new_user'] = 'User not activated';
-			        $this->template->call_login($data);
+			        //$this->template->call_login($data);
+			        echo 'inactive';
 				break;
 
 				case 'session_fail':
 		            $data['title'] = 'Asset Management | Login';
         	        $data['new_user'] = 'Session was not able to start';
-			        $this->template->call_login($data);
+			        //$this->template->call_login($data);
+			        echo 'session';
 				break;
 
 				default:
-                     echo 'No case selected';
+                     //echo 'No case selected';
+                     echo 'case';
 				break;
 			}	
 		}
