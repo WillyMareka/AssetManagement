@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
    $(".transaction_other").hide();
 
    // $(".transaction_other").attr();
@@ -42,10 +43,11 @@ $(document).ready(function(){
           
 
          var formData = new FormData($(this)[0]);
+
  
          $.ajax({
            type: "POST",
-           url: "payments/paymenttransaction",
+           url: base_url + 'payments/paymenttransaction',
            data: formData,
            async: false,
            cache: false,
@@ -53,7 +55,9 @@ $(document).ready(function(){
            processData: false,
            success: function(data){
                // ....After successful registration, then....//
-              
+              $('#paymentbutton').click(function(){
+                   $('#paymentransaction')[0].reset();
+               });
               swal({   title: "Payment Done",   text: "Payment has been Recorded",   timer: 3000 });
 
 

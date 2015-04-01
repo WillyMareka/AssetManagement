@@ -76,7 +76,7 @@ function validate()
            processData: false,
            success: function(data){
                // ....After successful assigning, then....//
-              
+               
               swal({   title: "Tenant Assigning",   text: "Tenant has been assigned house",   timer: 3000 });
 
              

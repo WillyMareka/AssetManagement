@@ -302,7 +302,7 @@
 		                                                <!-- end col-4 -->
 		                                                <div class="col-md-2" style="float:right;">
 															<div class="form-group">
-																<button type="submit" class="btn btn-success m-r-5 m-b-5">Edit Tenant</button>
+																<button id="edittenantbutton" type="submit" class="btn btn-success m-r-5 m-b-5">Edit Tenant</button>
 																<button type="reset" class="btn btn-warning m-r-5 m-b-5">Cancel</button>
 															</div>
 		                                                </div>

@@ -99,7 +99,7 @@
 
 		                                                <div class="col-md-4" style="float:right;">
 															<div class="form-group">
-																<button type="submit" class="btn btn-success m-r-5 m-b-5">Complete Transaction</button>
+																<button id="paymentbutton" type="submit" class="btn btn-success m-r-5 m-b-5">Complete Transaction</button>
 																<button type="reset" class="btn btn-warning m-r-5 m-b-5">Cancel</button>
 															</div>
 		                                                </div>
