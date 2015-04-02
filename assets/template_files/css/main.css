@@ -1,0 +1,40 @@
+.non-deco
+	{
+		text-decoration: none;
+		color: #FFF;
+	}
+	.non-deco:hover
+	{
+		color: #34495e;
+		text-decoration: none;
+	}
+
+.payments{
+	margin-bottom: 10px;
+	width:300px;
+}
+
+.paybox{
+  width:;
+}
+
+.payfield{
+  width:140px !important;
+}
+
+.pay-group{
+	width:140px;
+}
+
+.paycheck{
+	margin-left:-20px;
+}
+
+.paymentyear{
+	margin-bottom: 10px;
+}
+
+.success{
+	background-color:#27ae60;
+	color:#FFF;
+}

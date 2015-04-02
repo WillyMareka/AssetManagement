@@ -1,0 +1,1 @@
+ALTER TABLE `house` CHANGE `house_no` `house_no` VARCHAR(255) NOT NULL;
