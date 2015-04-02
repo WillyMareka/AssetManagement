@@ -163,7 +163,7 @@ class Payments extends MY_Controller
 			$html_body .= '</tbody></table>';
             $pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
 
-        echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+        //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
 
 		    $this->export->create_pdf($pdf_data);
 		}else{
