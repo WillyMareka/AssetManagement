@@ -25,6 +25,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/sweetalert/lib/sweet-alert.css">
 	<link href="<?php echo base_url(); ?>assets/template_files/css/theme/default.css" rel="stylesheet" id="theme" />
 	<!-- ================== END BASE CSS STYLE ================== -->
+
 </head>
 <body>
 	<!-- begin #page-loader -->
@@ -73,11 +74,7 @@
 	<!-- end page container -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
-	<script type="text/javascript">
-    $(document).ready(function(){
-    	base_url = '<?php echo base_url();?>';
-    });
-    </script>
+	
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-1.8.2/jquery-1.8.2.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-ui-1.10.4/ui/minified/jquery-ui.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-3.2.0/js/bootstrap.min.js"></script>
@@ -95,6 +92,11 @@
 	<script src="<?php echo base_url(); ?>assets/sweetalert/lib/sweet-alert.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/template_files/js/login.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
+	<script type="text/javascript">
+    $(document).ready(function(){
+    	base_url = '<?php echo base_url();?>';
+    });
+    </script>
 	<script>
 		$(document).ready(function() {
 			App.init();
