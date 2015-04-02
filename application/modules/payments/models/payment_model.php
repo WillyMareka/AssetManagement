@@ -72,7 +72,16 @@ class Payment_model extends MY_Model
 	function get_payments()
 	{
 		$sql = "SELECT 
-					*
+					tp_id as 'No',
+					tenant_id as 'Tenant ID',
+					method as 'Payment Method',
+					transaction_no as 'Transaction No',
+					payment_year as 'Year Paid for',
+					payment_month as 'Month Paid for',
+					rent_paid as 'Rent Paid',
+					security_paid as 'Security Paid',
+					maintenance_paid as 'Maintenance Paid',
+					date_of_payment as 'Date Paid'
 				FROM
 					`tenant_payment`";
 		$result = $this->db->query($sql);

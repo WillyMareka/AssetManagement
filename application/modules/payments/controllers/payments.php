@@ -85,58 +85,67 @@ class Payments extends MY_Controller
 
 	function generatepaymentsreport(){
 		$active_payment_payments = $this->payment_model->get_payments();
-
+        //echo "<pre>";print_r($active_payment_payments);echo'</pre>';die();
 		
-		$row_data = array();
+		$column_data = $row_data = array();
 		$this->active_payments = "";
-
+        $counter = 0;
 
 		
-			foreach ($active_payment_payments as $key => $value) {
-		 //echo "<pre>";print_r($key);die();
-				
-				if ($value['payment_month'] == 1) {
+			foreach ($active_payment_payments as $key => $data) {
+		 //echo "<pre>";print_r($data);echo'</pre>';
+				//foreach ($data as $name => $value){
+					//echo "<pre>";print_r($name);die();
+				if ($data['Month Paid for'] == 1) {
 					$month = 'January';
-				} else if ($value['payment_month'] == 2) {
+				} else if ($data['Month Paid for'] == 2) {
 					$month = 'February';
-				} else if ($value['payment_month'] == 3) {
+				} else if ($data['Month Paid for'] == 3) {
 					$month = 'March';
-				} else if ($value['payment_month'] == 4) {
+				} else if ($data['Month Paid for'] == 4) {
 					$month = 'April';
-				} else if ($value['payment_month'] == 5) {
+				} else if ($data['Month Paid for'] == 5) {
 					$month = 'May';
-				} else if ($value['payment_month'] == 6) {
+				} else if ($data['Month Paid for'] == 6) {
 					$month = 'June';
-				} else if ($value['payment_month'] == 7) {
+				} else if ($data['Month Paid for'] == 7) {
 					$month = 'July';
-				} else if ($value['payment_month'] == 8) {
+				} else if ($data['Month Paid for'] == 8) {
 					$month = 'August';
-				} else if ($value['payment_month'] == 9) {
+				} else if ($data['Month Paid for'] == 9) {
 					$month = 'Semptember';
-				} else if ($value['payment_month'] == 10) {
+				} else if ($data['Month Paid for'] == 10) {
 					$month = 'October';
-				} else if ($value['payment_month'] == 11) {
+				} else if ($data['Month Paid for'] == 11) {
 					$month = 'November';
-				} else if ($value['payment_month'] == 12) {
+				} else if ($data['Month Paid for'] == 12) {
 					$month = 'December';
+				} else{
+					$month = 'No month selected';
 				}
 				
-			array_push($row_data, array($value['tp_id'], $value['tenant_id'], $value['method'], $value['transaction_no'], $value['payment_year'], $month, 
-				                    $value['rent_paid'], $value['security_paid'], $value['maintenance_paid'], $value['date_of_payment']));
+			array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
+				                    $data['Rent Paid'], $data['Security Paid'], $data['Maintenance Paid'], $data['Date Paid']));
 				
-		
+		//}
 				
 			
 		}
+         
+		
+			foreach ($data as $name => $value) {
+				$col = $name;
+			    array_push($column_data, $col);
+		    }
 
-		//echo "<pre>";print_r($key);die();
+		//echo "<pre>";print_r($name);die();
 
 
 
 		$excel_data = array();
 		$excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Payments Report ', 'file_name' => 'Payments Report');
-	    //$column_data = array("First Name", "Last Name", "date last seen", "# of days", "date last issued", "# of days", "Sub County", "facility name", "mfl");
-		$column_data = array("No.", "Tenant ID", "Payment Method", "Transaction No", "Year Paid For", "Month Paid For", "Rent Paid", "Security Paid", "Maintenance Paid", "Date of Payment");
+	    
+		// $column_data = array("No.", "Tenant ID", "Payment Method", "Transaction No", "Year Paid For", "Month Paid For", "Rent Paid", "Security Paid", "Maintenance Paid", "Date of Payment");
 
 		$excel_data['column_data'] = $column_data;
 		$excel_data['row_data'] = $row_data;
