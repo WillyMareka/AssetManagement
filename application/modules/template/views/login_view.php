@@ -41,12 +41,6 @@
                 <div class="brand">
                     <span class="logo"></span> Asset Management
                     <small>Managing Rental Assets</small>
-                    <small><?php if(isset($new_user)){
-                    	echo $new_user?>
-                    </small>
-                    <?php }else{ ?>
-                    <small>Enter your credentials</small>
-                    <?php }?>
                 </div>
                 <div class="icon">
                     <i class="fa fa-sign-in"></i>
@@ -78,6 +72,11 @@
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-1.8.2/jquery-1.8.2.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/jquery-ui-1.10.4/ui/minified/jquery-ui.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/template_files/plugins/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+    $(document).ready(function(){
+    	base_url = '<?php echo base_url();?>';
+    });
+    </script>
 	<!--[if lt IE 9]>
 		<script src="assets/crossbrowserjs/html5shiv.js"></script>
 		<script src="assets/crossbrowserjs/respond.min.js"></script>
@@ -91,12 +90,8 @@
 	<script src="<?php echo base_url(); ?>assets/template_files/js/apps.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/sweetalert/lib/sweet-alert.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/template_files/js/login.js"></script>
+   
 	<!-- ================== END PAGE LEVEL JS ================== -->
-	<script type="text/javascript">
-    $(document).ready(function(){
-    	base_url = '<?php echo base_url();?>';
-    });
-    </script>
 	<script>
 		$(document).ready(function() {
 			App.init();
