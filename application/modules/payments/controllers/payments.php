@@ -48,6 +48,7 @@ class Payments extends MY_Controller
 			<th><b>Rent Paid</b></th>
 			<th><b>Security Paid</b></th>
 			<th><b>Maintenance Paid</b></th>
+			<th><b>Current Total</b></th>
 			<th><b>Date Paid</b></th>
 		</tr> 
 		</thead>
@@ -124,9 +125,9 @@ class Payments extends MY_Controller
 
 	case 'pdf':
             
-			
+			$total = $data['Rent Paid']+$data['Security Paid']+$data['Maintenance Paid'];
 			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
-
+           
 				$html_body .= '<tr>';
 				$html_body .= '<td>'.$counter.'</td>';
 				$html_body .= '<td>'.$data['Tenant ID'].'</td>';
@@ -137,6 +138,7 @@ class Payments extends MY_Controller
 				$html_body .= '<td>'.$data['Rent Paid'].'</td>';
 				$html_body .= '<td>'.$data['Security Paid'].'</td>';
 				$html_body .= '<td>'.$data['Maintenance Paid'].'</td>';
+				$html_body .= '<td>'.$total.'</td>';
 				$html_body .= '<td>'.$data['Date Paid'].'</td>';
 				$html_body .= "</tr></ol>";
 
@@ -161,7 +163,7 @@ class Payments extends MY_Controller
 			$html_body .= '</tbody></table>';
             $pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
 
-        // echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+        echo'<pre>';print_r($pdf_data);echo'</pre>';die();
 
 		    $this->export->create_pdf($pdf_data);
 		}else{
