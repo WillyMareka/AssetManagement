@@ -84,27 +84,27 @@ endif;
 
 if(count($pdf_data)>0): 
     
-$url=base_url().'assets/img/coat_of_arms.png';
+$url=base_url().'assets/images/pdfimage.jpg';
 $html_title="<div align=center><img src='$url' height='70' width='70'style='vertical-align: top;'> </img></div>
-<div style='text-align:center; font-family: arial,helvetica,clean,sans-serif;display: block; font-weight: bold; font-size: 14px;'>$pdf_data[pdf_title]</div>
-<div style='text-align:center; font-family: arial,helvetica,clean,sans-serif;display: block; font-weight: bold; font-size: 14px;'>
-Ministry of Health</div>
-<div style='text-align:center; font-family: arial,helvetica,clean,sans-serif;display: block; font-weight: bold;display: block; font-size: 13px;'>
-Health Commodities Management Platform</div><hr/>";
+<div style='text-align:center; font-family: arial,helvetica,clean,sans-serif;display: block; font-weight: bold; font-size: 14px;'>".$pdf_data['pdf_title']."</div>
+
+<div style='text-align:center; font-family: arial,helvetica,clean,sans-serif;display: block; font-weight: bold; font-size: 14px;'>Asset Management</div>
+
+<div style='text-align:center; font-family: arial,helvetica,clean,sans-serif;display: block; font-weight: bold;display: block; font-size: 13px;'>Payments Report</div><hr/>";
 
 $table_style='<style>table.data-table {border: 1px solid #DDD;margin: 10px auto;border-spacing: 0px;}
-table.data-table th {border: none;color: #036;text-align: center;border: 1px solid #DDD;border-top: none;max-width: 450px;}
-table.data-table td, table th {padding: 4px;}
-table.data-table td {border: none;border-left: 1px solid #DDD;border-right: 1px solid #DDD;height: 30px;margin: 0px;border-bottom: 1px solid #DDD;}
-</style>';
-            $name=$this -> session -> userdata('full_name');
+                     table.data-table th {border: none;color: #036;text-align: center;border: 1px solid #DDD;border-top: none;max-width: 450px;}
+                     table.data-table td, table th {padding: 4px;}
+                     table.data-table td {border: none;border-left: 1px solid #DDD;border-right: 1px solid #DDD;height: 30px;margin: 0px;border-bottom: 1px solid #DDD;}
+              </style>';
+            
             $this->mpdf = new mPDF('', 'A4-L', 0, '', 15, 15, 16, 16, 9, 9, '');
             $this->mpdf->ignore_invalid_utf8 = true;
             $this->mpdf->WriteHTML($html_title);
             $this->mpdf->defaultheaderline = 1;  
             $this->mpdf->simpleTables = true;
             $this->mpdf->WriteHTML($table_style.$pdf_data['pdf_html_body']);
-            $this->mpdf->SetFooter("{DATE D j M Y }|{PAGENO}/{nb}|Prepared by: $name, source HCMP");
+            $this->mpdf->SetFooter("{DATE D j M Y }|{PAGENO}/{nb}|Prepared by: $name, Continuum Developers");
 
             
     if($pdf_data['pdf_view_option']=='save_file'):

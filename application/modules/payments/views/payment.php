@@ -123,8 +123,8 @@
                                       <div class="btn-group pull-right">
                                          <button data-toggle="dropdown" class="btn dropdown-toggle success">Tools <span class="caret"></span></button>
                                          <ul class="dropdown-menu">
-                                            <li><a href="#">Save as PDF</a></li>
-                                            <li class="download"><a href="<?php echo base_url(). 'payments/allpayments/report'?>">Export to Excel</a></li>
+                                            <li><a href="<?php echo base_url(). 'payments/allpayments/pdf'?>">Save as PDF</a></li>
+                                            <li class="download"><a href="<?php echo base_url(). 'payments/allpayments/excel'?>">Export to Excel</a></li>
                                          </ul>
                                       </div>
                                    </div>

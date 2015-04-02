@@ -90,7 +90,7 @@ class Payments extends MY_Controller
 
 	break;
 
-	case 'report':
+	case 'excel':
                   $column_data = $row_data = array();
 		
         $counter = 0;
@@ -126,13 +126,10 @@ class Payments extends MY_Controller
 					$month = 'No month selected';
 				}
 				
-			array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
+			      array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
 				                    $data['Rent Paid'], $data['Security Paid'], $data['Maintenance Paid'], $data['Date Paid']));
-				
-		
-				
-			
-		}
+
+		   }
          
 		
 			foreach ($data as $name => $value) {
@@ -140,22 +137,91 @@ class Payments extends MY_Controller
 			    array_push($column_data, $col);
 		    }
 
-		//echo "<pre>";print_r($name);die();
-
-
-
 		$excel_data = array();
-		$excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Payments Report ', 'file_name' => 'Payments Report');
-	    
-		
-
+		$excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Payments Excel Report ', 'file_name' => 'Payments Report');
 		$excel_data['column_data'] = $column_data;
 		$excel_data['row_data'] = $row_data;
 
 		//echo'<pre>';print_r($excel_data);echo'</pre>';die();
 
-		      $this->export->create_excel($excel_data);
+		$this->export->create_excel($excel_data);
 	break;
+
+	case 'pdf':
+
+          $counter = 1;
+ 
+			$html_body = "
+		<table class='data-table'>
+		<thead>
+		<tr>
+			<th><b>No</b></th>
+			<th><b>Tenant ID</b></th>
+			<th><b>Payment Method</b></th>
+			<th><b>Transaction No</b></th>
+			<th><b>Year Paid For</b></th>
+			<th><b>Month Paid For</b></th>
+			<th><b>Rent Paid</b></th>
+			<th><b>Security Paid</b></th>
+			<th><b>Maintenance Paid</b></th>
+			<th><b>Date Paid</b></th>
+		</tr> 
+		</thead>
+		<tbody>";
+
+			$html_body .= '<ol type="a">';
+			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
+			foreach ($active_payment_payments as $key => $value) {
+				if ($value['Month Paid for'] == 1) {
+					$month = 'January';
+				} else if ($value['Month Paid for'] == 2) {
+					$month = 'February';
+				} else if ($value['Month Paid for'] == 3) {
+					$month = 'March';
+				} else if ($value['Month Paid for'] == 4) {
+					$month = 'April';
+				} else if ($value['Month Paid for'] == 5) {
+					$month = 'May';
+				} else if ($value['Month Paid for'] == 6) {
+					$month = 'June';
+				} else if ($value['Month Paid for'] == 7) {
+					$month = 'July';
+				} else if ($value['Month Paid for'] == 8) {
+					$month = 'August';
+				} else if ($value['Month Paid for'] == 9) {
+					$month = 'Semptember';
+				} else if ($value['Month Paid for'] == 10) {
+					$month = 'October';
+				} else if ($value['Month Paid for'] == 11) {
+					$month = 'November';
+				} else if ($value['Month Paid for'] == 12) {
+					$month = 'December';
+				}
+
+
+				$html_body .= "<tr>";
+				$html_body .= '<td>'.$counter.'</td>';
+				$html_body .= '<td>'.$value['Tenant ID'].'</td>';
+				$html_body .= '<td>'.$value['Payment Method'].'</td>';
+				$html_body .= '<td>'.$value['Transaction No'].'</td>';
+				$html_body .= '<td>'.$value['Year Paid for'].'</td>';
+				$html_body .= '<td>'.$month.'</td>';
+				$html_body .= '<td>'.$value['Rent Paid'].'</td>';
+				$html_body .= '<td>'.$value['Security Paid'].'</td>';
+				$html_body .= '<td>'.$value['Maintenance Paid'].'</td>';
+				$html_body .= '<td>'.$value['Date Paid'].'</td>';
+				$html_body .= "</tr>";
+               $counter++;
+			}
+			$html_body .= '</tbody></table></ol>';
+          
+		$pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
+
+        //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+		$this->export->create_pdf($pdf_data);
+
+	break;
+
 			
 			
 		}
@@ -170,11 +236,8 @@ class Payments extends MY_Controller
           	foreach ($value as $key2 => $val) {
           		//echo '<pre>'; print_r($val); echo '</pre>'; die();
           	}
-          	
           }
-
           return $val;
-		
 	}
 
 	function paymenttransaction()
