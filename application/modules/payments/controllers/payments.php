@@ -141,6 +141,7 @@ class Payments extends MY_Controller
 				$html_body .= '<td>'.$total.'</td>';
 				$html_body .= '<td>'.$data['Date Paid'].'</td>';
 				$html_body .= "</tr></ol>";
+                $sum_total += $total;
 
 	break;
 
@@ -160,6 +161,8 @@ class Payments extends MY_Controller
 		    $this->export->create_excel($excel_data);
 
 		}elseif($type == 'pdf'){
+			$html_body .= '<tr><td colspan="3"> Sum Total : </td><td colspan="7">'.$sum_total.'<td></tr>';
+			
 			$html_body .= '</tbody></table>';
             $pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
 
