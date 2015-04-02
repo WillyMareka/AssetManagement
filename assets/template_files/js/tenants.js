@@ -32,7 +32,7 @@ function validate()
  
          $.ajax({
            type: "POST",
-           url: "tenant/registration",
+           url: base_url + 'tenant/registration',
            data: formData,
            async: false,
            cache: false,
@@ -43,12 +43,13 @@ function validate()
               
               swal({   title: "Tenant Registration",   text: "Tenant has been registered, please move to assign house",   timer: 3000 });
 
-              $("#registerten").click(function(){
-              $("#assignten").tabs( "option", "active", 2 );
-              });
+              
 
            }
  
+         });
+         $("#registerten").click(function(){
+              $("#assignten").tabs( "option", "active", 2 );
          });
  
          return false;  //stop the actual form post !important!
@@ -68,7 +69,7 @@ function validate()
  
          $.ajax({
            type: "POST",
-           url: "tenant/assignhouse",
+           url: base_url + 'tenant/assignhouse',
            data: formData,
            async: false,
            cache: false,
@@ -107,7 +108,7 @@ function validate()
  
          $.ajax({
            type: "POST",
-           url: "tenant/edittenant",
+           url: base_url + 'tenant/edittenant',
            data: formData,
            async: false,
            cache: false,
@@ -137,7 +138,7 @@ function validate()
                     
                      $.ajax({
                         type: "POST",  
-                        url:"tenant/buildDropHouses", 
+                        url: base_url + 'tenant/buildDropHouses', 
                         data: query,  
                         dataType: 'json',
                         success:function(data){ 

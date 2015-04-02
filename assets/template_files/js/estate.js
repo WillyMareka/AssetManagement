@@ -17,7 +17,7 @@ $(".js-example-placeholder-single").select2({
  
          $.ajax({
            type: "POST",
-           url: "estate/estateregistration",
+           url: base_url + 'estate/estateregistration',
            data: formData,
            async: false,
            cache: false,
@@ -54,7 +54,7 @@ $(".js-example-placeholder-single").select2({
  
          $.ajax({
            type: "POST",
-           url: "estate/editestate",
+           url: base_url + 'estate/editestate',
            data: formData,
            async: false,
            cache: false,

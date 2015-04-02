@@ -17,7 +17,7 @@ $(".js-example-placeholder-single").select2({
  
          $.ajax({
            type: "POST",
-           url: "house/houseregistration",
+           url: base_url +'house/houseregistration',
            data: formData,
            async: false,
            cache: false,
@@ -54,7 +54,7 @@ $(".js-example-placeholder-single").select2({
  
          $.ajax({
            type: "POST",
-           url: "house/edithouse",
+           url: base_url + 'house/edithouse',
            data: formData,
            async: false,
            cache: false,

@@ -10,7 +10,7 @@ $(document).ready(function(){
  
          $.ajax({
            type: "POST",
-           url: "login/auth",
+           url: base_url + 'login/auth',
            data: formData,
            async: false,
            cache: false,
