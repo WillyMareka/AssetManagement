@@ -35,10 +35,24 @@ class Payments extends MY_Controller
 		// echo "<pre>";print_r($active_job_groups);die();
         $counter = 0;
 		$payments .= "<tbody>";
-		$html_body = "
-		<table class='data-table'>
+		$html_body = '
+		<table class="data-table">
 		<thead>
-		<tr>";
+		<tr>
+			<th><b>No</b></th>
+			<th><b>Tenant ID</b></th>
+			<th><b>Payment Method</b></th>
+			<th><b>Transaction No</b></th>
+			<th><b>Year Paid For</b></th>
+			<th><b>Month Paid For</b></th>
+			<th><b>Rent Paid</b></th>
+			<th><b>Security Paid</b></th>
+			<th><b>Maintenance Paid</b></th>
+			<th><b>Date Paid</b></th>
+		</tr> 
+		</thead>
+		<tbody>
+		<ol type="a"><tr>';
 		if(isset($active_payment_payments)){
 
 			foreach ($active_payment_payments as $key => $data) {
@@ -71,14 +85,7 @@ class Payments extends MY_Controller
 					$month = 'No month selected';
 				}
 
-			foreach ($data as $name => $value) {
-				$html_body .= '<th><b>'.$name.'</b></th>';
-			    //array_push($column_data, $col);
-		    }
-		  $html_body.="
-		</tr> 
-		</thead>
-		<tbody>";
+			
 
 	switch ($type) {
 		case 'table':
@@ -115,11 +122,11 @@ class Payments extends MY_Controller
 	break;
 
 	case 'pdf':
-
-			$html_body .= '<ol type="a">';
+            
+			
 			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
 
-				$html_body .= "<tr>";
+				
 				$html_body .= '<td>'.$counter.'</td>';
 				$html_body .= '<td>'.$data['Tenant ID'].'</td>';
 				$html_body .= '<td>'.$data['Payment Method'].'</td>';
@@ -153,7 +160,7 @@ class Payments extends MY_Controller
 			$html_body .= '</tbody></table>';
             $pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
 
-        //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+        echo'<pre>';print_r($pdf_data);echo'</pre>';die();
 
 		    $this->export->create_pdf($pdf_data);
 		}else{
