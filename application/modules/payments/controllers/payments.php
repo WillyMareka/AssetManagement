@@ -52,7 +52,8 @@ class Payments extends MY_Controller
 		</tr> 
 		</thead>
 		<tbody>
-		<ol type="a"><tr>';
+		<ol type="a">';
+		
 		if(isset($active_payment_payments)){
 
 			foreach ($active_payment_payments as $key => $data) {
@@ -126,7 +127,7 @@ class Payments extends MY_Controller
 			
 			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
 
-				
+				$html_body .= '<tr>';
 				$html_body .= '<td>'.$counter.'</td>';
 				$html_body .= '<td>'.$data['Tenant ID'].'</td>';
 				$html_body .= '<td>'.$data['Payment Method'].'</td>';
@@ -160,7 +161,7 @@ class Payments extends MY_Controller
 			$html_body .= '</tbody></table>';
             $pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
 
-        echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+        // echo'<pre>';print_r($pdf_data);echo'</pre>';die();
 
 		    $this->export->create_pdf($pdf_data);
 		}else{
