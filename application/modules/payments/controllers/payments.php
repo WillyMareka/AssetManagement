@@ -19,7 +19,7 @@ class Payments extends MY_Controller
 	{
 		$data['content_page'] = 'payments/payment';
 		$data['sidebar'] = 'hr_side_bar';
-		$data['all_payments'] = $this->all_payments();
+		$data['all_payments'] = $this->allpayments('table');
 		$data['paymentmethods'] = $this->getpaymentmethods();
 		$data['paymentfor'] = $this->getpaymentfor();
 		$data['paymentmonth'] = $this->getpaymentmonths();
@@ -27,75 +27,77 @@ class Payments extends MY_Controller
 		$this->template->call_template($data);
 	}
 
-	function all_payments()
+	function allpayments($type)
 	{
 		$active_payment_payments = $this->payment_model->get_payments();
 		// echo "<pre>";print_r($active_job_groups);die();
-		$count = 0;
+
+	switch ($type) {
+		case 'table':
+				
+
+                $count = 0;
 		$this->active_payments .= "<tbody>";
 		if(isset($active_payment_payments)){
 			foreach ($active_payment_payments as $key => $value) {
 				$count++;
-				if ($value['payment_month'] == 1) {
+				if ($value['Month Paid for'] == 1) {
 					$month = 'January';
-				} else if ($value['payment_month'] == 2) {
+				} else if ($value['Month Paid for'] == 2) {
 					$month = 'February';
-				} else if ($value['payment_month'] == 3) {
+				} else if ($value['Month Paid for'] == 3) {
 					$month = 'March';
-				} else if ($value['payment_month'] == 4) {
+				} else if ($value['Month Paid for'] == 4) {
 					$month = 'April';
-				} else if ($value['payment_month'] == 5) {
+				} else if ($value['Month Paid for'] == 5) {
 					$month = 'May';
-				} else if ($value['payment_month'] == 6) {
+				} else if ($value['Month Paid for'] == 6) {
 					$month = 'June';
-				} else if ($value['payment_month'] == 7) {
+				} else if ($value['Month Paid for'] == 7) {
 					$month = 'July';
-				} else if ($value['payment_month'] == 8) {
+				} else if ($value['Month Paid for'] == 8) {
 					$month = 'August';
-				} else if ($value['payment_month'] == 9) {
+				} else if ($value['Month Paid for'] == 9) {
 					$month = 'Semptember';
-				} else if ($value['payment_month'] == 10) {
+				} else if ($value['Month Paid for'] == 10) {
 					$month = 'October';
-				} else if ($value['payment_month'] == 11) {
+				} else if ($value['Month Paid for'] == 11) {
 					$month = 'November';
-				} else if ($value['payment_month'] == 12) {
+				} else if ($value['Month Paid for'] == 12) {
 					$month = 'December';
 				}
 				
 				$this->active_payments .= '<tr>';
 				$this->active_payments .= '<td>'.$count.'</td>';
-				$this->active_payments .= '<td>'.$value['tenant_id'].'</td>';
-				$this->active_payments .= '<td>'.$value['method'].'</td>';
-				$this->active_payments .= '<td>'.$value['transaction_no'].'</td>';
-				$this->active_payments .= '<td>'.$value['payment_year'].'</td>';
+				$this->active_payments .= '<td>'.$value['Tenant ID'].'</td>';
+				$this->active_payments .= '<td>'.$value['Payment Method'].'</td>';
+				$this->active_payments .= '<td>'.$value['Transaction No'].'</td>';
+				$this->active_payments .= '<td>'.$value['Year Paid for'].'</td>';
 				$this->active_payments .= '<td>'.$month.'</td>';
-				$this->active_payments .= '<td>'.$value['rent_paid'].'</td>';
-				$this->active_payments .= '<td>'.$value['security_paid'].'</td>';
-				$this->active_payments .= '<td>'.$value['maintenance_paid'].'</td>';
-				$this->active_payments .= '<td>'.$value['date_of_payment'].'</td>';
+				$this->active_payments .= '<td>'.$value['Rent Paid'].'</td>';
+				$this->active_payments .= '<td>'.$value['Security Paid'].'</td>';
+				$this->active_payments .= '<td>'.$value['Maintenance Paid'].'</td>';
+				$this->active_payments .= '<td>'.$value['Date Paid'].'</td>';
+				
 				
 				$this->active_payments .= '</tr>';
 			}
 		}
 		
-		$this->active_payments .= "</tbody>";
+		           $this->active_payments .= "</tbody>";
 
-		return $this->active_payments;
-	}
+		           return $this->active_payments;
 
-	function generatepaymentsreport(){
-		$active_payment_payments = $this->payment_model->get_payments();
-        //echo "<pre>";print_r($active_payment_payments);echo'</pre>';die();
+	break;
+
+	case 'report':
+                  $column_data = $row_data = array();
 		
-		$column_data = $row_data = array();
-		$this->active_payments = "";
         $counter = 0;
 
 		
 			foreach ($active_payment_payments as $key => $data) {
-		 //echo "<pre>";print_r($data);echo'</pre>';
-				//foreach ($data as $name => $value){
-					//echo "<pre>";print_r($name);die();
+		
 				if ($data['Month Paid for'] == 1) {
 					$month = 'January';
 				} else if ($data['Month Paid for'] == 2) {
@@ -127,7 +129,7 @@ class Payments extends MY_Controller
 			array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
 				                    $data['Rent Paid'], $data['Security Paid'], $data['Maintenance Paid'], $data['Date Paid']));
 				
-		//}
+		
 				
 			
 		}
@@ -145,15 +147,22 @@ class Payments extends MY_Controller
 		$excel_data = array();
 		$excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Payments Report ', 'file_name' => 'Payments Report');
 	    
-		// $column_data = array("No.", "Tenant ID", "Payment Method", "Transaction No", "Year Paid For", "Month Paid For", "Rent Paid", "Security Paid", "Maintenance Paid", "Date of Payment");
+		
 
 		$excel_data['column_data'] = $column_data;
 		$excel_data['row_data'] = $row_data;
 
 		//echo'<pre>';print_r($excel_data);echo'</pre>';die();
 
-		$this->export->create_excel($excel_data);
+		      $this->export->create_excel($excel_data);
+	break;
+			
+			
+		}
+		
 	}
+
+	
 
 	function getReceiptNumber(){
 		$result = $this->payment_model->generateReceipt();
