@@ -35,6 +35,10 @@ class Payments extends MY_Controller
 		// echo "<pre>";print_r($active_job_groups);die();
         $counter = 0;
 		$payments .= "<tbody>";
+		$html_body = "
+		<table class='data-table'>
+		<thead>
+		<tr>";
 		if(isset($active_payment_payments)){
 
 			foreach ($active_payment_payments as $key => $data) {
@@ -67,6 +71,15 @@ class Payments extends MY_Controller
 					$month = 'No month selected';
 				}
 
+			foreach ($data as $name => $value) {
+				$html_body .= '<th><b>'.$name.'</b></th>';
+			    //array_push($column_data, $col);
+		    }
+		  $html_body.="
+		</tr> 
+		</thead>
+		<tbody>";
+
 	switch ($type) {
 		case 'table':
 				
@@ -89,14 +102,10 @@ class Payments extends MY_Controller
 	break;
 
 	case 'excel':
-                 //echo'<pre>';print_r($excel_data);echo'</pre>';die();
 				
 		array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
 				   $data['Rent Paid'], $data['Security Paid'], $data['Maintenance Paid'], $data['Date Paid']));
 
-		   
-         
-		
 			foreach ($data as $name => $value) {
 				$col = $name;
 			    array_push($column_data, $col);
@@ -107,27 +116,8 @@ class Payments extends MY_Controller
 
 	case 'pdf':
 
-          
-          
- 
-			$html_body = "
-		<table class='data-table'>
-		<thead>
-		<tr>";
-		
-		    foreach ($data as $name => $value) {
-				$html_body .= '<th><b>'.$name.'</b></th>';
-			    //array_push($column_data, $col);
-		    }
-		  $html_body.="
-		</tr> 
-		</thead>
-		<tbody>";
-
 			$html_body .= '<ol type="a">';
 			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
-			
-
 
 				$html_body .= "<tr>";
 				$html_body .= '<td>'.$counter.'</td>';
@@ -140,19 +130,14 @@ class Payments extends MY_Controller
 				$html_body .= '<td>'.$data['Security Paid'].'</td>';
 				$html_body .= '<td>'.$data['Maintenance Paid'].'</td>';
 				$html_body .= '<td>'.$data['Date Paid'].'</td>';
-				$html_body .= "</tr>";
-               $counter++;
-			
-			$html_body .= '</tbody></table></ol>';
-          
-		
+				$html_body .= "</tr></ol>";
 
 	break;
 
 			   }
 			}
 		}
-		$payments .= "</tbody>";
+		
 
 		if($type == 'excel'){
             $excel_data = array();
@@ -161,14 +146,21 @@ class Payments extends MY_Controller
 		    $excel_data['row_data'] = $row_data;
 
 		//echo'<pre>';print_r($excel_data);echo'</pre>';die();
+
 		    $this->export->create_excel($excel_data);
 
 		}elseif($type == 'pdf'){
+			$html_body .= '</tbody></table>';
             $pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
 
         //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+
 		    $this->export->create_pdf($pdf_data);
 		}else{
+			  $payments .= "</tbody>";
+
+      //echo'<pre>';print_r($payments);echo'</pre>';die();
+
 			return $payments;
 		}
 
