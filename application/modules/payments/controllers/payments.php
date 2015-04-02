@@ -30,74 +30,15 @@ class Payments extends MY_Controller
 	function allpayments($type)
 	{
 		$active_payment_payments = $this->payment_model->get_payments();
+
+		 $column_data = $row_data = array();
 		// echo "<pre>";print_r($active_job_groups);die();
-
-	switch ($type) {
-		case 'table':
-				
-
-                $count = 0;
-		$this->active_payments .= "<tbody>";
-		if(isset($active_payment_payments)){
-			foreach ($active_payment_payments as $key => $value) {
-				$count++;
-				if ($value['Month Paid for'] == 1) {
-					$month = 'January';
-				} else if ($value['Month Paid for'] == 2) {
-					$month = 'February';
-				} else if ($value['Month Paid for'] == 3) {
-					$month = 'March';
-				} else if ($value['Month Paid for'] == 4) {
-					$month = 'April';
-				} else if ($value['Month Paid for'] == 5) {
-					$month = 'May';
-				} else if ($value['Month Paid for'] == 6) {
-					$month = 'June';
-				} else if ($value['Month Paid for'] == 7) {
-					$month = 'July';
-				} else if ($value['Month Paid for'] == 8) {
-					$month = 'August';
-				} else if ($value['Month Paid for'] == 9) {
-					$month = 'Semptember';
-				} else if ($value['Month Paid for'] == 10) {
-					$month = 'October';
-				} else if ($value['Month Paid for'] == 11) {
-					$month = 'November';
-				} else if ($value['Month Paid for'] == 12) {
-					$month = 'December';
-				}
-				
-				$this->active_payments .= '<tr>';
-				$this->active_payments .= '<td>'.$count.'</td>';
-				$this->active_payments .= '<td>'.$value['Tenant ID'].'</td>';
-				$this->active_payments .= '<td>'.$value['Payment Method'].'</td>';
-				$this->active_payments .= '<td>'.$value['Transaction No'].'</td>';
-				$this->active_payments .= '<td>'.$value['Year Paid for'].'</td>';
-				$this->active_payments .= '<td>'.$month.'</td>';
-				$this->active_payments .= '<td>'.$value['Rent Paid'].'</td>';
-				$this->active_payments .= '<td>'.$value['Security Paid'].'</td>';
-				$this->active_payments .= '<td>'.$value['Maintenance Paid'].'</td>';
-				$this->active_payments .= '<td>'.$value['Date Paid'].'</td>';
-				
-				
-				$this->active_payments .= '</tr>';
-			}
-		}
-		
-		           $this->active_payments .= "</tbody>";
-
-		           return $this->active_payments;
-
-	break;
-
-	case 'excel':
-                  $column_data = $row_data = array();
-		
         $counter = 0;
+		$payments .= "<tbody>";
+		if(isset($active_payment_payments)){
 
-		
 			foreach ($active_payment_payments as $key => $data) {
-		
+				$counter++;
 				if ($data['Month Paid for'] == 1) {
 					$month = 'January';
 				} else if ($data['Month Paid for'] == 2) {
@@ -122,14 +63,38 @@ class Payments extends MY_Controller
 					$month = 'November';
 				} else if ($data['Month Paid for'] == 12) {
 					$month = 'December';
-				} else{
+				}else {
 					$month = 'No month selected';
 				}
-				
-			      array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
-				                    $data['Rent Paid'], $data['Security Paid'], $data['Maintenance Paid'], $data['Date Paid']));
 
-		   }
+	switch ($type) {
+		case 'table':
+				
+				$payments .= '<tr>';
+				$payments .= '<td>'.$counter.'</td>';
+				$payments .= '<td>'.$data['Tenant ID'].'</td>';
+				$payments .= '<td>'.$data['Payment Method'].'</td>';
+				$payments .= '<td>'.$data['Transaction No'].'</td>';
+				$payments .= '<td>'.$data['Year Paid for'].'</td>';
+				$payments .= '<td>'.$month.'</td>';
+				$payments .= '<td>'.$data['Rent Paid'].'</td>';
+				$payments .= '<td>'.$data['Security Paid'].'</td>';
+				$payments .= '<td>'.$data['Maintenance Paid'].'</td>';
+				$payments .= '<td>'.$data['Date Paid'].'</td>';
+				
+				
+				$payments .= '</tr>';
+
+
+	break;
+
+	case 'excel':
+                 
+				
+		array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
+				   $data['Rent Paid'], $data['Security Paid'], $data['Maintenance Paid'], $data['Date Paid']));
+
+		   
          
 		
 			foreach ($data as $name => $value) {
@@ -149,70 +114,42 @@ class Payments extends MY_Controller
 
 	case 'pdf':
 
-          $counter = 1;
+          
+          
  
 			$html_body = "
 		<table class='data-table'>
 		<thead>
-		<tr>
-			<th><b>No</b></th>
-			<th><b>Tenant ID</b></th>
-			<th><b>Payment Method</b></th>
-			<th><b>Transaction No</b></th>
-			<th><b>Year Paid For</b></th>
-			<th><b>Month Paid For</b></th>
-			<th><b>Rent Paid</b></th>
-			<th><b>Security Paid</b></th>
-			<th><b>Maintenance Paid</b></th>
-			<th><b>Date Paid</b></th>
+		<tr>";
+		
+		    foreach ($data as $name => $value) {
+				$html_body .= '<th><b>'.$name.'</b></th>';
+			    //array_push($column_data, $col);
+		    }
+		  $html_body.="
 		</tr> 
 		</thead>
 		<tbody>";
 
 			$html_body .= '<ol type="a">';
 			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
-			foreach ($active_payment_payments as $key => $value) {
-				if ($value['Month Paid for'] == 1) {
-					$month = 'January';
-				} else if ($value['Month Paid for'] == 2) {
-					$month = 'February';
-				} else if ($value['Month Paid for'] == 3) {
-					$month = 'March';
-				} else if ($value['Month Paid for'] == 4) {
-					$month = 'April';
-				} else if ($value['Month Paid for'] == 5) {
-					$month = 'May';
-				} else if ($value['Month Paid for'] == 6) {
-					$month = 'June';
-				} else if ($value['Month Paid for'] == 7) {
-					$month = 'July';
-				} else if ($value['Month Paid for'] == 8) {
-					$month = 'August';
-				} else if ($value['Month Paid for'] == 9) {
-					$month = 'Semptember';
-				} else if ($value['Month Paid for'] == 10) {
-					$month = 'October';
-				} else if ($value['Month Paid for'] == 11) {
-					$month = 'November';
-				} else if ($value['Month Paid for'] == 12) {
-					$month = 'December';
-				}
+			
 
 
 				$html_body .= "<tr>";
 				$html_body .= '<td>'.$counter.'</td>';
-				$html_body .= '<td>'.$value['Tenant ID'].'</td>';
-				$html_body .= '<td>'.$value['Payment Method'].'</td>';
-				$html_body .= '<td>'.$value['Transaction No'].'</td>';
-				$html_body .= '<td>'.$value['Year Paid for'].'</td>';
+				$html_body .= '<td>'.$data['Tenant ID'].'</td>';
+				$html_body .= '<td>'.$data['Payment Method'].'</td>';
+				$html_body .= '<td>'.$data['Transaction No'].'</td>';
+				$html_body .= '<td>'.$data['Year Paid for'].'</td>';
 				$html_body .= '<td>'.$month.'</td>';
-				$html_body .= '<td>'.$value['Rent Paid'].'</td>';
-				$html_body .= '<td>'.$value['Security Paid'].'</td>';
-				$html_body .= '<td>'.$value['Maintenance Paid'].'</td>';
-				$html_body .= '<td>'.$value['Date Paid'].'</td>';
+				$html_body .= '<td>'.$data['Rent Paid'].'</td>';
+				$html_body .= '<td>'.$data['Security Paid'].'</td>';
+				$html_body .= '<td>'.$data['Maintenance Paid'].'</td>';
+				$html_body .= '<td>'.$data['Date Paid'].'</td>';
 				$html_body .= "</tr>";
                $counter++;
-			}
+			
 			$html_body .= '</tbody></table></ol>';
           
 		$pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
@@ -222,10 +159,12 @@ class Payments extends MY_Controller
 
 	break;
 
-			
-			
+			   }
+			}
 		}
-		
+		$payments .= "</tbody>";
+
+		return $payments;
 	}
 
 	
