@@ -89,7 +89,7 @@ class Payments extends MY_Controller
 	break;
 
 	case 'excel':
-                 
+                 //echo'<pre>';print_r($excel_data);echo'</pre>';die();
 				
 		array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
 				   $data['Rent Paid'], $data['Security Paid'], $data['Maintenance Paid'], $data['Date Paid']));
@@ -102,14 +102,7 @@ class Payments extends MY_Controller
 			    array_push($column_data, $col);
 		    }
 
-		$excel_data = array();
-		$excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Payments Excel Report ', 'file_name' => 'Payments Report');
-		$excel_data['column_data'] = $column_data;
-		$excel_data['row_data'] = $row_data;
-
-		//echo'<pre>';print_r($excel_data);echo'</pre>';die();
-
-		$this->export->create_excel($excel_data);
+		
 	break;
 
 	case 'pdf':
@@ -152,10 +145,7 @@ class Payments extends MY_Controller
 			
 			$html_body .= '</tbody></table></ol>';
           
-		$pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
-
-        //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
-		$this->export->create_pdf($pdf_data);
+		
 
 	break;
 
@@ -164,7 +154,25 @@ class Payments extends MY_Controller
 		}
 		$payments .= "</tbody>";
 
-		return $payments;
+		if($type == 'excel'){
+            $excel_data = array();
+		    $excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Payments Excel Report ', 'file_name' => 'Payments Report');
+		    $excel_data['column_data'] = $column_data;
+		    $excel_data['row_data'] = $row_data;
+
+		//echo'<pre>';print_r($excel_data);echo'</pre>';die();
+		    $this->export->create_excel($excel_data);
+
+		}elseif($type == 'pdf'){
+            $pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
+
+        //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+		    $this->export->create_pdf($pdf_data);
+		}else{
+			return $payments;
+		}
+
+		
 	}
 
 	
