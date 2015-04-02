@@ -124,7 +124,7 @@
                                          <button data-toggle="dropdown" class="btn dropdown-toggle success">Tools <span class="caret"></span></button>
                                          <ul class="dropdown-menu">
                                             <li><a href="#">Save as PDF</a></li>
-                                            <li><a href="#">Export to Excel</a></li>
+                                            <li class="download"><a href="<?php echo base_url(). 'payments/generatepaymentsreport'?>">Export to Excel</a></li>
                                          </ul>
                                       </div>
                                    </div>

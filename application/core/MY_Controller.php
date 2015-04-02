@@ -15,6 +15,9 @@ class MY_Controller extends MX_Controller
         $this->load->module('template');
         $this->load->module('reports');
         $this->load->module('export');
+
+        // $this->load->helper(array('url','file','download'));
+        // $this->load->library(array('PHPExcel/PHPExcel','mpdf/mpdf'));
         
         
         
@@ -25,6 +28,8 @@ class MY_Controller extends MX_Controller
     echo base_url();
    }
 
+
+   
     
 
 

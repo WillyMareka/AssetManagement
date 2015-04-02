@@ -9,7 +9,7 @@ class Payments extends MY_Controller
 	{
 		parent:: __construct();
 		$this->load->model('payment_model');
-
+        $this->load->module('export/export');
 		$this->load->library('upload');
         
         $this->pic_path = realpath(APPPATH . '../uploads/');
@@ -81,6 +81,69 @@ class Payments extends MY_Controller
 		$this->active_payments .= "</tbody>";
 
 		return $this->active_payments;
+	}
+
+	function generatepaymentsreport(){
+		$active_payment_payments = $this->payment_model->get_payments();
+
+		
+		$row_data = array();
+		$this->active_payments = "";
+
+
+		
+			foreach ($active_payment_payments as $key => $value) {
+		 //echo "<pre>";print_r($key);die();
+				
+				if ($value['payment_month'] == 1) {
+					$month = 'January';
+				} else if ($value['payment_month'] == 2) {
+					$month = 'February';
+				} else if ($value['payment_month'] == 3) {
+					$month = 'March';
+				} else if ($value['payment_month'] == 4) {
+					$month = 'April';
+				} else if ($value['payment_month'] == 5) {
+					$month = 'May';
+				} else if ($value['payment_month'] == 6) {
+					$month = 'June';
+				} else if ($value['payment_month'] == 7) {
+					$month = 'July';
+				} else if ($value['payment_month'] == 8) {
+					$month = 'August';
+				} else if ($value['payment_month'] == 9) {
+					$month = 'Semptember';
+				} else if ($value['payment_month'] == 10) {
+					$month = 'October';
+				} else if ($value['payment_month'] == 11) {
+					$month = 'November';
+				} else if ($value['payment_month'] == 12) {
+					$month = 'December';
+				}
+				
+			array_push($row_data, array($value['tp_id'], $value['tenant_id'], $value['method'], $value['transaction_no'], $value['payment_year'], $month, 
+				                    $value['rent_paid'], $value['security_paid'], $value['maintenance_paid'], $value['date_of_payment']));
+				
+		
+				
+			
+		}
+
+		//echo "<pre>";print_r($key);die();
+
+
+
+		$excel_data = array();
+		$excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Payments Report ', 'file_name' => 'Payments Report');
+	    //$column_data = array("First Name", "Last Name", "date last seen", "# of days", "date last issued", "# of days", "Sub County", "facility name", "mfl");
+		$column_data = array("No.", "Tenant ID", "Payment Method", "Transaction No", "Year Paid For", "Month Paid For", "Rent Paid", "Security Paid", "Maintenance Paid", "Date of Payment");
+
+		$excel_data['column_data'] = $column_data;
+		$excel_data['row_data'] = $row_data;
+
+		//echo'<pre>';print_r($excel_data);echo'</pre>';die();
+
+		$this->export->create_excel($excel_data);
 	}
 
 	function getReceiptNumber(){
