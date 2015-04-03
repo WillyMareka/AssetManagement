@@ -123,6 +123,28 @@ class House_model extends MY_Model
 		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
+
+
+    // function houseestate_antiexists($houseno_entered){
+    //      $this->db->where('house_no', $houseno);
+    //      $result->db->get('house');
+
+    //      if($result->num_rows() > 0){
+    //       return FALSE;
+    //      }else{
+    //       return TRUE;
+    //      }
+    // }
+
+
+
+
+
+
+
+
+
+
 }
 
 ?>

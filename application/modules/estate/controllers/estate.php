@@ -27,6 +27,16 @@ class Estate extends MY_Controller
 
 	function estateregistration()
 	{
+		$this->load->library('form_validation');
+
+        $this->form_validation->set_rules('estatename', 'Estate Name', 'trim|required|xss_clean|is_unique[estates.estate_name]');
+	
+
+	if($this->form_validation->run() == FALSE){
+			
+		    echo 'validation';
+		}else{
+
 		// $path = base_url().'uploads/estates/';
 		//        $config['upload_path'] = 'uploads/estates';
 		//        $config['allowed_types'] = 'jpeg|jpg|png|gif';
@@ -60,6 +70,7 @@ class Estate extends MY_Controller
 
 		return $insert;
 		   // }
+	   }
 		
 	}
 

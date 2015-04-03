@@ -40,7 +40,17 @@ class Tenant extends MY_Controller
 
 	function registration()
 	{
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('phonenumber', 'Phone Number', 'trim|min_length[9]|is_unique[tenant.phone_number]');
+        $this->form_validation->set_rules('nationalpass', 'National ID/ Passport No', 'trim|required|xss_clean|is_unique[tenant.nationalid_passport]');
 	
+
+	if($this->form_validation->run() == FALSE){
+			
+		    echo 'validation';
+		}else{
+
 		$path = base_url().'uploads/tenants/';
 		       $config['upload_path'] = 'uploads/tenants';
 		       $config['allowed_types'] = 'jpeg|jpg|png|gif';
@@ -75,6 +85,7 @@ class Tenant extends MY_Controller
         //echo "<pre>";print_r($insert);echo "</pre>";die();
 		return $insert;
 		}
+	  }
 	}
 
 	function assignhouse()

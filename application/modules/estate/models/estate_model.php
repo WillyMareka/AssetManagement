@@ -72,6 +72,8 @@ class Estate_model extends MY_Model
 		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
+
+	
 }
 
 ?>
