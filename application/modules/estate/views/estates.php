@@ -171,6 +171,16 @@
                                             <!-- begin row -->
                                             <div class="row">
                                                 <div class="table-responsive">
+                                                	<div class="table-toolbar">
+                                     
+                                      <div class="btn-group pull-right">
+                                         <button data-toggle="dropdown" class="btn dropdown-toggle success">Tools <span class="caret"></span></button>
+                                         <ul class="dropdown-menu">
+                                            <li><a href="<?php echo base_url(). 'estate/allestates/pdf'?>">Save as PDF</a></li>
+                                            <li class="download"><a href="<?php echo base_url(). 'estate/allestates/excel'?>">Export to Excel</a></li>
+                                         </ul>
+                                      </div>
+                                   </div>
                                 <table id="data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>

@@ -32,7 +32,7 @@ class Payments extends MY_Controller
 		$active_payment_payments = $this->payment_model->get_payments();
 
 		 $column_data = $row_data = array();
-		// echo "<pre>";print_r($active_job_groups);die();
+		 //echo "<pre>";print_r($active_payment_payments);echo '</pre>';die();
         $counter = 0;
 		$payments .= "<tbody>";
 		$html_body = '
@@ -104,21 +104,18 @@ class Payments extends MY_Controller
 				$payments .= '<td>'.$data['Maintenance Paid'].'</td>';
 				$payments .= '<td>'.$data['Date Paid'].'</td>';
 				
-				
 				$payments .= '</tr>';
+	    break;
 
-
-	break;
-
-	case 'excel':
+	    case 'excel':
 				
-		array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
+		   array_push($row_data, array($data['No'], $data['Tenant ID'], $data['Payment Method'], $data['Transaction No'], $data['Year Paid for'], $month, 
 				   $data['Rent Paid'], $data['Security Paid'], $data['Maintenance Paid'], $data['Date Paid']));
 
 		
-	break;
+	     break;
 
-	case 'pdf':
+	     case 'pdf':
             
 			$total = $data['Rent Paid']+$data['Security Paid']+$data['Maintenance Paid'];
 			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
@@ -138,7 +135,7 @@ class Payments extends MY_Controller
 				$html_body .= "</tr></ol>";
                 $sum_total += $total;
 
-	break;
+	     break;
 
 			   }
 			}
@@ -147,7 +144,7 @@ class Payments extends MY_Controller
 
 		if($type == 'excel'){
             $excel_data = array();
-		    $excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Payments Excel Report ', 'file_name' => 'Payments Report');
+		    $excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Payments Excel Report ', 'file_name' => 'Payments Report', 'excel_topic' => 'Payment');
 		    $column_data = array('No','Tenant ID','Payment Method','Transaction No','Year Paid For','Month Paid For','Rent Paid','Security Paid','Maintenance Paid','Date Paid');
 		    $excel_data['column_data'] = $column_data;
 		    $excel_data['row_data'] = $row_data;
@@ -160,7 +157,7 @@ class Payments extends MY_Controller
 			$html_body .= '<tr><td colspan="3"> Sum Total: </td><td colspan="7">Kshs '.$sum_total.'/=<td></tr>';
 			
 			$html_body .= '</tbody></table>';
-            $pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report');
+            $pdf_data = array("pdf_title" => "Payments PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Payments Report', 'pdf_topic' => 'Payments');
 
         //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
 

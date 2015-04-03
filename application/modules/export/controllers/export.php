@@ -51,7 +51,7 @@ class Export extends MY_Controller
         $rowExec++;
         }
 
-        $objPHPExcel -> getActiveSheet() -> setTitle('Simple');
+        $objPHPExcel -> getActiveSheet() -> setTitle($excel_data['excel_topic']);
 
         // Save Excel 2007 file
         //echo date('H:i:s') . " Write to Excel2007 format\n";
@@ -90,7 +90,7 @@ $html_title="<div align=center><img src='$image' height='70' width='70'style='ve
 
 <div style='text-align:center; font-family: arial,helvetica,clean,sans-serif;display: block; font-weight: bold; font-size: 14px;'>Asset Management</div>
 
-<div style='text-align:center; font-family: arial,helvetica,clean,sans-serif;display: block; font-weight: bold;display: block; font-size: 13px;'>Payments Report</div><hr/>";
+<div style='text-align:center; font-family: arial,helvetica,clean,sans-serif;display: block; font-weight: bold;display: block; font-size: 13px;'>".$pdf_data['pdf_topic']." Report</div><hr/>";
 
 $table_style='<style>table.data-table {border: 1px solid #DDD;margin: 10px auto;border-spacing: 0px;}
                      table.data-table th {border: none;color: #036;text-align: center;border: 1px solid #DDD;border-top: none;max-width: 450px;}

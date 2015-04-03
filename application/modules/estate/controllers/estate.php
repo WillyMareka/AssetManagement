@@ -19,7 +19,7 @@ class Estate extends MY_Controller
 		$data['content_page'] = 'estate/estates';
 		$data['sidebar'] = 'hr_side_bar';
 		$data['estates_c'] = $this->all_estate_combo();
-		$data['all_estates'] = $this->all_estates();
+		$data['all_estates'] = $this->allestates('table');
 		
 		$this->template->call_template($data);
 	}
@@ -44,12 +44,12 @@ class Estate extends MY_Controller
 		//      else
 		//      {
 		       
-  //               $data = array('upload_data' => $this->upload->data());
+        //        $data = array('upload_data' => $this->upload->data());
 		// 	     foreach ($data as $key => $value) {
 		// 		  //print_r($data);die;
 		// 		  $path = base_url().'uploads/estates/'.$value['file_name'];
 				
-  //                 }
+        //      }
 
 		
 		$estatename = $this->input->post('estatename');
@@ -63,36 +63,107 @@ class Estate extends MY_Controller
 		
 	}
 
-	function all_estates()
+	function allestates($type)
 	{
 		$active_job_groups = $this->estate_model->get_all_estates();
 		// echo "<pre>";print_r($active_job_groups);die();
+
 		$count = 0;
+
+		$column_data = $row_data = array();
 		$this->active_groups .= "<tbody>";
-		
-			foreach ($active_job_groups as $key => $value) {
-				if ($value['estate_status'] == 1) {
+		$html_body = '
+		<table class="data-table">
+		<thead>
+		<tr>
+			<th><b>Estate ID</b></th>
+			<th><b>Estate Name</b></th>
+			<th><b>Estate Location</b></th>
+			<th><b>Estate Status</b></th>
+			<th><b>Date Registered</b></th>
+		</tr> 
+		</thead>
+		<tbody>
+		<ol type="a">';
+
+		foreach ($active_job_groups as $key => $data) {
+			$count++;
+				if ($data['Estate Status'] == 1) {
 					$state = '<span class="label label-success">Activated</span>';
-				} else if ($value['estate_status'] == 0) {
+					$states = 'Activated';
+				} else if ($data['Estate Status'] == 0) {
 					$state = '<span class="label label-danger">Deactivated</span>';
+					$states = 'Deactivated';
 				}
-				
-				$count++;
+
+		switch ($type) {
+			case 'table':
+
 				$this->active_groups .= '<tr>';
-				$this->active_groups .= '<td>'.$count.'</td>';
-				$this->active_groups .= '<td>'.$value['estate_name'].'</td>';
-				$this->active_groups .= '<td>'.$value['estate_location'].'</td>';
+				$this->active_groups .= '<td>'.$data['Estate ID'].'</td>';
+				$this->active_groups .= '<td>'.$data['Estate Name'].'</td>';
+				$this->active_groups .= '<td>'.$data['Estate Location'].'</td>';
 				$this->active_groups .= '<td>'.$state.'</td>';
-				$this->active_groups .= '<td>'.$value['date_registered'].'</td>';
+				$this->active_groups .= '<td>'.$data['Date Registered'].'</td>';
 				
 				$this->active_groups .= '</tr>';
+
+				break;
+			
+			case 'excel':
+               
+				array_push($row_data, array($data['Estate ID'], $data['Estate Name'], $data['Estate Location'], $states, $data['Date Registered'])); 
+
+				break;
+
+			case 'pdf':
+
+			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
+           
+				$html_body .= '<tr>';
+				$html_body .= '<td>'.$data['Estate ID'].'</td>';
+				$html_body .= '<td>'.$data['Estate Name'].'</td>';
+				$html_body .= '<td>'.$data['Estate Location'].'</td>';
+				$html_body .= '<td>'.$states.'</td>';
+				$html_body .= '<td>'.$data['Date Registered'].'</td>';
+				
+				$html_body .= "</tr></ol>";
+
+				break;
+		       }
 			}
 		
 		
-		$this->active_groups .= "</tbody>";
+		if($type == 'excel'){
 
-		return $this->active_groups;
-	}
+            $excel_data = array();
+		    $excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'Estate Excel Report', 'file_name' => 'Estate Report', 'excel_topic' => 'Estate');
+		    $column_data = array('Estate ID','Estate Name','Estate Location','Estate Status','Date Registered');
+		    $excel_data['column_data'] = $column_data;
+		    $excel_data['row_data'] = $row_data;
+
+		      //echo'<pre>';print_r($excel_data);echo'</pre>';die();
+
+		    $this->export->create_excel($excel_data);
+
+		}elseif($type == 'pdf'){
+			
+			$html_body .= '</tbody></table>';
+            $pdf_data = array("pdf_title" => "Estate PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Estate Report', 'pdf_topic' => 'Estate');
+
+            //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+
+		    $this->export->create_pdf($pdf_data);
+
+		}else{
+
+			$this->active_groups .= "</tbody>";
+
+		    return $this->active_groups;
+		}
+
+	  }
+		
 
 	function ajax_get_estate($id)
 	{
