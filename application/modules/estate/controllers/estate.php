@@ -89,7 +89,7 @@ class Estate extends MY_Controller
 		foreach ($active_job_groups as $key => $data) {
 			$count++;
 				if ($data['Estate Status'] == 1) {
-					$state = '<span class="label label-success">Activated</span>';
+					$state = '<span class="label label-info">Activated</span>';
 					$states = 'Activated';
 				} else if ($data['Estate Status'] == 0) {
 					$state = '<span class="label label-danger">Deactivated</span>';
@@ -190,12 +190,12 @@ class Estate extends MY_Controller
 
 	function all_estate_combo()
 	{
-		$estates = $this->estate_model->get_av_estates();
+		$estates = $this->estate_model->get_all_estates();
 		// echo "<pre>";print_r($estates);die();
 		$this->estates_combo .= '<select name="table_search_estate" id="table_search_estate" onchange="get_estate()" class="form-control input-sm js-example-placeholder-single pull-right" style="width: 350px;">';
 		$this->estates_combo .= '<option value="0" selected>Select: Estate Name</option>';
 		foreach ($estates as $key => $value) {
-			$this->estates_combo .= '<option value="'.$value['estate_id'].'">'.$value['estate_name'].'</option>';
+			$this->estates_combo .= '<option value="'.$value['Estate ID'].'">'.$value['Estate Name'].'</option>';
 		}
 		$this->estates_combo .= '</select>';
 

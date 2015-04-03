@@ -18,7 +18,7 @@ class Tenant extends MY_Controller
 		$data['available_estates'] = $this->get_av_estates();
 		 
 		$data['housetypes'] = $this->gethousetypes();
-		$data['all_tenants'] = $this->all_tenants();
+		$data['all_tenants'] = $this->alltenants('table');
 		
 		// echo "<pre>";print_r($data);die();
 		$this->template->call_template($data);
@@ -98,37 +98,113 @@ class Tenant extends MY_Controller
 		
 	}
 
-	function all_tenants()
+	function alltenants($type)
 	{
 		$active_job_groups = $this->m_tenant->get_tenants();
 		// echo "<pre>";print_r($active_job_groups);die();
 		$count = 0;
+		$column_data = $row_data = array();
 		$this->active_groups .= "<tbody>";
-		if(count($active_job_groups) > 0) {
-			foreach ($active_job_groups as $key => $value) {
-				if ($value['tenant_status'] == 1) {
-					$span = '<span class="label label-success">Activated</span>';
-				} else if ($value['tenant_status'] == 0) {
-					$span = '<span class="label label-danger">Deactivated</span>';
+        $html_body = '
+		<table class="data-table">
+		<thead>
+		<tr>
+			<th><b>No</b></th>
+			<th><b>Fiest Name</b></th>
+			<th><b>Last Name</b></th>
+			<th><b>National ID / Passport No</b></th>
+			<th><b>Phone Number</b></th>
+			<th><b>Tenant Status</b></th>
+			<th><b>Date Registered</b></th>
+		</tr> 
+		</thead>
+		<tbody>
+		<ol type="a">';
+
+			foreach ($active_job_groups as $key => $data) {
+				if ($data['Tenant Status'] == 1) {
+					$span = '<span class="label label-info">Activated</span>';
+					$spans = 'Activated';
+				} else if ($data['Tenant Status'] == 0) {
+					$span = '<span class="label label-alert">Deactivated</span>';
+					$spans = 'Deactivated';
 				}
 				$count++;
+
+		switch ($type) {
+			case 'table':
 				$this->active_groups .= '<tr>';
 				$this->active_groups .= '<td>'.$count.'</td>';
-				$this->active_groups .= '<td>'.$value['firstname'].'</td>';
-				$this->active_groups .= '<td>'.$value['lastname'].'</td>';
-				$this->active_groups .= '<td>'.$value['nationalid_passport'].'</td>';
-				$this->active_groups .= '<td>'.$value['phone_number'].'</td>';
+				$this->active_groups .= '<td>'.$data['Tenant ID'].'</td>';
+				$this->active_groups .= '<td>'.$data['First Name'].'</td>';
+				$this->active_groups .= '<td>'.$data['Last Name'].'</td>';
+				$this->active_groups .= '<td>'.$data['National ID / Passport No'].'</td>';
+				$this->active_groups .= '<td>'.$data['Phone Number'].'</td>';
 				$this->active_groups .= '<td>'.$span.'</td>';
-				$this->active_groups .= '<td>'.$value['date_registered'].'</td>';
+				$this->active_groups .= '<td>'.$data['Date Registered'].'</td>';
 				
 				$this->active_groups .= '</tr>';
-			}
-		}
-		
-		$this->active_groups .= "</tbody>";
+				break;
+			
+			case 'excel':
+				
+				array_push($row_data, array($data['Tenant ID'], $data['First Name'], $data['Last Name'], $data['National ID / Passport No'],
+					$data['Phone Number'], $spans, $data['Date Registered'])); 
+				
+				break;
 
-		return $this->active_groups;
+			case 'pdf':
+				
+			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
+           
+				$html_body .= '<tr>';
+				$html_body .= '<td>'.$data['Tenant ID'].'</td>';
+				$html_body .= '<td>'.$data['First Name'].'</td>';
+				$html_body .= '<td>'.$data['Last Name'].'</td>';
+				$html_body .= '<td>'.$data['National ID / Passport No'].'</td>';
+				$html_body .= '<td>'.$data['Phone Number'].'</td>';
+				$html_body .= '<td>'.$spans.'</td>';
+				$html_body .= '<td>'.$data['Date Registered'].'</td>';
+				
+				$html_body .= "</tr></ol>";
+				
+				break;
+		     }
+		
+				
+		}
+
+		if($type == 'excel'){
+
+            $excel_data = array();
+		    $excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'House Excel Report', 'file_name' => 'House Report', 'excel_topic' => 'House');
+		    $column_data = array('Tenant ID','First Name','Last Name','National ID / Passport No','Phone Number','Tenant Status','Date Registered');
+		    $excel_data['column_data'] = $column_data;
+		    $excel_data['row_data'] = $row_data;
+
+		      //echo'<pre>';print_r($excel_data);echo'</pre>';die();
+
+		    $this->export->create_excel($excel_data);
+
+		}elseif($type == 'pdf'){
+			
+			$html_body .= '</tbody></table>';
+            $pdf_data = array("pdf_title" => "Tenant PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'Tenant Report', 'pdf_topic' => 'Tenant');
+
+            //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+
+		    $this->export->create_pdf($pdf_data);
+
+		}else{
+
+			$this->active_groups .= "</tbody>";
+
+		    return $this->active_groups;
+		}
 	}
+
+
+
 	function ajax_search_get_tenant()
 	{
 		$tenants = $this->m_tenant->select2_search_tenant();
@@ -185,7 +261,7 @@ class Tenant extends MY_Controller
 		$this->tenant_combo .= '<select name="table_search_tenant" id="table_search_tenant" onchange="get_tenant()" class="form-control input-sm js-example-placeholder-single pull-right" style="width: 350px;">';
 		$this->tenant_combo .= '<option value="" selected>**Search a Tenant**</option>';
 		foreach ($tenants as $key => $value) {
-			$this->tenant_combo .= '<option value="'.$value['tenant_id'].'">'.$value['firstname'].' '.$value['lastname'].'</option>';
+			$this->tenant_combo .= '<option value="'.$value['Tenant ID'].'">'.$value['First Name'].' '.$value['Last Name'].'</option>';
 		}
 		$this->tenant_combo .= '</select>';
 

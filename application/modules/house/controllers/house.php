@@ -197,6 +197,7 @@ class House extends MY_Controller
 				$html_body .= '<td>'.$data['Date Registered'].'</td>';
 				
 				$html_body .= "</tr></ol>";
+				
 				break;
 		}
 		
@@ -269,12 +270,12 @@ class House extends MY_Controller
 
 	function all_house_combo()
 	{
-		$houses = $this->house_model->get_av_houses();
+		$houses = $this->house_model->get_all_houses();
 		// echo "<pre>";print_r($houses);die();
 		$this->houses_combo .= '<select name="table_search_house" id="table_search_house" onchange="get_house()" class="form-control input-sm js-example-placeholder-single pull-right" style="width: 350px;">';
 		$this->houses_combo .= '<option value="0" selected>Select: House no -- Estate Name</option>';
 		foreach ($houses as $key => $value) {
-			$this->houses_combo .= '<option value="'.$value['house_id'].'">'.$value['house_no'].' -- '.$value['estate_name'].'</option>';
+			$this->houses_combo .= '<option value="'.$value['House ID'].'">'.$value['House No'].' -- '.$value['Estate Name'].'</option>';
 		}
 		$this->houses_combo .= '</select>';
 

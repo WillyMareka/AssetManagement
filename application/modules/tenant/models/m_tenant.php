@@ -133,7 +133,13 @@ class M_tenant extends MY_Model
 	function get_tenants()
 	{
 		$sql = "SELECT 
-					*
+					tenant_id as 'Tenant ID',
+					firstname as 'First Name',
+					lastname as 'Last Name',
+					nationalid_passport as 'National ID / Passport No',
+					phone_number as 'Phone Number',
+					tenant_status as 'Tenant Status',
+					date_registered as 'Date Registered'
 				FROM
 					`tenant`";
 		$result = $this->db->query($sql);
