@@ -35,6 +35,17 @@
 }
 
 .success{
-	background-color:#27ae60;
+	background-color:#2ecc71;
 	color:#FFF;
 }
+
+.label-alert{
+	background-color: #e74c3c;
+}
+
+.label-info{
+	background-color: #3498db;
+}
+
+
+

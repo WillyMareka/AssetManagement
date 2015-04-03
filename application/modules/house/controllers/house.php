@@ -19,7 +19,7 @@ class House extends MY_Controller
 		$data['content_page'] = 'house/houses';
 		$data['sidebar'] = 'hr_side_bar';
 		$data['houses_c'] = $this->all_house_combo();
-		$data['all_houses'] = $this->all_houses();
+		$data['all_houses'] = $this->allhouses('table');
 		$data['housetypes'] = $this->gethousetypes();
 		
 		$data['houseestates'] = $this->gethouseestates();
@@ -59,13 +59,12 @@ class House extends MY_Controller
 		$housetype = $this->input->post('housetype');
 		$houseblock = $this->input->post('houseblock');
 		$houseestate = $this->input->post('houseestate');
-		$houserent = $this->input->post('houserent');
 		$housebedrooms = $this->input->post('housebedrooms');
 		$housebathrooms = $this->input->post('housebathrooms');
 		$housekitchen = $this->input->post('housekitchen');
 		$housedescription = $this->input->post('housedescription');
 // print_r($_FILES);
-		$insert = $this->house_model->register_house($houseno, $housetype, $houseblock, $houseestate, $houserent, $path, $housebedrooms, $housebathrooms, $housekitchen, $housedescription);
+		$insert = $this->house_model->register_house($houseno, $housetype, $houseblock, $houseestate, $path, $housebedrooms, $housebathrooms, $housekitchen, $housedescription);
 
 		return $insert;
 		    }
@@ -105,47 +104,136 @@ class House extends MY_Controller
 
 
 
-	function all_houses()
+	function allhouses($type)
 	{
 		$active_job_groups = $this->house_model->get_all_houses();
 		// echo "<pre>";print_r($active_job_groups);die();
 		$count = 0;
+		$column_data = $row_data = array();
 		$this->active_groups .= "<tbody>";
-		
-			foreach ($active_job_groups as $key => $value) {
-				if ($value['house_status'] == 1) {
-					$span = '<span class="label label-success">Activated</span>';
-				} else if ($value['house_status'] == 0) {
-					$span = '<span class="label label-danger">Deactivated</span>';
+		$html_body = '
+		<table class="data-table">
+		<thead>
+		<tr>
+			<th><b>House ID</b></th>
+			<th><b>House No</b></th>
+			<th><b>House Type</b></th>
+			<th><b>Block Name</b></th>
+			<th><b>Estate Name</b></th>
+			<th><b>Bedroom No</b></th>
+			<th><b>Bathroom No</b></th>
+			<th><b>Kitchen No</b></th>
+			<th><b>Availability</b></th>
+			<th><b>House Status</b></th>
+			<th><b>Date Registered</b></th>
+		</tr> 
+		</thead>
+		<tbody>
+		<ol type="a">';
+
+		foreach ($active_job_groups as $key => $data) {
+				if ($data['House Status'] == 1) {
+					$span = '<span class="label label-info">Activated</span>';
+					$spans = 'Activated';
+				} else if ($data['House Status'] == 0) {
+					$span = '<span class="label label-alert">Deactivated</span>';
+					$spans = 'Deactivated';
 				}
-				if ($value['is_assigned'] == 0) {
-					$sign = '<span class="label label-warning">Vacant</span>';
-				} else if ($value['is_assigned'] == 1) {
-					$sign = '<span class="label label-danger">Occupied</span>';
+				if ($data['Assign Status'] == 0) {
+					$sign = '<span class="label success">Vacant</span>';
+					$signs = 'Vacant';
+				} else if ($data['Assign Status'] == 1) {
+					$sign = '<span class="label label-warning">Occupied</span>';
+					$signs = 'Occupied';
 				}
-				$count++;
+			$count++;
+
+		switch ($type) {
+			case 'table':
+
 				$this->active_groups .= '<tr>';
 				$this->active_groups .= '<td>'.$count.'</td>';
-				$this->active_groups .= '<td>'.$value['house_no'].'</td>';
-				$this->active_groups .= '<td>'.$value['house_type'].'</td>';
-				$this->active_groups .= '<td>'.$value['block'].'</td>';
-				$this->active_groups .= '<td>'.$value['estate_name'].'</td>';
-				$this->active_groups .= '<td>'.$value['rent'].'</td>';
-				$this->active_groups .= '<td>'.$value['bedrooms'].'</td>';
-				$this->active_groups .= '<td>'.$value['bathrooms'].'</td>';
-				$this->active_groups .= '<td>'.$value['kitchen'].'</td>';
+
+				$this->active_groups .= '<td>'.$data['House No'].'</td>';
+				$this->active_groups .= '<td>'.$data['House Type'].'</td>';
+				$this->active_groups .= '<td>'.$data['Block Name'].'</td>';
+				$this->active_groups .= '<td>'.$data['Estate Name'].'</td>';
+				$this->active_groups .= '<td>'.$data['Bedrooms'].'</td>';
+				$this->active_groups .= '<td>'.$data['Bathrooms'].'</td>';
+				$this->active_groups .= '<td>'.$data['Kitchen'].'</td>';
 				
                 $this->active_groups .= '<td>'.$sign.'</td>';
 				$this->active_groups .= '<td>'.$span.'</td>';
-				$this->active_groups .= '<td>'.$value['date_registered'].'</td>';
+
+				$this->active_groups .= '<td>'.$data['Date Registered'].'</td>';
 				
 				$this->active_groups .= '</tr>';
-			}
-		
-		
-		$this->active_groups .= "</tbody>";
 
-		return $this->active_groups;
+				break;
+			
+			case 'excel':
+
+				array_push($row_data, array($data['House ID'], $data['House No'], $data['House Type'], $data['Block Name'],
+					$data['Estate Name'], $data['Bedrooms'], $data['Bathrooms'], $data['Kitchen'],
+				    $signs, $spans, $data['Date Registered'])); 
+				
+				break;
+
+			case 'pdf':
+				
+			//echo'<pre>';print_r($active_payment_payments);echo'</pre>';die();
+           
+				$html_body .= '<tr>';
+				$html_body .= '<td>'.$data['House ID'].'</td>';
+				$html_body .= '<td>'.$data['House No'].'</td>';
+				$html_body .= '<td>'.$data['House Type'].'</td>';
+				$html_body .= '<td>'.$data['Block Name'].'</td>';
+				$html_body .= '<td>'.$data['Estate Name'].'</td>';
+				$html_body .= '<td>'.$data['Bedrooms'].'</td>';
+				$html_body .= '<td>'.$data['Bathrooms'].'</td>';
+				$html_body .= '<td>'.$data['Kitchen'].'</td>';
+				$html_body .= '<td>'.$signs.'</td>';
+				$html_body .= '<td>'.$spans.'</td>';
+				$html_body .= '<td>'.$data['Date Registered'].'</td>';
+				
+				$html_body .= "</tr></ol>";
+				break;
+		}
+		
+			
+				
+			}
+
+		if($type == 'excel'){
+
+            $excel_data = array();
+		    $excel_data = array('doc_creator' => 'Asset Management ', 'doc_title' => 'House Excel Report', 'file_name' => 'House Report', 'excel_topic' => 'House');
+		    $column_data = array('House ID','House No','House Type','Block Name','Estate Name','Bedroom No','Bathroom No','Kitchen No','Availability','House Status','Date Registered');
+		    $excel_data['column_data'] = $column_data;
+		    $excel_data['row_data'] = $row_data;
+
+		      //echo'<pre>';print_r($excel_data);echo'</pre>';die();
+
+		    $this->export->create_excel($excel_data);
+
+		}elseif($type == 'pdf'){
+			
+			$html_body .= '</tbody></table>';
+            $pdf_data = array("pdf_title" => "House PDF Report", 'pdf_html_body' => $html_body, 'pdf_view_option' => 'download', 'file_name' => 'House Report', 'pdf_topic' => 'House');
+
+            //echo'<pre>';print_r($pdf_data);echo'</pre>';die();
+
+		    $this->export->create_pdf($pdf_data);
+
+		}else{
+
+			$this->active_groups .= "</tbody>";
+
+		    return $this->active_groups;
+		}
+		
+		
+		
 	}
 
 	function ajax_get_house($id)
@@ -164,14 +252,13 @@ class House extends MY_Controller
 		$house_housetype = $this->input->post('housetype');
 		$house_block = $this->input->post('edithouseblock');
 		$house_estate = $this->input->post('edithouseestate');
-		$house_rent = $this->input->post('edithouserent');
 		$house_bedrooms = $this->input->post('edithousebedrooms');
 		$house_bathrooms = $this->input->post('edithousebathrooms');
 		$house_kitchen = $this->input->post('edithousekitchen');
 		$house_description = $this->input->post('edithousedescription');
 		$house_status = $this->input->post('edithousestatus');
 
-		$result = $this->house_model->house_update($id,$house_houseno,$house_housetype,$house_block,$house_estate,$house_rent,$house_bedrooms,$house_bathrooms,$house_kitchen,$house_description,$house_status);
+		$result = $this->house_model->house_update($id,$house_houseno,$house_housetype,$house_block,$house_estate,$house_bedrooms,$house_bathrooms,$house_kitchen,$house_description,$house_status);
 		
 
 		$this->index();

@@ -9,14 +9,13 @@ class House_model extends MY_Model
 		parent:: __construct();
 	}
 
-	function register_house($houseno, $housetype, $houseblock, $houseestate, $houserent, $path, $housebedrooms, $housebathrooms, $housekitchen, $housedescription)
+	function register_house($houseno, $housetype, $houseblock, $houseestate, $path, $housebedrooms, $housebathrooms, $housekitchen, $housedescription)
 	{
 		$house = array(
 						'house_no' => $houseno,
 						'house_type' 	=> $housetype,
 						'block' 	=> $houseblock,
 						'estate_name' 	=> $houseestate,
-						'rent' 	=> $houserent,
 						'picture' => $path,
 						'bedrooms' => $housebedrooms,
 						'bathrooms' => $housebathrooms,
@@ -29,14 +28,13 @@ class House_model extends MY_Model
 
 	}
 
-	function house_update($id,$house_houseno,$house_housetype,$house_block,$house_estate,$house_rent,$house_bedrooms,$house_bathrooms,$house_kitchen,$house_description,$house_status)
+	function house_update($id, $house_houseno, $house_housetype, $house_block, $house_estate, $house_bedrooms, $house_bathrooms, $house_kitchen, $house_description, $house_status)
 	{
 		$house = array(
 						'house_no' => $house_houseno,
 						'house_type' 	=> $house_housetype,
 						'block' 	=> $house_block,
 						'estate_name' 	=> $house_estate,
-						'rent' 	=> $house_rent,
 						'bedrooms' => $house_bedrooms,
 						'bathrooms' => $house_bathrooms,
 						'kitchen' => $house_kitchen,
@@ -82,7 +80,18 @@ class House_model extends MY_Model
 	function get_all_houses()
 	{
 		$sql = "SELECT 
-					*
+					house_id as 'House ID',
+					house_no as  'House No',
+					house_type as  'House Type',
+					block as  'Block Name',
+					estate_name as  'Estate Name',
+					bedrooms as  'Bedrooms',
+					bathrooms as  'Bathrooms',
+					kitchen as  'Kitchen',
+					house_description as  'House Description',
+					date_registered as  'Date Registered',
+					is_assigned as  'Assign Status',
+					house_status as  'House Status'
 				FROM
 					`house`";
 		$result = $this->db->query($sql);

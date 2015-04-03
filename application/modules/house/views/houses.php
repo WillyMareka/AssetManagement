@@ -78,14 +78,6 @@
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div class="form-group">
-																<label>Rent:</label>
-																<input type="text"  name="houserent" required id="houserent" placeholder="Enter Rent for the house" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
 																<label>Picture:</label>
 																<input type="file" name="housepicture" id="housepicture" class="form-control" />
 															</div>
@@ -195,14 +187,6 @@
 		                                                <!-- begin col-4 -->
 		                                                <div class="col-md-4">
 															<div class="form-group">
-																<label>Rent:</label>
-																<input type="text"  name="edithouserent" required id="edithouserent" placeholder="" class="form-control" />
-															</div>
-		                                                </div>
-		                                                <!-- end col-4 -->
-		                                                <!-- begin col-4 -->
-		                                                <div class="col-md-4">
-															<div class="form-group">
 																<label>Bedrooms:</label>
 																<input type="text"  name="edithousebedrooms" required id="edithousebedrooms" placeholder="" class="form-control" />
 															</div>
@@ -268,6 +252,16 @@
                                             <!-- begin row -->
                                             <div class="row">
                                                 <div class="table-responsive">
+                                                	<div class="table-toolbar">
+                                     
+                                      <div class="btn-group pull-right">
+                                         <button data-toggle="dropdown" class="btn dropdown-toggle success">Tools <span class="caret"></span></button>
+                                         <ul class="dropdown-menu">
+                                            <li><a href="<?php echo base_url(). 'house/allhouses/pdf'?>">Save as PDF</a></li>
+                                            <li class="download"><a href="<?php echo base_url(). 'house/allhouses/excel'?>">Export to Excel</a></li>
+                                         </ul>
+                                      </div>
+                                   </div>
                                 <table id="data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
@@ -276,7 +270,6 @@
                                             <th>House Type</th>
                                             <th>Block</th>
                                             <th>Estate</th>
-                                            <th>Rent</th>
                                             <th>Bedroom(s)</th>
                                             <th>Bathroom(s)</th>
                                             <th>Kitchen(s)</th>
@@ -328,7 +321,6 @@
 				$('#houseediting select#edithousetype').val(obj.house_type);
 				$('#houseediting input#edithouseblock').val(obj.block);
 				$('#houseediting input#edithouseestate').val(obj.estate_name);
-				$('#houseediting input#edithouserent').val(obj.rent);
 				$('#houseediting input#edithousebedrooms').val(obj.bedrooms);
 				$('#houseediting input#edithousebathrooms').val(obj.bathrooms);
 				$('#houseediting input#edithousekitchen').val(obj.kitchen);
