@@ -26,7 +26,7 @@ $(document).ready(function(){
                }else if(msg === 'inactive'){
                   $("#username").attr("placeholder", "Username").val("").focus().blur();
                   $("#password").attr("placeholder", "Password").val("").focus().blur();
-                  swal({   title: "Account Inactive",   text: "Your Account is Inactive",   timer: 3000 });
+                  swal({   title: "Account Inactive",   text: "Your Account is Inactive...Contact the administrator",   timer: 3000 });
 
                }else if(msg === 'session'){
                   $("#username").attr("placeholder", "Username").val("").focus().blur();

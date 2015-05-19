@@ -71,6 +71,14 @@ class Payment_model extends MY_Model
 
 	function get_payments()
 	{
+		$yearcriteria = $this->input->post('crityear');
+		$monthcriteria = $this->input->post('critmonth');
+		
+		$criteria  = (($monthcriteria!='') || ($yearcriteria!='')) ? "WHERE tp_id != '0' " : null;
+		$criteria .= ($monthcriteria!='') ? "AND payment_month = '$monthcriteria' " : null;
+        $criteria .= ($yearcriteria!='') ? "AND payment_year = '$yearcriteria' " : null;
+
+		
 		$sql = "SELECT 
 					tp_id as 'No',
 					tenant_id as 'Tenant ID',
@@ -83,9 +91,15 @@ class Payment_model extends MY_Model
 					maintenance_paid as 'Maintenance Paid',
 					date_of_payment as 'Date Paid'
 				FROM
-					`tenant_payment`";
+					`tenant_payment`
+				     $criteria
+				;";
+				
+				    
+        // echo "<pre>";print_r($yearcriteria);echo '</pre>';die();
 		$result = $this->db->query($sql);
 		return $result->result_array();
+			
 	}
 
 	function get_active_payments()

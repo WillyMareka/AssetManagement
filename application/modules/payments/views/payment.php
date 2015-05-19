@@ -121,12 +121,78 @@
                                                    <div class="table-toolbar">
                                      
                                       <div class="btn-group pull-right">
-                                         <button data-toggle="dropdown" class="btn dropdown-toggle success">Tools <span class="caret"></span></button>
-                                         <ul class="dropdown-menu">
-                                            <li><a href="<?php echo base_url(). 'payments/allpayments/pdf'?>">Save as PDF</a></li>
-                                            <li class="download"><a href="<?php echo base_url(). 'payments/allpayments/excel'?>">Export to Excel</a></li>
-                                         </ul>
+                                         
+                                            <button type="button" class="btn success btn-sm download" data-toggle="modal" data-target="#pdfModal">Save as PDF</button>
+                                            <button type="button" class="btn success btn-sm download" data-toggle="modal" data-target="#excelModal">Export to Excel</button>
+                                         
                                       </div>
+                                   </div>
+
+                         
+                                   <div class="modal fade" id="excelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    
+                                     <div class="modal-dialog">
+                                       <div class="modal-content">
+                                         <div class="modal-header">
+                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                           <h4 class="modal-title" id="myModalLabel">Select Criteria</h4>
+                                         </div>
+                                         <div class="modal-body">
+                                               
+                                        <form id="paymentexcelcriteria" name="paymentexcelcriteria" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered" role="form">
+                                             
+                                               
+                                                 <div class="form-group">
+                                                   <label for="critmonth">Month</label>
+                                                   <input type="text" name="critmonth" class="form-control" id="excelmonth" placeholder="Leave blank for all months">
+                                                 </div>
+                                                 <div class="form-group">
+                                                   <label for="crityear">Year</label>
+                                                   <input type="text" name="crityear" class="form-control" id="excelyear" placeholder="Leave blank for all years">
+                                                 </div>
+ 
+                                        </form>
+                                         </div>
+                                         <div class="modal-footer">
+                                           <button type="submit" class="btn success"><a href="<?php echo base_url(). 'payments/allpayments/excel'?>">Submit</a></button>
+                                           <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                                         </div>
+                                        
+                                       </div>
+                                     </div>
+                                    
+                                   </div>
+
+                                   <div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    
+                                     <div class="modal-dialog">
+                                       <div class="modal-content">
+                                         <div class="modal-header">
+                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                           <h4 class="modal-title" id="myModalLabel">Select Criteria</h4>
+                                         </div>
+                                         <div class="modal-body">
+                                               
+                                        <form id="paymentpdfcriteria" name="paymentpdfcriteria" enctype="multipart/form-data" method="POST" class="form-horizontal form-bordered" role="form">
+                                                 <div class="form-group">
+                                                   <label for="critmonth">Month</label>
+                                                   <input type="text" name="critmonth" class="form-control" id="pdfmonth" placeholder="Leave blank for all months">
+                                                 </div>
+                                                 <div class="form-group">
+                                                   <label for="crityear">Year</label>
+                                                   <input type="text" name="crityear" class="form-control" id="pdfyear" placeholder="Leave blank for all years">
+                                                 </div>
+ 
+                                        </form>
+                                 
+                                         </div>
+                                         <div class="modal-footer">
+                                           <button type="submit" class="btn success"><a href="<?php echo base_url(). 'payments/allpayments/pdf'?>">Submit</a></button>
+                                           <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                                         </div>
+                                       </div>
+                                     </div>
+                                    
                                    </div>
 
                                 <table id="data-table" class="table table-striped table-bordered">

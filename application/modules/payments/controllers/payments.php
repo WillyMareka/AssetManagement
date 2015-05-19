@@ -29,10 +29,13 @@ class Payments extends MY_Controller
 
 	function allpayments($type)
 	{
+      
 		$active_payment_payments = $this->payment_model->get_payments();
 
-		 $column_data = $row_data = array();
-		 //echo "<pre>";print_r($active_payment_payments);echo '</pre>';die();
+		// echo "<pre>";print_r($yearcriteria);echo '</pre>';die();
+
+		$column_data = $row_data = array();
+		   // echo "<pre>";print_r($active_payment_payments);echo '</pre>';die();
         $counter = 0;
 		$payments .= "<tbody>";
 		$html_body = '
